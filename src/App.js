@@ -7,8 +7,6 @@ import testJson from "./TestData";
 import { AnimeList } from "./AnimeList";
 
 function App() {
-  const FAKE_BACKEND = false;
-
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("1");
@@ -27,12 +25,12 @@ function App() {
   const fetchAnimeList = useCallback(fetchAnimeListCallBack, []);
 
   useEffect(() => {
-    if (FAKE_BACKEND) {
+    if (process.env.REACT_APP_MOCK_BACKEND) {
       setShows(testJson());
     } else {
       fetchAnimeList(user, seasonFromTab(activeTab), setLoading, setShows);
     }
-  }, [user, activeTab, fetchAnimeList, FAKE_BACKEND]);
+  }, [user, activeTab, fetchAnimeList]);
 
   return (
     <main className="App-Content">
@@ -47,12 +45,13 @@ function App() {
 function fetchAnimeListCallBack(user, season, setLoading, setShows) {
   setLoading(true);
 
+  const domain = process.env.REACT_APP_API_URL;
   var url = "";
 
   if (user !== "") {
-    url = `http://127.0.0.1:5000/api/recommend?user=${user}&year=2023&season=${season}`;
+    url = `${domain}/api/recommend?user=${user}&year=2023&season=${season}`;
   } else {
-    url = `http://127.0.0.1:5000/api/seasonal?year=2023&season=${season}`;
+    url = `${domain}/api/seasonal?year=2023&season=${season}`;
   }
   axios
     .get(url)
