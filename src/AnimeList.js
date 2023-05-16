@@ -19,7 +19,7 @@ export function AnimeItem(node) {
     <Flipped flipId={encodeURIComponent(node["title"])}>
       <div>
         <a href={url}>
-          <img src={node["main_picture"]["medium"]} alt={node["title"]} />
+          <img src={node["coverImage"]} alt={node["title"]} />
         </a>
         <h4 className="card-text my-2 line-clamp-2 text-center font-sans text-lg font-medium tracking-wide text-blue-200 hover:underline">
           <a href={url}>{node["title"]}</a>

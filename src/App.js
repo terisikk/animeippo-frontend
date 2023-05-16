@@ -25,7 +25,7 @@ function App() {
   const fetchAnimeList = useCallback(fetchAnimeListCallBack, []);
 
   useEffect(() => {
-    if (process.env.REACT_APP_MOCK_BACKEND) {
+    if (false /*process.env.REACT_APP_MOCK_BACKEND*/) {
       setShows(testJson());
     } else {
       fetchAnimeList(user, seasonFromTab(activeTab), setLoading, setShows);
