@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Header from "./Header";
 
+import "react-multi-carousel/lib/styles.css";
 import "./App.css";
 import testJson from "./TestData";
 import { AnimeList } from "./AnimeList";

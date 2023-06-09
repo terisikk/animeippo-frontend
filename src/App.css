@@ -15,4 +15,17 @@
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: center;
+    z-index: 0;
+}
+
+.react-multi-carousel-item:hover {
+    z-index: 1;
+}
+
+.react-multi-carousel-list {
+    overflow: visible;
+}
+
+.react-multi-carousel-list:hover {
+    z-index:1;
 }

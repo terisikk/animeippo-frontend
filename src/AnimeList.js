@@ -1,6 +1,5 @@
 import { Flipper, Flipped } from "react-flip-toolkit";
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 
 export function AnimeList(category, shows) {
   var render = shows.filter((item) => category.items.includes(item.id));
@@ -30,8 +29,8 @@ export function AnimeList(category, shows) {
 
   return (
     <div>
-      <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{category.name}</h2>
-      <Carousel responsive={responsive} centerMode={true}>
+      <h2 className="mb-30 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{category.name}</h2>
+      <Carousel className="z-0" responsive={responsive} centerMode={true}>
         {render.map((node) => AnimeItem(node))}
       </Carousel>
     </div>
@@ -56,13 +55,18 @@ export function AnimeItem(node) {
   // </Flipped>
 
   return (
-    <div className="card mb-10">
+    <div className="card group rounded hover:scale-125 ease-in duration-300 bg-zinc-900 hover:bg-zinc-600">
       <a href={url}>
         <img className="rounded" src={node["coverImage"]} alt={node["title"]} />
       </a>
-      <h4 className="card-text text-bottom my-2 line-clamp-2 text-center font-sans text-lg font-medium tracking-wide text-blue-200 hover:underline">
-        <a href={url}>{node["title"]}</a>
-      </h4>
+      <div className="card-text pb-5">
+        <h4 className="text-bottom my-2 px-2 line-clamp-2 text-center font-sans text-lg font-medium tracking-wide text-blue-200 hover:underline">
+          <a href={url}>{node["title"]}</a>
+        </h4>
+        <p className="group-hover:flex flex-wrap justify-center font-sans text-sm text-center tracking-wide font-medium text-blue-50 invisible group-hover:visible">
+          {node["genres"].map((genre) => <span className="mx-1">{genre}</span>)}
+        </p>
+      </div>
     </div>
   );
 }
