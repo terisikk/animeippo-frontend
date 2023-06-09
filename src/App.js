@@ -36,7 +36,7 @@ function App() {
     <main className="App-Content">
       <div className="bg-zinc-900">
         <Header onSubmit={handleMalSearch} loading={loading} activeTab={activeTab} setActiveTab={setActiveTab}></Header>
-        <AnimeList shows={shows}></AnimeList>
+        {shows.data?.categories.map((item) => AnimeList(item, shows.data.shows))}
       </div>
     </main>
   );
@@ -48,11 +48,11 @@ function fetchAnimeListCallBack(user, season, setLoading, setShows) {
   const domain = process.env.REACT_APP_API_URL;
   var url = "";
 
-  if (user !== "") {
-    url = `${domain}/api/recommend?user=${user}&year=2023&season=${season}`;
-  } else {
-    url = `${domain}/api/seasonal?year=2023&season=${season}`;
-  }
+  //if (user !== "") {
+  url = `${domain}/api/recommend?user=Janiskeisari&year=2023&season=${season}`;
+  // } else {
+  //   url = `${domain}/api/seasonal?year=2023&season=${season}`;
+  //}
   axios
     .get(url)
     .then((response) => {

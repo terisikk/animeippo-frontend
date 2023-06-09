@@ -1,4 +1,18 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
 .card-text {
     width: 0;
     min-width: 100%;
+}
+
+.react-multi-carousel-item {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
 }
