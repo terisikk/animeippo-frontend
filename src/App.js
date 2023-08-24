@@ -26,59 +26,59 @@ function App() {
   const fetchAnimeList = useCallback(fetchAnimeListCallBack, []);
 
   useEffect(() => {
-    if (false /*process.env.REACT_APP_MOCK_BACKEND*/) {
+    if (process.env.REACT_APP_MOCK_BACKEND === true) {
+      console.log("Using fake backend.");
+      console.log(process.env.REACT_APP_MOCK_BACKEND);
       setShows(testJson());
     } else {
-      fetchAnimeList(user, seasonFromTab(activeTab), setLoading, setShows);
+      fetchAnimeList(user, yearFromTab(activeTab), setLoading, setShows);
     }
   }, [user, activeTab, fetchAnimeList]);
 
   return (
-    <main className="App-Content">
+    <main className="App-Content overflow-hidden">
       <div className="bg-zinc-900">
         <Header onSubmit={handleMalSearch} loading={loading} activeTab={activeTab} setActiveTab={setActiveTab}></Header>
+        {console.log(shows)}
         {shows.data?.categories.map((item) => AnimeList(item, shows.data.shows))}
       </div>
     </main>
   );
 }
 
-function fetchAnimeListCallBack(user, season, setLoading, setShows) {
-  setLoading(true);
+function fetchAnimeListCallBack(user, year, setLoading, setShows) {
+  if (user !== "") {
+    setLoading(true);
 
-  const domain = process.env.REACT_APP_API_URL;
-  var url = "";
+    const domain = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
-  //if (user !== "") {
-  url = `${domain}/api/recommend?user=Janiskeisari&year=2023&season=${season}`;
-  // } else {
-  //   url = `${domain}/api/seasonal?year=2023&season=${season}`;
-  //}
-  axios
-    .get(url)
-    .then((response) => {
-      setTimeout(() => {
-        setShows(response.data);
-        setLoading(false);
-      }, 1000);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    var url = `${domain}/recommend?user=${user}&year=${year}`;
+    axios
+      .get(url)
+      .then((response) => {
+        setTimeout(() => {
+          setShows(response.data);
+          setLoading(false);
+        }, 1000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 }
 
-function seasonFromTab(tab) {
+function yearFromTab(tab) {
   var season = "";
 
   switch (tab) {
     case "0":
-      season = "winter";
+      season = "2022";
       break;
     case "1":
-      season = "spring";
+      season = "2023";
       break;
     case "2":
-      season = "summer";
+      season = "2024";
       break;
     default:
       break;

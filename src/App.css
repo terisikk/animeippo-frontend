@@ -1,21 +1,18 @@
-.card {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: space-between;
-}
-
 .card-text {
     width: 0;
     min-width: 100%;
+}
+
+.card-image {
+    max-height: 326px;
 }
 
 .react-multi-carousel-item {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-    justify-content: center;
     z-index: 0;
+    transition-duration: 300ms;
 }
 
 .react-multi-carousel-item:hover {
@@ -27,5 +24,5 @@
 }
 
 .react-multi-carousel-list:hover {
-    z-index:1;
+    z-index: 1;
 }

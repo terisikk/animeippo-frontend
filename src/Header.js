@@ -5,9 +5,9 @@ function Header({ activeTab, loading, setActiveTab, onSubmit }) {
     <div>
       <MalSearchForm className="w-full" onSubmit={onSubmit} loading={loading}></MalSearchForm>
       <div className="flex flex-wrap justify-center">
-        <Tab text="Previous" active={activeTab === "0"} onClick={() => setActiveTab("0")} />
-        <Tab text="Current" active={activeTab === "1"} onClick={() => setActiveTab("1")} />
-        <Tab text="Next" active={activeTab === "2"} onClick={() => setActiveTab("2")} />
+        <Tab text="2022" active={activeTab === "0"} onClick={() => setActiveTab("0")} />
+        <Tab text="2023" active={activeTab === "1"} onClick={() => setActiveTab("1")} />
+        <Tab text="2024" active={activeTab === "2"} onClick={() => setActiveTab("2")} />
       </div>
     </div>
   );
