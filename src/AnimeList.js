@@ -1,41 +1,81 @@
-import { Flipper, Flipped } from "react-flip-toolkit";
 import Carousel from "react-multi-carousel";
 
-export function AnimeList(category, shows) {
+const responsive = {
+  largeDesktop: {
+    breakpoint: { max: 4000, min: 2048 },
+    items: 10,
+    slidesToSlide: 10,
+  },
+  desktop: {
+    breakpoint: { max: 2048, min: 1024 },
+    items: 6,
+    slidesToSlide: 5,
+  },
+  mid: {
+    breakpoint: { max: 1024, min: 720 },
+    items: 4,
+    slidesToSlide: 4,
+  },
+  tablet: {
+    breakpoint: { max: 720, min: 464 },
+    items: 2,
+    slidesToSlide: 3.5,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2,
+    slidesToSlide: 2,
+  },
+};
+
+export function PlaceHolderContent() {
+  return (
+    <div>
+      {PlaceholderList()}
+      {PlaceholderList()}
+      {PlaceholderList()}
+    </div>
+  );
+}
+
+export function PlaceholderList() {
+  var placeholders = [];
+  for (let i = 0; i < 10; i++) {
+    placeholders.push(PlaceholderItem());
+  }
+
+  return (
+    <div className="animate-pulse pb-8">
+      <h2 className="ml-5 pb-5 font-sans text-2xl font-medium tracking-wide text-white">...</h2>
+      <Carousel responsive={responsive} centerMode={true}>
+        {placeholders.map((placeholder) => (
+          <div>{placeholder}</div>
+        ))}
+      </Carousel>
+    </div>
+  );
+}
+
+export function PlaceholderItem() {
+  return (
+    <div className={`group mx-2 flex flex-row flex-wrap content-between rounded`}>
+      <img className="card-image rounded" src="placeholder.png" alt="" />
+      <div className="card-text h-28">
+        <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200">
+          ...
+        </h4>
+      </div>
+    </div>
+  );
+}
+
+export function AnimeList(category, shows, loading) {
   var render = shows.filter((item) => category.items.includes(item.id));
 
   console.log(shows);
 
-  const responsive = {
-    largeDesktop: {
-      breakpoint: { max: 4000, min: 2048 },
-      items: 10,
-      slidesToSlide: 10,
-    },
-    desktop: {
-      breakpoint: { max: 2048, min: 1024 },
-      items: 6,
-      slidesToSlide: 5,
-    },
-    mid: {
-      breakpoint: { max: 1024, min: 720 },
-      items: 4,
-      slidesToSlide: 4,
-    },
-    tablet: {
-      breakpoint: { max: 720, min: 464 },
-      items: 2,
-      slidesToSlide: 3.5,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2,
-      slidesToSlide: 2,
-    },
-  };
-
   return (
-    <div className="mb-8">
+    <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
       <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{category.name}</h2>
       <Carousel responsive={responsive} centerMode={true}>
         {render.map((node) => AnimeItem(node))}
@@ -51,7 +91,7 @@ export function AnimeItem(node) {
 
   return (
     <div
-      className={`group mx-2 flex flex-row flex-wrap content-between rounded  bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600`}
+      className={`group mx-2 flex flex-row flex-wrap content-between rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600`}
     >
       <a className="card-image" href={url}>
         <img className="card-image rounded" src={node["coverImage"]} alt={node["title"]} />

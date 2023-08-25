@@ -5,7 +5,7 @@ import Header from "./Header";
 import "react-multi-carousel/lib/styles.css";
 import "./App.css";
 import testJson from "./TestData";
-import { AnimeList } from "./AnimeList";
+import { AnimeList, PlaceHolderContent } from "./AnimeList";
 
 function App() {
   const [shows, setShows] = useState([]);
@@ -28,7 +28,6 @@ function App() {
   useEffect(() => {
     if (process.env.REACT_APP_MOCK_BACKEND === true) {
       console.log("Using fake backend.");
-      console.log(process.env.REACT_APP_MOCK_BACKEND);
       setShows(testJson());
     } else {
       fetchAnimeList(user, yearFromTab(activeTab), setLoading, setShows);
@@ -36,11 +35,31 @@ function App() {
   }, [user, activeTab, fetchAnimeList]);
 
   return (
-    <main className="App-Content overflow-hidden">
-      <div className="bg-zinc-900">
-        <Header onSubmit={handleMalSearch} loading={loading} activeTab={activeTab} setActiveTab={setActiveTab}></Header>
-        {console.log(shows)}
-        {shows.data?.categories.map((item) => AnimeList(item, shows.data.shows))}
+    <main className="App-Content h-full bg-zinc-900">
+      <div
+        className={`${
+          loading || shows.data?.shows.length ? "pt-0" : "h-screen pt-[15%]"
+        } transition-all duration-1000 ease-out`}
+      >
+        <h1
+          className={`${
+            loading || shows.data?.shows.length ? "absolute w-20 object-top pt-5 text-left" : "w-full object-bottom"
+          } pb-5 pl-5 pr-5 text-center text-6xl font-extrabold leading-none tracking-tight text-white transition-all duration-1000 ease-out max-lg:w-full`}
+        >
+          Animeippo
+        </h1>
+        <Header
+          onSubmit={handleMalSearch}
+          loading={loading}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          contentReady={shows.data?.shows.length}
+        ></Header>
+        <div className="">
+          {loading
+            ? PlaceHolderContent()
+            : shows.data?.categories.map((item) => AnimeList(item, shows.data.shows, loading))}
+        </div>
       </div>
     </main>
   );
