@@ -30,7 +30,8 @@ const responsive = {
 
 export function PlaceHolderContent() {
   return (
-    <div>
+    <div className="animate-pulse">
+      {PlaceholderList()}
       {PlaceholderList()}
       {PlaceholderList()}
       {PlaceholderList()}
@@ -44,8 +45,11 @@ export function PlaceholderList() {
     placeholders.push(PlaceholderItem());
   }
 
+  console.log("Placeholders: ");
+  console.log(placeholders);
+
   return (
-    <div className="animate-pulse pb-8">
+    <div className="pb-8">
       <h2 className="ml-5 pb-5 font-sans text-2xl font-medium tracking-wide text-white">...</h2>
       <Carousel responsive={responsive} centerMode={true}>
         {placeholders.map((placeholder) => (
@@ -59,7 +63,7 @@ export function PlaceholderList() {
 export function PlaceholderItem() {
   return (
     <div className={`group mx-2 flex flex-row flex-wrap content-between rounded`}>
-      <img className="card-image rounded" src="placeholder.png" alt="" />
+      <img className="card-image rounded" src="./placeholder.png" alt="" />
       <div className="card-text h-28">
         <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200">
           ...
