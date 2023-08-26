@@ -1,0 +1,27 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    name: "Docker image build & publish"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/login-action@v2
+        with:
+          # without scheme
+          registry: ${{ secrets.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: docker/setup-buildx-action@v2
+      - uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          cache-from: type=registry,ref={{ secrets.DOCKER_REGISTRY }}/animeippo-frontend:latest
+          cache-to: type=inline
+          tags: ${{ secrets.DOCKER_REGISTRY }}/animeippo-frontend:latest

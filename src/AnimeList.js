@@ -45,9 +45,6 @@ export function PlaceholderList() {
     placeholders.push(PlaceholderItem());
   }
 
-  console.log("Placeholders: ");
-  console.log(placeholders);
-
   return (
     <div className="pb-8">
       <h2 className="ml-5 pb-5 font-sans text-2xl font-medium tracking-wide text-white">...</h2>
@@ -76,8 +73,6 @@ export function PlaceholderItem() {
 export function AnimeList(category, shows, loading) {
   var render = shows.filter((item) => category.items.includes(item.id));
 
-  console.log(shows);
-
   return (
     <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
       <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{category.name}</h2>
@@ -90,8 +85,6 @@ export function AnimeList(category, shows, loading) {
 
 export function AnimeItem(node) {
   const url = `https://anilist.co/anime/${node["id"]}`;
-
-  console.log(node);
 
   return (
     <div

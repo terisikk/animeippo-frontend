@@ -27,7 +27,6 @@ function App() {
 
   useEffect(() => {
     if (process.env.REACT_APP_MOCK_BACKEND === true) {
-      console.log("Using fake backend.");
       setShows(testJson());
     } else {
       fetchAnimeList(user, yearFromTab(activeTab), setLoading, setShows);
