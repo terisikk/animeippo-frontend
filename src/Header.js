@@ -1,8 +1,6 @@
 import { Spinner, Spyglass } from "./Icons";
 
 function Header({ activeTab, loading, setActiveTab, onSubmit, contentReady }) {
-  console.log("rendering header: ");
-  console.log(contentReady);
   return (
     <div className={`max flex flex-wrap pb-8 pt-5 transition-height duration-1000 ease-in-out max-lg:pt-20`}>
       <div className={`ml-auto flex flex-1 flex-wrap justify-center`}>

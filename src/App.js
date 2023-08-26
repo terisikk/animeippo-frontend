@@ -72,7 +72,12 @@ function fetchAnimeListCallBack(user, year, setLoading, setShows) {
 
     var url = `${domain}/recommend?user=${user}&year=${year}`;
     axios
-      .get(url)
+      .get(url, {
+        auth: {
+          username: process.env.REACT_APP_API_USER,
+          password: process.env.REACT_APP_API_PASSWORD,
+        },
+      })
       .then((response) => {
         setTimeout(() => {
           setShows(response.data);
