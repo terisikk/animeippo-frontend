@@ -11,6 +11,10 @@ jobs:
     name: "Docker image build & publish"
     steps:
       - uses: actions/checkout@v3
+      - uses: SpicyPizza/create-envfile@v2.0.2
+        with:
+          envkey_REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          filename: .env.production.local
       - uses: docker/login-action@v2
         with:
           # without scheme
@@ -21,8 +25,6 @@ jobs:
       - uses: docker/build-push-action@v4
         with:
           context: .
-          build-args: |
-            "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}"
           push: true
           cache-from: type=registry,ref={{ secrets.DOCKER_REGISTRY }}/animeippo-frontend:latest
           cache-to: type=inline
