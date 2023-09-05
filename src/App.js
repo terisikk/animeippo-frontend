@@ -34,7 +34,7 @@ function App() {
   }, [user, activeTab, fetchAnimeList]);
 
   return (
-    <main className="App-Content h-full bg-zinc-900">
+    <main className="App-Content h-full overflow-hidden bg-zinc-900">
       <div
         className={`${
           loading || shows.data?.shows.length ? "pt-0" : "h-screen pt-[15%]"
@@ -72,12 +72,7 @@ function fetchAnimeListCallBack(user, year, setLoading, setShows) {
 
     var url = `${domain}/recommend?user=${user}&year=${year}`;
     axios
-      .get(url, {
-        auth: {
-          username: process.env.REACT_APP_API_USER,
-          password: process.env.REACT_APP_API_PASSWORD,
-        },
-      })
+      .get(url)
       .then((response) => {
         setTimeout(() => {
           setShows(response.data);
