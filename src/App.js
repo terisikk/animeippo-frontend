@@ -12,6 +12,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("1");
   const [user, setUser] = useState("");
+  const [contentReady, setContentReady] = useState(false);
 
   const handleMalSearch = (e) => {
     e.preventDefault();
@@ -29,20 +30,18 @@ function App() {
     if (process.env.REACT_APP_MOCK_BACKEND === true) {
       setShows(testJson());
     } else {
-      fetchAnimeList(user, yearFromTab(activeTab), setLoading, setShows);
+      fetchAnimeList(user, yearFromTab(activeTab), setLoading, setShows, setContentReady);
     }
   }, [user, activeTab, fetchAnimeList]);
 
   return (
     <main className="App-Content h-full overflow-hidden bg-zinc-900">
       <div
-        className={`${
-          loading || shows.data?.shows.length ? "pt-0" : "h-screen pt-[15%]"
-        } transition-all duration-1000 ease-out`}
+        className={`${loading || contentReady ? "pt-0" : "h-screen pt-[15%]"} transition-all duration-1000 ease-out`}
       >
         <h1
           className={`${
-            loading || shows.data?.shows.length ? "absolute w-20 object-top pt-5 text-left" : "w-full object-bottom"
+            loading || contentReady ? "absolute w-20 object-top pt-5 text-left" : "w-full object-bottom"
           } pb-5 pl-5 pr-5 text-center text-6xl font-extrabold leading-none tracking-tight text-white transition-all duration-1000 ease-out max-lg:w-full`}
         >
           Animeippo
@@ -52,19 +51,25 @@ function App() {
           loading={loading}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          contentReady={shows.data?.shows.length}
+          contentReady={contentReady}
         ></Header>
         <div className="">
           {loading
             ? PlaceHolderContent()
-            : shows.data?.categories.map((item) => AnimeList(item, shows.data.shows, loading))}
+            : shows != null
+            ? shows.data?.categories.map((item) => AnimeList(item, shows.data.shows, loading))
+            : backendErrorMessage()}
         </div>
       </div>
     </main>
   );
 }
 
-function fetchAnimeListCallBack(user, year, setLoading, setShows) {
+function backendErrorMessage() {
+  return <p className="w-full text-center text-lg text-red-700">Could not find data for that user.</p>;
+}
+
+function fetchAnimeListCallBack(user, year, setLoading, setShows, setContentReady) {
   if (user !== "") {
     setLoading(true);
 
@@ -77,10 +82,14 @@ function fetchAnimeListCallBack(user, year, setLoading, setShows) {
         setTimeout(() => {
           setShows(response.data);
           setLoading(false);
+          setContentReady(response?.data);
         }, 1000);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
+        setShows(null);
+        setContentReady(false);
       });
   }
 }
