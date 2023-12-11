@@ -1,21 +1,47 @@
 import { Spinner, Spyglass } from "./Icons";
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
 
-function Header({ activeTab, loading, setActiveTab, onSubmit, contentReady }) {
+function Header({ activeYear, loading, setActiveYear, onSubmit, contentReady }) {
   return (
     <div className={`max flex flex-wrap pb-8 pt-5 transition-height duration-1000 ease-in-out max-lg:pt-20`}>
       <div className={`ml-auto flex flex-1 flex-wrap justify-center`}>
-        <MalSearchForm onSubmit={onSubmit} loading={loading} contentReady={contentReady}></MalSearchForm>
+        <SearchForm onSubmit={onSubmit} loading={loading} contentReady={contentReady}></SearchForm>
       </div>
-      <div className={`flex w-full flex-wrap justify-center ${contentReady ? "visible" : "hidden"}`}>
-        <Tab text="2022" active={activeTab === "0"} onClick={() => setActiveTab("0")} disabled={loading} />
-        <Tab text="2023" active={activeTab === "1"} onClick={() => setActiveTab("1")} disabled={loading} />
-        <Tab text="2024" active={activeTab === "2"} onClick={() => setActiveTab("2")} disabled={loading} />
-      </div>
+      <HeaderTabBar
+        activeYear={activeYear}
+        contentReady={contentReady}
+        setActiveYear={setActiveYear}
+        loading={loading}
+      ></HeaderTabBar>
     </div>
   );
 }
 
-function MalSearchForm({ onSubmit, loading, contentReady }) {
+function HeaderTabBar({ activeYear, contentReady, setActiveYear, loading }) {
+  var currentYear = new Date().getFullYear();
+
+  console.log(activeYear);
+  console.log(currentYear);
+
+  var renderLastTab = true;
+
+  if (activeYear > currentYear) {
+    renderLastTab = false;
+  }
+
+  return (
+    <div className={`flex w-full flex-wrap justify-center ${contentReady ? "visible" : "hidden"}`}>
+      <Tab text={activeYear - 1} active={false} onClick={() => setActiveYear(activeYear - 1)} disabled={loading} />
+      <Tab text={activeYear} active={true} onClick={() => setActiveYear(activeYear)} disabled={loading} />
+      {renderLastTab && (
+        <Tab text={activeYear + 1} active={false} onClick={() => setActiveYear(activeYear + 1)} disabled={loading} />
+      )}
+    </div>
+  );
+}
+
+function SearchForm({ onSubmit, loading, contentReady }) {
   return (
     <form className={`flex w-full items-center justify-center p-5`} onSubmit={onSubmit}>
       <input
@@ -33,8 +59,45 @@ function MalSearchForm({ onSubmit, loading, contentReady }) {
           {loading ? <Spinner /> : <Spyglass />}
         </button>
       </label>
+      {/*<DropDown></DropDown>*/}
       <input type="submit" hidden />
     </form>
+  );
+}
+
+function DropDown() {
+  return (
+    <Menu as="div" className="relative inline-block text-left">
+      <div>
+        <Menu.Button className="ml-5 inline-flex w-full justify-center gap-x-1.5 rounded-md rounded-l border border-blue-700 bg-white p-3 text-sm font-semibold text-gray-900  ring-gray-300 hover:bg-gray-50">
+          <span>ANI</span>
+          <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path
+              fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </Menu.Button>
+      </div>
+
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="py-1">
+            <Menu.Item>{({ active }) => <span className="block">ANI</span>}</Menu.Item>
+            <Menu.Item>{({ active }) => <span className="block">MAL</span>}</Menu.Item>
+          </div>
+        </Menu.Items>
+      </Transition>
+    </Menu>
   );
 }
 

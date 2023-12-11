@@ -10,11 +10,11 @@ import { AnimeList, PlaceHolderContent } from "./AnimeList";
 function App() {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState("1");
+  const [activeYear, setActiveYear] = useState(2023);
   const [user, setUser] = useState("");
   const [contentReady, setContentReady] = useState(false);
 
-  const handleMalSearch = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
 
     var new_user = e.target.maluser.value;
@@ -30,9 +30,9 @@ function App() {
     if (process.env.REACT_APP_MOCK_BACKEND === true) {
       setShows(testJson());
     } else {
-      fetchAnimeList(user, yearFromTab(activeTab), setLoading, setShows, setContentReady);
+      fetchAnimeList(user, activeYear, setLoading, setShows, setContentReady);
     }
-  }, [user, activeTab, fetchAnimeList]);
+  }, [user, activeYear, fetchAnimeList]);
 
   return (
     <main className="App-Content h-full overflow-hidden bg-zinc-900">
@@ -47,10 +47,10 @@ function App() {
           Animeippo
         </h1>
         <Header
-          onSubmit={handleMalSearch}
+          onSubmit={handleSearch}
           loading={loading}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
+          activeYear={activeYear}
+          setActiveYear={setActiveYear}
           contentReady={contentReady}
         ></Header>
         <div className="">
@@ -92,26 +92,6 @@ function fetchAnimeListCallBack(user, year, setLoading, setShows, setContentRead
         setContentReady(false);
       });
   }
-}
-
-function yearFromTab(tab) {
-  var season = "";
-
-  switch (tab) {
-    case "0":
-      season = "2022";
-      break;
-    case "1":
-      season = "2023";
-      break;
-    case "2":
-      season = "2024";
-      break;
-    default:
-      break;
-  }
-
-  return season;
 }
 
 export default App;

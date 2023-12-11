@@ -71,7 +71,9 @@ export function PlaceholderItem() {
 }
 
 export function AnimeList(category, shows, loading) {
-  var render = shows.filter((item) => category.items.includes(item.id));
+  var render = shows
+    .filter((item) => category.items.includes(item.id))
+    .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
 
   return (
     <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
@@ -91,7 +93,7 @@ export function AnimeItem(node) {
       className={`group mx-2 flex flex-row flex-wrap content-between rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600`}
     >
       <a className="card-image" href={url}>
-        <img className="card-image rounded" src={node["coverImage"]} alt={node["title"]} />
+        <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
         {node["status"] === "not_yet_released" && (
           <span className="absolute bottom-28 bg-red-500 px-4 py-2 text-center font-sans text-sm uppercase text-white">
             Upcoming {node["start_season"]}
