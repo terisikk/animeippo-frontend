@@ -96,7 +96,7 @@ export function AnimeItem(node) {
         <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
         {node["status"] === "not_yet_released" && (
           <span className="absolute bottom-28 bg-red-500 px-4 py-2 text-center font-sans text-sm uppercase text-white">
-            Upcoming {node["start_season"]}
+            Upcoming {node["season"]}
           </span>
         )}
       </a>
