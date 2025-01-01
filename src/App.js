@@ -10,7 +10,7 @@ import { AnimeList, PlaceHolderContent } from "./AnimeList";
 function App() {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [activeYear, setActiveYear] = useState(2024);
+  const [activeYear, setActiveYear] = useState(new Date().getFullYear());
   const [user, setUser] = useState("");
   const [contentReady, setContentReady] = useState(false);
 
