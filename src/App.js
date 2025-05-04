@@ -69,6 +69,27 @@ function backendErrorMessage() {
   return <p className="w-full text-center text-lg text-red-700">Could not find data for that user.</p>;
 }
 
+function preFetchYearAnimeCallback(user, year) {
+  const domain = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
+  var url = `${domain}/seasonal?year=${year}`;
+
+  axios
+    .get(url)
+    .then((response) => {
+      if (response.data.length > 0) {
+        return response.data;
+      } else {
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      return null;
+    }
+    );
+}
+
 function fetchAnimeListCallBack(user, year, setLoading, setShows, setContentReady) {
   if (user !== "") {
     setLoading(true);
@@ -76,13 +97,12 @@ function fetchAnimeListCallBack(user, year, setLoading, setShows, setContentRead
     const domain = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
     var url = `${domain}/recommend?user=${user}&year=${year}`;
-    axios
-      .get(url)
-      .then((response) => {
+    fetchWithCache(url)
+      .then((data) => {
         setTimeout(() => {
-          setShows(response.data);
+          setShows(data);
           setLoading(false);
-          setContentReady(response?.data);
+          setContentReady(data);
         }, 1000);
       })
       .catch((error) => {
@@ -93,5 +113,26 @@ function fetchAnimeListCallBack(user, year, setLoading, setShows, setContentRead
       });
   }
 }
+
+const CACHE_TTL = 1000 * 60 * 60 * 24; // 1 day
+
+export async function fetchWithCache(url) {
+  const cached = localStorage.getItem(url);
+  if (cached) {
+    const { timestamp, data } = JSON.parse(cached);
+    if (Date.now() - timestamp < CACHE_TTL) {
+      return data;
+    }
+  }
+
+  const response = await axios.get(url);
+  localStorage.setItem(url, JSON.stringify({
+    timestamp: Date.now(),
+    data: response.data,
+  }));
+
+  return response.data;
+}
+
 
 export default App;
