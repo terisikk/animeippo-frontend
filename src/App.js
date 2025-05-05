@@ -1,18 +1,37 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import axios from "axios";
 import Header from "./Header";
 
 import "react-multi-carousel/lib/styles.css";
 import "./App.css";
 import testJson from "./TestData";
-import { AnimeList, PlaceHolderContent } from "./AnimeList";
+import { AnimeContent, AnimeListCarousel, PlaceHolderContent } from "./AnimeList";
+
+
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
+
 
 function App() {
+  const [selectedGenre, setSelectedGenre] = useState("All");
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
   const [user, setUser] = useState("");
   const [contentReady, setContentReady] = useState(false);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+  const toggleDrawer = (newOpen) => () => {
+    setDrawerOpen(newOpen);
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -39,6 +58,10 @@ function App() {
       <div
         className={`${loading || contentReady ? "pt-0" : "h-screen pt-[15%]"} transition-all duration-1000 ease-out`}
       >
+        { shows.data ? <IconButton edge="start" color="primary" aria-label="menu" sx={{ pl: 2}} onClick={toggleDrawer(true)}>
+            <MenuIcon />
+        </IconButton> : null 
+        }
         <h1
           className={`${
             loading || contentReady ? "absolute w-20 object-top pt-5 text-left" : "w-full object-bottom"
@@ -57,37 +80,56 @@ function App() {
           {loading
             ? PlaceHolderContent()
             : shows != null
-            ? shows.data?.categories.map((item) => AnimeList(item, shows.data.shows, loading))
+            ? AnimeContent(shows?.data, selectedGenre) 
             : backendErrorMessage()}
         </div>
+        { shows.data? <TemporaryDrawer
+          tags={shows.data.tags}
+          open={drawerOpen}
+          toggleDrawer={toggleDrawer}
+          setSelectedGenre={setSelectedGenre}
+        ></TemporaryDrawer> : null }
       </div>
     </main>
   );
 }
 
-function backendErrorMessage() {
-  return <p className="w-full text-center text-lg text-red-700">Could not find data for that user.</p>;
+function TemporaryDrawer({ tags, open, toggleDrawer, setSelectedGenre }) {
+  const DrawerList = (
+    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      <List>
+          <ListItem key="All" disablePadding onClick={() => setSelectedGenre("All")}>
+            <ListItemButton>
+              <ListItemIcon>
+              </ListItemIcon>
+              <ListItemText primary={"All"} />
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+        {tags.map((text, index) => (
+          <ListItem key={text} disablePadding onClick={() => setSelectedGenre(text)}>
+            <ListItemButton>
+              <ListItemIcon>
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+  return (
+    <div>
+      <Drawer open={open} onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
+    </div>
+  );
 }
 
-function preFetchYearAnimeCallback(user, year) {
-  const domain = process.env.REACT_APP_API_URL || "http://localhost:5000";
-
-  var url = `${domain}/seasonal?year=${year}`;
-
-  axios
-    .get(url)
-    .then((response) => {
-      if (response.data.length > 0) {
-        return response.data;
-      } else {
-        return null;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      return null;
-    }
-    );
+function backendErrorMessage() {
+  return <p className="w-full text-center text-lg text-red-700">Could not find data for that user.</p>;
 }
 
 function fetchAnimeListCallBack(user, year, setLoading, setShows, setContentReady) {

@@ -70,45 +70,72 @@ export function PlaceholderItem() {
   );
 }
 
-export function AnimeList(category, shows, loading) {
-  var render = shows
-    .filter((item) => category.items.includes(item.id))
-    .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
+export function AnimeContent(data, selectedGenre) {
 
+  if (data === undefined || data.length === 0) {
+    return
+  }
+
+  if (selectedGenre !== "All") {
+    var render = data?.shows.filter((item) => item.genres?.includes(selectedGenre) || item.tags?.includes(selectedGenre));
+
+    return (
+          AnimeListFlex(render)
+      )
+  } else {
+      return (
+        data?.categories.map((item) => {
+          var category = item;
+          var render = data.shows
+            .filter((item) => category.items.includes(item.id))
+            .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
+            return AnimeListCarousel(render, category);
+        })
+      )
+  }
+}
+
+export function AnimeListFlex(shows) {
   return (
-    <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
-      <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{category.name}</h2>
-      <Carousel responsive={responsive} centerMode={true}>
-        {render.map((node) => AnimeItem(node))}
-      </Carousel>
+    <div className={`flex flex-wrap justify-center ${shows.length ? "visible" : "hidden"}`}>
+      {shows.map((node) => AnimeItem(node))}
     </div>
   );
+}
+
+export function AnimeListCarousel(shows, category) {
+  return (
+  <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
+      <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{category.name}</h2>
+      <Carousel responsive={responsive} centerMode={true}>
+        {shows.map((node) => AnimeItem(node))}
+      </Carousel>
+      </div>
+  )
 }
 
 export function AnimeItem(node) {
   const url = `https://anilist.co/anime/${node["id"]}`;
 
   return (
-    <div
-      className={`group mx-2 flex flex-row flex-wrap content-between rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600`}
-    >
-      <a className="card-image" href={url}>
+    <div className="group mx-2 w-40 sm:w-48 md:w-56 rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600 hover:z-10">
+      <a className="relative block card-image overflow-hidden" href={url}>
         <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
         {node["status"] === "not_yet_released" && (
-          <span className="absolute bottom-28 bg-red-500 px-4 py-2 text-center font-sans text-sm uppercase text-white">
+          <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-xs uppercase text-white rounded">
             Upcoming {node["season"]}
           </span>
         )}
       </a>
-      <div className="card-text h-28">
-        <a className="mt-2 flex h-12 items-center justify-center align-middle" href={url}>
-          <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200 hover:underline">
+      <div className="h-28">
+        <a className="mt-2 flex h-12 items-center justify-center" href={url}>
+          <h4 className="line-clamp-2 px-2 text-center text-base font-medium tracking-wide text-blue-200 hover:underline">
             {node["title"]}
           </h4>
         </a>
-        <p className="invisible flex-wrap justify-center text-center align-middle font-sans text-xs font-medium tracking-wide text-blue-50 group-hover:visible group-hover:flex">
+        <p className="invisible justify-center text-center text-xs font-medium text-blue-50 group-hover:visible group-hover:flex flex-wrap">
           {node["genres"].map((genre) => (
-            <span className="mx-1">{genre}</span>
+            <span key={genre} className="mx-1">{genre}</span>
           ))}
         </p>
       </div>
