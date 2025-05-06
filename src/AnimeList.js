@@ -118,29 +118,30 @@ export function AnimeItem(node) {
   const url = `https://anilist.co/anime/${node["id"]}`;
 
   return (
-    <div className="group mx-2 w-40 sm:w-48 md:w-56 rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600 hover:z-10">
-      <a className="relative block card-image overflow-hidden" href={url}>
+    <div className="group mx-2 flex flex-row flex-wrap content-between rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600 hover:z-10">
+      <a className="card-image relative block" href={url}>
         <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
         {node["status"] === "not_yet_released" && (
-          <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-xs uppercase text-white rounded">
+          <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-center font-sans text-xs uppercase text-white rounded">
             Upcoming {node["season"]}
           </span>
         )}
       </a>
-      <div className="h-28">
-        <a className="mt-2 flex h-12 items-center justify-center" href={url}>
-          <h4 className="line-clamp-2 px-2 text-center text-base font-medium tracking-wide text-blue-200 hover:underline">
+      <div className="card-text h-28">
+        <a className="mt-2 flex h-12 items-center justify-center align-middle" href={url}>
+          <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200 hover:underline">
             {node["title"]}
           </h4>
         </a>
-        <p className="invisible justify-center text-center text-xs font-medium text-blue-50 group-hover:visible group-hover:flex flex-wrap">
+        <p className="invisible flex-wrap justify-center text-center align-middle font-sans text-xs font-medium tracking-wide text-blue-50 group-hover:visible group-hover:flex">
           {node["genres"].map((genre) => (
-            <span key={genre} className="mx-1">{genre}</span>
+            <span className="mx-1">{genre}</span>
           ))}
         </p>
       </div>
     </div>
   );
+
 }
 
 function BorderColorForStatus(status) {
