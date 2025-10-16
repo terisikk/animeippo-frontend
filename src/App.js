@@ -101,6 +101,17 @@ function App() {
 }
 
 function TemporaryDrawer({ tags, open, toggleDrawer, setSelectedGenre, mode, setMode }) {
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const filteredTags = tags?.filter(tag =>
+    tag.toLowerCase().includes(searchQuery.toLowerCase())
+  ) || [];
+
+  const handleGenreSelect = (genre) => {
+    setSelectedGenre(genre);
+    setSearchQuery("");
+  };
+
   const DrawerList = (
     <Box sx={{
       width: 250,
@@ -155,9 +166,30 @@ function TemporaryDrawer({ tags, open, toggleDrawer, setSelectedGenre, mode, set
         </Box>
       </Box>
       <Divider sx={{ borderColor: '#3f3f46' }} />
+      <Box sx={{ p: 2 }} onClick={(e) => e.stopPropagation()}>
+        <Typography variant="h6" sx={{ mb: 1.5, color: '#fff', fontWeight: 600 }}>Genres</Typography>
+        <input
+          type="text"
+          placeholder="Search genres..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '8px 12px',
+            backgroundColor: '#3f3f46',
+            border: '1px solid #52525b',
+            borderRadius: '6px',
+            color: '#bfdbfe',
+            fontSize: '0.875rem',
+            outline: 'none'
+          }}
+          onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+          onBlur={(e) => e.target.style.borderColor = '#52525b'}
+        />
+      </Box>
       <Box onClick={toggleDrawer(false)}>
         <List>
-            <ListItem key="All" disablePadding onClick={() => setSelectedGenre("All")}>
+            <ListItem key="All" disablePadding onClick={() => handleGenreSelect("All")}>
               <ListItemButton sx={{
                 '&:hover': { bgcolor: '#3f3f46' }
               }}>
@@ -167,8 +199,8 @@ function TemporaryDrawer({ tags, open, toggleDrawer, setSelectedGenre, mode, set
               </ListItemButton>
             </ListItem>
             <Divider sx={{ borderColor: '#3f3f46' }} />
-          {tags?.map((text) => (
-            <ListItem key={text} disablePadding onClick={() => setSelectedGenre(text)}>
+          {filteredTags.map((text) => (
+            <ListItem key={text} disablePadding onClick={() => handleGenreSelect(text)}>
               <ListItemButton sx={{
                 '&:hover': { bgcolor: '#3f3f46' }
               }}>

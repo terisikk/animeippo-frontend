@@ -5,26 +5,31 @@ const responsive = {
     breakpoint: { max: 4000, min: 2048 },
     items: 10,
     slidesToSlide: 10,
+    partialVisibilityGutter: 40,
   },
   desktop: {
     breakpoint: { max: 2048, min: 1024 },
     items: 6,
     slidesToSlide: 5,
+    partialVisibilityGutter: 40,
   },
   mid: {
     breakpoint: { max: 1024, min: 720 },
     items: 4,
     slidesToSlide: 4,
+    partialVisibilityGutter: 40,
   },
   tablet: {
     breakpoint: { max: 720, min: 464 },
     items: 2,
-    slidesToSlide: 3.5,
+    slidesToSlide: 2,
+    partialVisibilityGutter: 40,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 2,
     slidesToSlide: 2,
+    partialVisibilityGutter: 30,
   },
 };
 
@@ -48,7 +53,7 @@ export function PlaceholderList() {
   return (
     <div className="pb-8">
       <h2 className="ml-5 pb-5 font-sans text-2xl font-medium tracking-wide text-white">...</h2>
-      <Carousel responsive={responsive} centerMode={true}>
+      <Carousel responsive={responsive} partialVisible={true}>
         {placeholders.map((placeholder) => (
           <div>{placeholder}</div>
         ))}
@@ -80,7 +85,7 @@ export function AnimeContent(data, selectedGenre) {
     var render = data?.shows.filter((item) => item.genres?.includes(selectedGenre) || item.tags?.includes(selectedGenre));
 
     return (
-          AnimeListFlex(render)
+          AnimeListFlex(render, selectedGenre)
       )
   } else {
       if (data?.categories) {
@@ -100,10 +105,15 @@ export function AnimeContent(data, selectedGenre) {
   }
 }
 
-export function AnimeListFlex(shows) {
+export function AnimeListFlex(shows, genreTitle) {
   return (
-    <div className={`flex flex-wrap justify-center ${shows.length ? "visible" : "hidden"}`}>
-      {shows.map((node) => AnimeItem(node))}
+    <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
+      {genreTitle && (
+        <h2 className="mb-5 text-center font-sans text-2xl font-medium tracking-wide text-white">{genreTitle}</h2>
+      )}
+      <div className="flex flex-wrap justify-center">
+        {shows.map((node) => AnimeItem(node))}
+      </div>
     </div>
   );
 }
@@ -112,7 +122,7 @@ export function AnimeListCarousel(shows, category) {
   return (
   <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
       <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{category.name}</h2>
-      <Carousel responsive={responsive} centerMode={true}>
+      <Carousel responsive={responsive} partialVisible={true}>
         {shows.map((node) => AnimeItem(node))}
       </Carousel>
       </div>
@@ -124,7 +134,7 @@ export function AnimeItem(node) {
 
   return (
     <div className="group mx-2 flex flex-row flex-wrap content-between rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600 hover:z-10">
-      <a className="card-image relative block" href={url}>
+      <a className="card-image relative block" href={url} target="_blank" rel="noopener noreferrer">
         <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
         {node["status"] === "not_yet_released" && (
           <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-center font-sans text-xs uppercase text-white rounded">
@@ -133,14 +143,14 @@ export function AnimeItem(node) {
         )}
       </a>
       <div className="card-text h-28">
-        <a className="mt-2 flex h-12 items-center justify-center align-middle" href={url}>
+        <a className="mt-2 flex h-12 items-center justify-center align-middle" href={url} target="_blank" rel="noopener noreferrer" title={node["title"]}>
           <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200 hover:underline">
             {node["title"]}
           </h4>
         </a>
         <p className="invisible flex-wrap justify-center text-center align-middle font-sans text-xs font-medium tracking-wide text-blue-50 group-hover:visible group-hover:flex">
           {node["genres"].map((genre) => (
-            <span className="mx-1">{genre}</span>
+            <span className="mx-1" key={genre}>{genre}</span>
           ))}
         </p>
       </div>
