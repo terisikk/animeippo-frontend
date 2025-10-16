@@ -2,18 +2,20 @@ import { Spinner, Spyglass } from "./Icons";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-function Header({ activeYear, loading, setActiveYear, onSubmit, contentReady }) {
+function Header({ activeYear, loading, setActiveYear, onSubmit, contentReady, mode }) {
   return (
     <div className={`max flex flex-wrap pb-8 pt-5 transition-height duration-1000 ease-in-out max-lg:pt-20`}>
       <div className={`ml-auto flex flex-1 flex-wrap justify-center`}>
         <SearchForm onSubmit={onSubmit} loading={loading} contentReady={contentReady}></SearchForm>
       </div>
-      <HeaderTabBar
-        activeYear={activeYear}
-        contentReady={contentReady}
-        setActiveYear={setActiveYear}
-        loading={loading}
-      ></HeaderTabBar>
+      {mode !== "analyse" && (
+        <HeaderTabBar
+          activeYear={activeYear}
+          contentReady={contentReady}
+          setActiveYear={setActiveYear}
+          loading={loading}
+        ></HeaderTabBar>
+      )}
     </div>
   );
 }

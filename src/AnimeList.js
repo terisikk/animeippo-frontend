@@ -83,15 +83,20 @@ export function AnimeContent(data, selectedGenre) {
           AnimeListFlex(render)
       )
   } else {
-      return (
-        data?.categories.map((item) => {
-          var category = item;
-          var render = data.shows
-            .filter((item) => category.items.includes(item.id))
-            .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
-            return AnimeListCarousel(render, category);
-        })
-      )
+      if (data?.categories) {
+        return (
+          data.categories.map((item) => {
+            var category = item;
+            var render = data.shows
+              .filter((item) => category.items.includes(item.id))
+              .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
+              return AnimeListCarousel(render, category);
+          })
+        )
+      } else {
+        // If no categories, show all shows in a flex layout
+        return AnimeListFlex(data?.shows || []);
+      }
   }
 }
 
