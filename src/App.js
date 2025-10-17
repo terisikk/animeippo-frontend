@@ -245,11 +245,9 @@ function fetchAnimeListCallBack(user, year, setLoading, setShows, setContentRead
     var url = `${domain}/${mode}?user=${user}&year=${year}`;
     fetchWithCache(url)
       .then((data) => {
-        setTimeout(() => {
-          setShows(data);
-          setLoading(false);
-          setContentReady(data);
-        }, 1000);
+        setShows(data);
+        setLoading(false);
+        setContentReady(data);
       })
       .catch((error) => {
         console.log(error);
