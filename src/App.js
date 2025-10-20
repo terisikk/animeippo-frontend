@@ -84,7 +84,7 @@ function App() {
           {loading
             ? PlaceHolderContent()
             : shows != null
-            ? AnimeContent(shows?.data, selectedGenre) 
+            ? AnimeContent(shows?.data, selectedGenre)
             : backendErrorMessage()}
         </div>
         { shows?.data ? <TemporaryDrawer
@@ -261,7 +261,13 @@ function fetchAnimeListCallBack(user, year, setLoading, setShows, setContentRead
 const CACHE_TTL = 1000 * 60 * 60 * 24; // 1 day
 
 export async function fetchWithCache(url) {
-  const cached = localStorage.getItem(url);
+  const debugMode = process.env.REACT_APP_DEBUG === "true";
+  let cached = false;
+
+  if (!debugMode) {
+    cached = localStorage.getItem(url);
+  }
+
   if (cached) {
     const { timestamp, data } = JSON.parse(cached);
     if (Date.now() - timestamp < CACHE_TTL) {

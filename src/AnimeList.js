@@ -131,6 +131,21 @@ export function AnimeListCarousel(shows, category) {
 
 export function AnimeItem(node) {
   const url = `https://anilist.co/anime/${node["id"]}`;
+  const debugMode = process.env.REACT_APP_DEBUG === "true";
+
+  // Extract all score fields from the node
+  let scoreFields = debugMode ? Object.keys(node).filter(key =>
+    key.includes('score') || key.includes('Score')
+  ) : [];
+
+  // Sort to show recommend_score first
+  if (debugMode && scoreFields.length > 0) {
+    scoreFields = scoreFields.sort((a, b) => {
+      if (a === 'recommend_score') return -1;
+      if (b === 'recommend_score') return 1;
+      return a.localeCompare(b);
+    });
+  }
 
   return (
     <div className="group mx-2 flex flex-row flex-wrap content-between rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600 hover:z-10">
@@ -140,6 +155,16 @@ export function AnimeItem(node) {
           <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-center font-sans text-xs uppercase text-white rounded">
             Upcoming {node["season"]}
           </span>
+        )}
+        {debugMode && scoreFields.length > 0 && (
+          <div className="absolute inset-0 bg-black bg-opacity-95 px-3 py-2 rounded text-xs text-white overflow-y-auto invisible group-hover:visible">
+            {scoreFields.map((field) => (
+              <div key={field} className="mb-1">
+                <span className={`font-semibold ${field === 'recommend_score' ? 'text-green-400' : 'text-blue-300'}`}>{field}:</span>{" "}
+                <span className={field === 'recommend_score' ? 'text-green-200 font-bold' : 'text-white'}>{typeof node[field] === 'number' ? node[field].toFixed(3) : node[field]}</span>
+              </div>
+            ))}
+          </div>
         )}
       </a>
       <div className="card-text h-28">

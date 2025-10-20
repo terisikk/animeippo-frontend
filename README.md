@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Animeippo Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based frontend for anime recommendations and analysis, built with Create React App.
+
+## Features
+
+- **Anime Recommendations**: Get personalized anime recommendations based on your AniList profile
+- **Profile Analysis**: Analyze your watching habits and preferences
+- **Genre Filtering**: Filter anime by genre/tags with search functionality
+- **Year Selection**: Browse anime by season/year
+- **Debug Mode**: Inspect recommendation scores and algorithm details
+- **Dark Theme**: Modern dark UI with blue accents
+
+## Environment Variables
+
+Create `.env.development.local` and `.env.production.local` files with the following variables:
+
+```bash
+# API endpoint URL
+REACT_APP_API_URL="http://127.0.0.1:5000"
+
+# Enable mock backend (uses local test data)
+REACT_APP_MOCK_BACKEND=false
+
+# Enable debug mode (shows score overlays on anime cards)
+REACT_APP_DEBUG=false
+```
+
+### Environment Variable Options
+
+- **REACT_APP_API_URL**: Backend API endpoint
+  - Development: `http://127.0.0.1:5000`
+  - Production: Your production API URL
+
+- **REACT_APP_MOCK_BACKEND**: Use mock data instead of API calls
+  - `true`: Uses data from `src/test.json`
+  - `false`: Makes API calls to backend
+
+- **REACT_APP_DEBUG**: Show debug information
+  - `true`: Displays score overlays on anime cards showing all score-related fields
+  - `false`: Normal display mode
 
 ## Available Scripts
 
-In the project directory, you can run:
-
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the app in development mode at [http://localhost:3000](http://localhost:3000).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The page will reload when you make changes. You may also see lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in interactive watch mode.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `build` folder. The build is minified and optimized for best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+src/
+├── App.js              # Main app component with routing and state
+├── Header.js           # Search bar and year selector
+├── AnimeList.js        # Anime card grid and carousel components
+├── TestData.js         # Mock data loader
+├── test.json           # Mock anime data
+├── App.css             # Custom styles and carousel overrides
+└── Icons.js            # SVG icon components
+```
 
-### `npm run eject`
+## Features Detail
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Recommendation Mode
+- Browse anime recommendations based on your watching history
+- Filter by year and genre
+- See personalized scores (when backend debug mode is enabled)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Analysis Mode
+- View insights about your anime watching preferences
+- Year selector is hidden in this mode
+- Analyze patterns in your viewing history
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Debug Mode
+When `REACT_APP_DEBUG=true`:
+- Overlays on anime cards show all scoring fields
+- Useful for understanding recommendation algorithm
+- Backend should also be in debug mode to send score data
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Development Tips
+
+1. **Environment Changes**: Restart the dev server after changing `.env` files
+2. **Mock Data**: Update `src/test.json` to test with different data
+3. **Styling**: Uses Tailwind CSS for utility classes
+4. **Icons**: Material-UI icons for UI elements
+
+## Deployment
+
+Build the production bundle with `npm run build` and deploy the `build/` folder to your hosting service (Vercel, Netlify, S3, etc.).
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
+- [React documentation](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Material-UI](https://mui.com/)
