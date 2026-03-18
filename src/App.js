@@ -85,7 +85,9 @@ function App() {
             ? PlaceHolderContent()
             : shows != null
             ? AnimeContent(shows?.data, selectedGenre)
-            : backendErrorMessage()}
+            : user !== ""
+            ? backendErrorMessage()
+            : null}
         </div>
         { shows?.data ? <TemporaryDrawer
           tags={shows.data.tags}
