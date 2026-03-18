@@ -56,10 +56,21 @@ function EmblaCarousel({ children }) {
     if (emblaApi) emblaApi.reInit({ slidesToScroll: itemCount });
   }, [emblaApi, itemCount]);
 
-  const slideWidth = `${100 / itemCount}%`;
+  const handleKeyDown = useCallback((e) => {
+    if (!emblaApi) return;
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      emblaApi.scrollPrev();
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      emblaApi.scrollNext();
+    }
+  }, [emblaApi]);
+
+  const slideWidth = `${100 / (itemCount + 0.5)}%`;
 
   return (
-    <div className="embla relative">
+    <div className="embla relative px-6" tabIndex={0} onKeyDown={handleKeyDown} role="region" aria-label="Carousel">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container flex">
           {Array.isArray(children) ? children.map((child, i) => (
@@ -73,6 +84,7 @@ function EmblaCarousel({ children }) {
         <button
           className="embla__button embla__button--prev"
           onClick={() => emblaApi?.scrollPrev()}
+          aria-label="Previous slides"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
             <polyline points="15 18 9 12 15 6" />
@@ -83,6 +95,7 @@ function EmblaCarousel({ children }) {
         <button
           className="embla__button embla__button--next"
           onClick={() => emblaApi?.scrollNext()}
+          aria-label="Next slides"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
             <polyline points="9 18 15 12 9 6" />

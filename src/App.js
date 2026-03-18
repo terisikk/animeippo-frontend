@@ -81,7 +81,7 @@ function App() {
         ></Header>
         <div className="">
           {loading
-            ? PlaceHolderContent()
+            ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p>{PlaceHolderContent()}</>
             : shows != null
             ? AnimeContent(shows?.data, selectedGenre)
             : user !== ""
