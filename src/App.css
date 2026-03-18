@@ -7,54 +7,53 @@
     max-height: 326px;
 }
 
-.react-multi-carousel-item {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
+/* Embla carousel */
+.embla__viewport {
+    overflow-x: clip;
+    overflow-y: visible;
+}
+
+.embla__slide {
     z-index: 0;
     transition-duration: 300ms;
 }
 
-.react-multi-carousel-item:hover {
+.embla__slide:hover {
     z-index: 1;
 }
 
-.react-multi-carousel-list {
-    overflow: visible;
-}
-
-.react-multi-carousel-list:hover {
+.embla:hover {
     z-index: 1;
 }
 
-/* Carousel arrow buttons */
-.react-multiple-carousel__arrow {
-    background: rgba(59, 130, 246, 0.9) !important;
-    min-width: 48px !important;
-    min-height: 48px !important;
-    border-radius: 50% !important;
-    z-index: 10 !important;
-    top: 163px !important; /* Center on 326px image (326/2 = 163px) */
-    transform: translateY(-50%) !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
-    transition: all 0.2s ease !important;
+.embla__button {
+    position: absolute;
+    top: 163px; /* Center on 326px image (326/2 = 163px) */
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(59, 130, 246, 0.9);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
 }
 
-.react-multiple-carousel__arrow:hover {
-    background: rgba(37, 99, 235, 1) !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
+.embla__button:hover {
+    background: rgba(37, 99, 235, 1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
 }
 
-.react-multiple-carousel__arrow::before {
-    font-size: 20px !important;
-    font-weight: bold !important;
-    color: white !important;
+.embla__button--prev {
+    left: 8px;
 }
 
-.react-multiple-carousel__arrow--left {
-    left: 8px !important;
-}
-
-.react-multiple-carousel__arrow--right {
-    right: 8px !important;
+.embla__button--next {
+    right: 8px;
 }

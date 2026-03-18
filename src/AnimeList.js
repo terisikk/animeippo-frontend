@@ -1,45 +1,105 @@
-import Carousel from "react-multi-carousel";
+import { useState, useEffect, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
-const responsive = {
-  largeDesktop: {
-    breakpoint: { max: 4000, min: 2048 },
-    items: 10,
-    slidesToSlide: 10,
-    partialVisibilityGutter: 40,
-  },
-  desktop: {
-    breakpoint: { max: 2048, min: 1024 },
-    items: 6,
-    slidesToSlide: 5,
-    partialVisibilityGutter: 40,
-  },
-  mid: {
-    breakpoint: { max: 1024, min: 720 },
-    items: 4,
-    slidesToSlide: 4,
-    partialVisibilityGutter: 40,
-  },
-  tablet: {
-    breakpoint: { max: 720, min: 464 },
-    items: 2,
-    slidesToSlide: 2,
-    partialVisibilityGutter: 40,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 2,
-    slidesToSlide: 2,
-    partialVisibilityGutter: 30,
-  },
-};
+const breakpoints = [
+  { min: 1920, items: 8 },
+  { min: 1024, items: 6 },
+  { min: 720,  items: 4 },
+  { min: 464,  items: 2 },
+  { min: 0,    items: 2 },
+];
+
+function getItemsForWidth(width) {
+  for (const bp of breakpoints) {
+    if (width >= bp.min) return bp.items;
+  }
+  return 2;
+}
+
+function useItemCount() {
+  const [items, setItems] = useState(() => getItemsForWidth(window.innerWidth));
+
+  useEffect(() => {
+    const onResize = () => setItems(getItemsForWidth(window.innerWidth));
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  return items;
+}
+
+function EmblaCarousel({ children }) {
+  const itemCount = useItemCount();
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    slidesToScroll: itemCount,
+    containScroll: "trimSnaps",
+  });
+
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, onSelect]);
+
+  useEffect(() => {
+    if (emblaApi) emblaApi.reInit({ slidesToScroll: itemCount });
+  }, [emblaApi, itemCount]);
+
+  const slideWidth = `${100 / itemCount}%`;
+
+  return (
+    <div className="embla relative">
+      <div className="embla__viewport" ref={emblaRef}>
+        <div className="embla__container flex">
+          {Array.isArray(children) ? children.map((child, i) => (
+            <div className="embla__slide shrink-0 px-0.5 flex justify-center" style={{ flex: `0 0 ${slideWidth}` }} key={i}>
+              {child}
+            </div>
+          )) : children}
+        </div>
+      </div>
+      {canScrollPrev && (
+        <button
+          className="embla__button embla__button--prev"
+          onClick={() => emblaApi?.scrollPrev()}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+      )}
+      {canScrollNext && (
+        <button
+          className="embla__button embla__button--next"
+          onClick={() => emblaApi?.scrollNext()}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      )}
+    </div>
+  );
+}
 
 export function PlaceHolderContent() {
   return (
     <div className="animate-pulse">
-      {PlaceholderList()}
-      {PlaceholderList()}
-      {PlaceholderList()}
-      {PlaceholderList()}
+      <PlaceholderList />
+      <PlaceholderList />
+      <PlaceholderList />
+      <PlaceholderList />
     </div>
   );
 }
@@ -47,24 +107,22 @@ export function PlaceHolderContent() {
 export function PlaceholderList() {
   var placeholders = [];
   for (let i = 0; i < 10; i++) {
-    placeholders.push(PlaceholderItem());
+    placeholders.push(<PlaceholderItem key={i} />);
   }
 
   return (
     <div className="pb-8">
       <h2 className="ml-5 pb-5 font-sans text-2xl font-medium tracking-wide text-white">...</h2>
-      <Carousel responsive={responsive} partialVisible={true}>
-        {placeholders.map((placeholder) => (
-          <div>{placeholder}</div>
-        ))}
-      </Carousel>
+      <EmblaCarousel>
+        {placeholders}
+      </EmblaCarousel>
     </div>
   );
 }
 
 export function PlaceholderItem() {
   return (
-    <div className={`group mx-2 flex flex-row flex-wrap content-between rounded`}>
+    <div className="group flex flex-col rounded">
       <img className="card-image rounded" src="./placeholder.png" alt="" />
       <div className="card-text h-28">
         <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200">
@@ -95,7 +153,7 @@ export function AnimeContent(data, selectedGenre) {
             var render = data.shows
               .filter((item) => category.items.includes(item.id))
               .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
-              return AnimeListCarousel(render, category);
+              return <AnimeListCarousel key={category.name} shows={render} category={category} />;
           })
         )
       } else {
@@ -118,13 +176,13 @@ export function AnimeListFlex(shows, genreTitle) {
   );
 }
 
-export function AnimeListCarousel(shows, category) {
+export function AnimeListCarousel({ shows, category }) {
   return (
   <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
       <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{category.name}</h2>
-      <Carousel responsive={responsive} partialVisible={true}>
+      <EmblaCarousel>
         {shows.map((node) => AnimeItem(node))}
-      </Carousel>
+      </EmblaCarousel>
       </div>
   )
 }
@@ -148,8 +206,8 @@ export function AnimeItem(node) {
   }
 
   return (
-    <div className="group mx-2 flex flex-row flex-wrap content-between rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600 hover:z-10">
-      <a className="card-image relative block" href={url} target="_blank" rel="noopener noreferrer">
+    <div key={node["id"]} className="group flex w-fit flex-col rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600 hover:z-10">
+      <a className="card-image relative block h-[326px] flex items-end" href={url} target="_blank" rel="noopener noreferrer">
         <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
         {node["status"] === "not_yet_released" && (
           <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-center font-sans text-xs uppercase text-white rounded">
@@ -182,27 +240,4 @@ export function AnimeItem(node) {
     </div>
   );
 
-}
-
-function BorderColorForStatus(status) {
-  var color = "border-green-600";
-
-  switch (status) {
-    case "current":
-      color = "border-blue-600";
-      break;
-    case "paused":
-      color = "border-yellow-600";
-      break;
-    case "dropped":
-      color = "border-red-600";
-      break;
-    case "planning":
-      color = "border-gray-600";
-      break;
-    default:
-      break;
-  }
-
-  return color;
 }
