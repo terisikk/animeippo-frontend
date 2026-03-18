@@ -182,7 +182,7 @@ export function AnimeListFlex(shows, genreTitle) {
       {genreTitle && (
         <h2 className="mb-5 text-center font-sans text-2xl font-medium tracking-wide text-white">{genreTitle}</h2>
       )}
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center gap-4">
         {shows.map((node) => AnimeItem(node))}
       </div>
     </div>

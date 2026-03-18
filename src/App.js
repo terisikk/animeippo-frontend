@@ -90,6 +90,7 @@ function App() {
         </div>
         { shows?.data ? <TemporaryDrawer
           tags={shows.data.tags}
+          shows={shows.data.shows}
           open={drawerOpen}
           toggleDrawer={toggleDrawer}
           setSelectedGenre={setSelectedGenre}
@@ -101,12 +102,22 @@ function App() {
   );
 }
 
-function TemporaryDrawer({ tags, open, toggleDrawer, setSelectedGenre, mode, setMode }) {
+function TemporaryDrawer({ tags, shows, open, toggleDrawer, setSelectedGenre, mode, setMode }) {
   const [searchQuery, setSearchQuery] = React.useState("");
 
-  const filteredTags = tags?.filter(tag =>
+  const availableTags = React.useMemo(() => {
+    const presentTags = new Set();
+    for (const show of (shows || [])) {
+      for (const tag of [...(show.genres || []), ...(show.tags || [])]) {
+        presentTags.add(tag);
+      }
+    }
+    return (tags || []).filter(tag => presentTags.has(tag));
+  }, [tags, shows]);
+
+  const filteredTags = availableTags.filter(tag =>
     tag.toLowerCase().includes(searchQuery.toLowerCase())
-  ) || [];
+  );
 
   const handleGenreSelect = (genre) => {
     setSelectedGenre(genre);
