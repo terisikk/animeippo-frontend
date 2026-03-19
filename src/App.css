@@ -7,6 +7,19 @@
     max-height: 326px;
 }
 
+.card-image-container {
+    height: 326px;
+}
+
+@media (max-width: 720px) {
+    .card-image {
+        max-height: 220px;
+    }
+    .card-image-container {
+        height: 220px;
+    }
+}
+
 /* Embla carousel */
 .embla__viewport {
     overflow-x: clip;
@@ -14,8 +27,38 @@
 }
 
 .embla__slide {
+    flex: 0 0 calc(100% / 2.25);
     z-index: 0;
     transition-duration: 300ms;
+    padding: 0 0.25rem;
+}
+
+@media (min-width: 465px) {
+    .embla__slide {
+        flex: 0 0 calc(100% / 2.25);
+        padding: 0 0.25rem;
+    }
+}
+
+@media (min-width: 721px) {
+    .embla__slide {
+        flex: 0 0 calc(100% / 4.5);
+        padding: 0 0.125rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .embla__slide {
+        flex: 0 0 calc(100% / 6.5);
+        padding: 0 0.125rem;
+    }
+}
+
+@media (min-width: 1921px) {
+    .embla__slide {
+        flex: 0 0 calc(100% / 8.5);
+        padding: 0 0.125rem;
+    }
 }
 
 .embla__slide:hover {
@@ -56,4 +99,16 @@
 
 .embla__button--next {
     right: 8px;
+}
+
+@media (max-width: 720px) {
+    .embla__button {
+        top: 110px; /* Center on 220px mobile image */
+    }
+}
+
+@media (pointer: coarse) {
+    .embla__button {
+        display: none;
+    }
 }

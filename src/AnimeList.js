@@ -1,39 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
-const breakpoints = [
-  { min: 1921, items: 8 },
-  { min: 1025, items: 6 },
-  { min: 721,  items: 4 },
-  { min: 465,  items: 2 },
-  { min: 0,    items: 2 },
-];
-
-function getItemsForWidth(width) {
-  for (const bp of breakpoints) {
-    if (width >= bp.min) return bp.items;
-  }
-  return 2;
-}
-
-function useItemCount() {
-  const [items, setItems] = useState(() => getItemsForWidth(window.innerWidth));
-
-  useEffect(() => {
-    const onResize = () => setItems(getItemsForWidth(window.innerWidth));
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  return items;
-}
-
 function EmblaCarousel({ children }) {
-  const itemCount = useItemCount();
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
-    slidesToScroll: itemCount,
+    slidesToScroll: "auto",
     containScroll: "trimSnaps",
+    breakpoints: {
+      '(min-width: 1921px)': { slidesToScroll: 8 },
+      '(min-width: 1025px) and (max-width: 1920px)': { slidesToScroll: 6 },
+      '(min-width: 721px) and (max-width: 1024px)': { slidesToScroll: 4 },
+    },
   });
 
   const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -52,10 +29,6 @@ function EmblaCarousel({ children }) {
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
 
-  useEffect(() => {
-    if (emblaApi) emblaApi.reInit({ slidesToScroll: itemCount });
-  }, [emblaApi, itemCount]);
-
   const handleKeyDown = useCallback((e) => {
     if (!emblaApi) return;
     if (e.key === "ArrowLeft") {
@@ -67,14 +40,12 @@ function EmblaCarousel({ children }) {
     }
   }, [emblaApi]);
 
-  const slideWidth = `${100 / (itemCount + 0.5)}%`;
-
   return (
     <div className="embla relative px-6" tabIndex={0} onKeyDown={handleKeyDown} role="region" aria-label="Carousel">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container flex">
           {Array.isArray(children) ? children.map((child, i) => (
-            <div className="embla__slide shrink-0 px-0.5 flex justify-center" style={{ flex: `0 0 ${slideWidth}` }} key={i}>
+            <div className="embla__slide flex justify-center" key={i}>
               {child}
             </div>
           )) : children}
@@ -220,7 +191,7 @@ export function AnimeItem(node) {
 
   return (
     <div key={node["id"]} className="group flex w-fit flex-col rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600 hover:z-10">
-      <a className="card-image relative block h-[326px] flex items-end" href={url} target="_blank" rel="noopener noreferrer">
+      <a className="card-image-container relative block flex items-end" href={url} target="_blank" rel="noopener noreferrer">
         <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
         {node["status"] === "not_yet_released" && (
           <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-center font-sans text-xs uppercase text-white rounded">
