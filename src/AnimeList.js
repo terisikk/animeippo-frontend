@@ -218,12 +218,12 @@ function TopPicksHero({ shows }) {
   });
 
   return (
-    <div className="mb-8 pb-8">
+    <div className="hero-section mb-8 pb-8 bg-gradient-to-t from-blue-950/30 via-zinc-900/50 to-zinc-900 pt-6">
       <div className="lg:flex lg:justify-center lg:gap-6 lg:px-6">
         <div className="overflow-hidden lg:contents cursor-grab active:cursor-grabbing" ref={emblaRef}>
           <div className="flex lg:contents">
             {cards.map((card, i) => (
-              <div className="hero-slide flex-[0_0_100%] min-w-0 lg:flex-1 px-6 lg:px-0" key={i}>
+              <div className="hero-slide flex-[0_0_100%] min-w-0 lg:flex-1 px-6 lg:px-0 animate-hero-fade-in" style={{ animationDelay: `${i * 150}ms` }} key={i}>
                 {card}
               </div>
             ))}
