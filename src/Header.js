@@ -2,11 +2,11 @@ import { Spinner, Spyglass } from "./Icons";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-function Header({ activeYear, loading, setActiveYear, onSubmit, contentReady, mode }) {
+function Header({ activeYear, loading, setActiveYear, onSubmit, contentReady, mode, user }) {
   return (
     <div className={`max flex flex-wrap pb-8 pt-5 transition-height duration-1000 ease-in-out max-lg:pt-20`}>
       <div className={`ml-auto flex flex-1 flex-wrap justify-center`}>
-        <SearchForm onSubmit={onSubmit} loading={loading} contentReady={contentReady}></SearchForm>
+        <SearchForm onSubmit={onSubmit} loading={loading} contentReady={contentReady} user={user}></SearchForm>
       </div>
       {mode !== "analyse" && (
         <HeaderTabBar
@@ -43,7 +43,7 @@ function HeaderTabBar({ activeYear, contentReady, setActiveYear, loading }) {
   );
 }
 
-function SearchForm({ onSubmit, loading, contentReady }) {
+function SearchForm({ onSubmit, loading, contentReady, user }) {
   return (
     <form className={`flex w-full items-center justify-center p-5`} onSubmit={onSubmit}>
       <input
@@ -51,6 +51,7 @@ function SearchForm({ onSubmit, loading, contentReady }) {
         name="maluser"
         type="text"
         placeholder="Anilist username"
+        defaultValue={user}
         disabled={loading}
       />
       <label className="margin-0 text-white" id="recommendLabel" htmlFor="maluser">

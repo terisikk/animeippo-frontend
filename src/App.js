@@ -25,7 +25,14 @@ function App() {
   const [shows, setShows] = useState(null);
   const [loading, setLoading] = useState(false);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(() => {
+    const cached = Object.keys(localStorage).find(k => k.includes("/recommend?user=") || k.includes("/analyse?user="));
+    if (cached) {
+      const match = cached.match(/[?&]user=([^&]+)/);
+      if (match) return decodeURIComponent(match[1]);
+    }
+    return "";
+  });
   const [contentReady, setContentReady] = useState(false);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [mode, setMode] = useState("recommend");
@@ -78,6 +85,7 @@ function App() {
           setActiveYear={setActiveYear}
           contentReady={contentReady}
           mode={mode}
+          user={user}
         ></Header>
         <div className="">
           {loading
