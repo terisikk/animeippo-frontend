@@ -25,14 +25,7 @@ function App() {
   const [shows, setShows] = useState(null);
   const [loading, setLoading] = useState(false);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
-  const [user, setUser] = useState(() => {
-    const cached = Object.keys(localStorage).find(k => k.includes("/recommend?user=") || k.includes("/analyse?user="));
-    if (cached) {
-      const match = cached.match(/[?&]user=([^&]+)/);
-      if (match) return decodeURIComponent(match[1]);
-    }
-    return "";
-  });
+  const [user, setUser] = useState(() => localStorage.getItem("animeippo_last_user") || "");
   const [contentReady, setContentReady] = useState(false);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [mode, setMode] = useState("recommend");
@@ -47,6 +40,11 @@ function App() {
     var new_user = e.target.maluser.value;
 
     if (new_user !== user) {
+      // Clear old user's cached data
+      Object.keys(localStorage).forEach(k => {
+        if (k.includes("user=" + user)) localStorage.removeItem(k);
+      });
+      localStorage.setItem("animeippo_last_user", new_user);
       setUser(new_user);
     }
   };
