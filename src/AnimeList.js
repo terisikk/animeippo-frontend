@@ -212,7 +212,7 @@ function TopPicksHero({ shows }) {
             {node["title"]}
           </h3>
           <p className="mt-2 flex flex-col gap-1">
-            {node["genres"]?.slice(0, 5).map((genre) => (
+            {node["genres"]?.slice(0, 8).map((genre) => (
               <span key={genre} className="font-sans text-sm font-medium tracking-wide text-blue-100">
                 {genre}
               </span>
