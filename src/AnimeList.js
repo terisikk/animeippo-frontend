@@ -193,32 +193,43 @@ function TopPicksHero({ shows }) {
     const url = `https://anilist.co/anime/${node["id"]}`;
 
     return (
-      <a key={node["id"]} href={url} target="_blank" rel="noopener noreferrer" className="group flex flex-row items-start gap-4 rounded-lg p-3 transition-all duration-300 hover:bg-zinc-800 hover:scale-105">
-        <div className="shrink-0">
+      <a key={node["id"]} href={url} target="_blank" rel="noopener noreferrer" className="group relative flex flex-row items-start gap-4 rounded-lg p-3 overflow-hidden transition-all duration-300 hover:bg-zinc-800/50 hover:scale-105">
+        <img
+          className="absolute inset-0 h-full w-full rounded-lg object-cover blur-2xl opacity-30 pointer-events-none"
+          src={node["cover_image"]}
+          alt=""
+          aria-hidden="true"
+        />
+        <div className="relative shrink-0">
           <img
             className="card-image rounded"
             src={node["cover_image"]}
             alt={node["title"]}
           />
         </div>
-        <div className="min-w-0 pt-1">
-          <h3 className="line-clamp-2 font-sans text-xl font-semibold tracking-wide text-blue-200">
+        <div className="relative min-w-0 pt-1 flex flex-col self-stretch" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
+          <h3 className="line-clamp-2 font-sans text-xl font-semibold tracking-wide text-white">
             {node["title"]}
           </h3>
           <p className="mt-2 flex flex-col gap-1">
-            {node["genres"]?.map((genre) => (
-              <span key={genre} className="font-sans text-sm font-medium tracking-wide text-blue-50">
+            {node["genres"]?.slice(0, 5).map((genre) => (
+              <span key={genre} className="font-sans text-sm font-medium tracking-wide text-blue-100">
                 {genre}
               </span>
             ))}
           </p>
+          {node["recommend_score"] != null && (
+            <span className="mt-auto pt-4 inline-block font-sans text-3xl font-bold text-blue-400">
+              {(node["recommend_score"] * 100).toFixed(0)}%
+            </span>
+          )}
         </div>
       </a>
     );
   });
 
   return (
-    <div className="hero-section mb-8 pb-8 bg-gradient-to-t from-blue-950/30 via-zinc-900/50 to-zinc-900 pt-6">
+    <div className="hero-section mb-8 pb-8 pt-6" style={{ background: 'radial-gradient(ellipse 160% 100% at center, rgba(23,37,84,0.3) 0%, rgba(24,24,27,0.5) 70%, rgb(24,24,27) 100%)' }}>
       <div className="lg:flex lg:justify-center lg:gap-6 lg:px-6">
         <div className="overflow-hidden lg:contents cursor-grab active:cursor-grabbing" ref={emblaRef}>
           <div className="flex lg:contents">
