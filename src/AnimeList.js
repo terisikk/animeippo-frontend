@@ -117,6 +117,8 @@ export function PlaceholderItem() {
   );
 }
 
+const TOP_PICKS_CATEGORY = "Your Top 3";
+
 export function AnimeContent(data, selectedGenre) {
 
   if (data === undefined || data.length === 0) {
@@ -131,20 +133,119 @@ export function AnimeContent(data, selectedGenre) {
       )
   } else {
       if (data?.categories) {
+        const topPicksCategory = data.categories.find((c) => c.name === TOP_PICKS_CATEGORY);
+        const otherCategories = data.categories.filter((c) => c.name !== TOP_PICKS_CATEGORY);
+
+        const topPicks = topPicksCategory
+          ? data.shows
+              .filter((item) => topPicksCategory.items.includes(item.id))
+              .sort((a, b) => topPicksCategory.items.indexOf(a.id) - topPicksCategory.items.indexOf(b.id))
+          : [];
+
         return (
-          data.categories.map((item) => {
-            var category = item;
-            var render = data.shows
-              .filter((item) => category.items.includes(item.id))
-              .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
-              return <AnimeListCarousel key={category.name} shows={render} category={category} />;
-          })
+          <>
+            {topPicks.length > 0 && <TopPicksHero shows={topPicks} />}
+            {otherCategories.map((item) => {
+              var category = item;
+              var render = data.shows
+                .filter((item) => category.items.includes(item.id))
+                .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
+                return <AnimeListCarousel key={category.name} shows={render} category={category} />;
+            })}
+          </>
         )
       } else {
         // If no categories, show all shows in a flex layout
         return AnimeListFlex(data?.shows || []);
       }
   }
+}
+
+function TopPicksHero({ shows }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    containScroll: "trimSnaps",
+    breakpoints: {
+      '(min-width: 1024px)': { active: false },
+    },
+  });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", () => {
+      setScrollSnaps(emblaApi.scrollSnapList());
+      onSelect();
+    });
+  }, [emblaApi, onSelect]);
+
+  const cards = shows.slice(0, 3).map((node) => {
+    const url = `https://anilist.co/anime/${node["id"]}`;
+
+    return (
+      <a key={node["id"]} href={url} target="_blank" rel="noopener noreferrer" className="group flex flex-row items-start gap-4 rounded-lg p-3 transition-all duration-300 hover:bg-zinc-800 hover:scale-105">
+        <div className="shrink-0">
+          <img
+            className="card-image rounded"
+            src={node["cover_image"]}
+            alt={node["title"]}
+          />
+        </div>
+        <div className="min-w-0 pt-1">
+          <h3 className="line-clamp-2 font-sans text-xl font-semibold tracking-wide text-blue-200">
+            {node["title"]}
+          </h3>
+          <p className="mt-2 flex flex-col gap-1">
+            {node["genres"]?.map((genre) => (
+              <span key={genre} className="font-sans text-sm font-medium tracking-wide text-blue-50">
+                {genre}
+              </span>
+            ))}
+          </p>
+        </div>
+      </a>
+    );
+  });
+
+  return (
+    <div className="mb-8 pb-8">
+      <div className="lg:flex lg:justify-center lg:gap-6 lg:px-6">
+        <div className="overflow-hidden lg:contents cursor-grab active:cursor-grabbing" ref={emblaRef}>
+          <div className="flex lg:contents">
+            {cards.map((card, i) => (
+              <div className="hero-slide flex-[0_0_100%] min-w-0 lg:flex-1 px-6 lg:px-0" key={i}>
+                {card}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {scrollSnaps.length > 1 && (
+        <div className="flex justify-center gap-2 mt-4 lg:hidden">
+          {scrollSnaps.map((_, i) => (
+            <button
+              key={i}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === selectedIndex ? "w-6 bg-blue-400" : "w-2 bg-zinc-600"
+              }`}
+              onClick={() => emblaApi?.scrollTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export function AnimeListFlex(shows, genreTitle) {
@@ -190,8 +291,8 @@ export function AnimeItem(node) {
   }
 
   return (
-    <div key={node["id"]} className="group flex w-fit flex-col rounded bg-zinc-900 duration-300 ease-in hover:scale-125 hover:bg-zinc-600 hover:z-10">
-      <a className="card-image-container relative block flex items-end" href={url} target="_blank" rel="noopener noreferrer">
+    <a key={node["id"]} href={url} target="_blank" rel="noopener noreferrer" className="group flex w-fit flex-col rounded bg-zinc-900 duration-300 ease-in hover:scale-110 hover:bg-zinc-600 hover:z-10">
+      <div className="card-image-container relative flex items-end">
         <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
         {node["status"] === "not_yet_released" && (
           <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-center font-sans text-xs uppercase text-white rounded">
@@ -208,20 +309,20 @@ export function AnimeItem(node) {
             ))}
           </div>
         )}
-      </a>
+      </div>
       <div className="card-text h-28">
-        <a className="mt-2 flex h-12 items-center justify-center align-middle" href={url} target="_blank" rel="noopener noreferrer" title={node["title"]}>
-          <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200 hover:underline">
+        <div className="mt-2 flex h-12 items-center justify-center align-middle">
+          <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200">
             {node["title"]}
           </h4>
-        </a>
+        </div>
         <p className="invisible flex-wrap justify-center text-center align-middle font-sans text-xs font-medium tracking-wide text-blue-50 group-hover:visible group-hover:flex">
           {node["genres"].map((genre) => (
             <span className="mx-1" key={genre}>{genre}</span>
           ))}
         </p>
       </div>
-    </div>
+    </a>
   );
 
 }
