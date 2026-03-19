@@ -2,10 +2,10 @@ import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 const breakpoints = [
-  { min: 1920, items: 8 },
-  { min: 1024, items: 6 },
-  { min: 720,  items: 4 },
-  { min: 464,  items: 2 },
+  { min: 1921, items: 8 },
+  { min: 1025, items: 6 },
+  { min: 721,  items: 4 },
+  { min: 465,  items: 2 },
   { min: 0,    items: 2 },
 ];
 
