@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 function EmblaCarousel({ children }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -57,9 +59,7 @@ function EmblaCarousel({ children }) {
           onClick={() => emblaApi?.scrollPrev()}
           aria-label="Previous slides"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
+          <ChevronLeftIcon />
         </button>
       )}
       {canScrollNext && (
@@ -68,9 +68,7 @@ function EmblaCarousel({ children }) {
           onClick={() => emblaApi?.scrollNext()}
           aria-label="Next slides"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
+          <ChevronRightIcon />
         </button>
       )}
     </div>
@@ -89,7 +87,7 @@ export function PlaceHolderContent() {
 }
 
 export function PlaceholderList() {
-  var placeholders = [];
+  const placeholders = [];
   for (let i = 0; i < 10; i++) {
     placeholders.push(<PlaceholderItem key={i} />);
   }
@@ -126,7 +124,7 @@ export function AnimeContent(data, selectedGenre) {
   }
 
   if (selectedGenre !== "All") {
-    var render = data?.shows.filter((item) => item.genres?.includes(selectedGenre) || item.tags?.includes(selectedGenre));
+    const render = data?.shows.filter((item) => item.genres?.includes(selectedGenre) || item.tags?.includes(selectedGenre));
 
     return (
           AnimeListFlex(render, selectedGenre)
@@ -146,8 +144,8 @@ export function AnimeContent(data, selectedGenre) {
           <>
             {topPicks.length > 0 && <TopPicksHero shows={topPicks} />}
             {otherCategories.map((item) => {
-              var category = item;
-              var render = data.shows
+              const category = item;
+              const render = data.shows
                 .filter((item) => category.items.includes(item.id))
                 .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
                 return <AnimeListCarousel key={category.name} shows={render} category={category} />;
