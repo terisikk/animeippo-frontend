@@ -234,7 +234,7 @@ function TopPicksHero({ shows, title }) {
     <div className="hero-section mb-8 pb-8 pt-6" style={{ background: 'radial-gradient(ellipse 160% 100% at center, rgba(23,37,84,0.3) 0%, rgba(24,24,27,0.5) 70%, rgb(24,24,27) 100%)' }}>
       {title && <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{title}</h2>}
       <div className="lg:flex lg:justify-center lg:gap-6 lg:px-6">
-        <div className="overflow-hidden lg:contents cursor-grab active:cursor-grabbing" ref={emblaRef}>
+        <div className="overflow-x-clip overflow-y-visible lg:contents cursor-grab active:cursor-grabbing" ref={emblaRef}>
           <div className="flex lg:contents">
             {cards.map((card, i) => (
               <div className="hero-slide flex-[0_0_100%] min-w-0 lg:flex-1 px-6 lg:px-0 animate-hero-fade-in" style={{ animationDelay: `${i * 150}ms` }} key={i}>
@@ -273,48 +273,65 @@ export function AnalysisContent(data) {
 
   return (
     <div className="flex flex-wrap justify-center gap-6 px-6 py-6">
-      {data.categories.map((category) => {
+      {data.categories.map((category, index) => {
         const shows = data.shows
           .filter((item) => category.items.includes(item.id))
           .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
 
-        return <AnalysisCard key={category.name} category={category} shows={shows} />;
+        return <AnalysisCard key={category.name} category={category} shows={shows} index={index} />;
       })}
     </div>
   );
 }
 
-function AnalysisCard({ category, shows }) {
+function AnalysisCard({ category, shows, index }) {
   const stats = category.stats;
+  const accentImage = shows[0]?.cover_image;
 
   return (
-    <div className="w-full rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-4 md:w-[calc(50%-0.75rem)] xl:w-[calc(33.333%-1rem)]">
-      <h3 className="mb-2 font-sans text-lg font-semibold tracking-wide text-white">
-        {category.name}
-      </h3>
-
-      {stats && (
-        <div className="mb-3 flex gap-4 text-sm">
-          <div className="flex items-baseline gap-1">
-            <span className="font-bold text-blue-200">{stats.count}</span>
-            <span className="text-xs text-zinc-400">titles</span>
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="font-bold text-blue-200">{stats.mean_score?.toFixed(1)}</span>
-            <span className="text-xs text-zinc-400">avg</span>
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="font-bold text-blue-200">{stats.completion_rate?.toFixed(0)}%</span>
-            <span className="text-xs text-zinc-400">completed</span>
-          </div>
+    <div
+      className="relative w-full rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-4 transition-all duration-300 hover:border-zinc-500/70 hover:shadow-lg hover:shadow-blue-900/20 animate-hero-fade-in md:w-[calc(50%-0.75rem)] xl:w-[calc(33.333%-1rem)]"
+      style={{ animationDelay: `${index * 100}ms` }}
+    >
+      {accentImage && (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-xl">
+          <img
+            className="h-full w-full object-cover opacity-[0.07] blur-3xl"
+            src={accentImage}
+            alt=""
+            aria-hidden="true"
+          />
         </div>
       )}
 
-      <AnalysisCarousel>
-        {shows.map((node) => (
-          <AnalysisItem key={node["id"]} node={node} />
-        ))}
-      </AnalysisCarousel>
+      <div className="relative">
+        <h3 className="mb-2 font-sans text-lg font-semibold tracking-wide text-white">
+          {category.name}
+        </h3>
+
+        {stats && (
+          <div className="mb-3 flex gap-4 text-sm">
+            <div className="flex items-baseline gap-1">
+              <span className="font-bold text-blue-200">{stats.count}</span>
+              <span className="text-xs text-zinc-400">titles</span>
+            </div>
+            <div className="flex items-baseline gap-1">
+              <span className="font-bold text-blue-200">{stats.mean_score != null ? stats.mean_score.toFixed(1) : "?"}</span>
+              <span className="text-xs text-zinc-400">avg</span>
+            </div>
+            <div className="flex items-baseline gap-1">
+              <span className="font-bold text-blue-200">{stats.completion_rate?.toFixed(0)}%</span>
+              <span className="text-xs text-zinc-400">completed</span>
+            </div>
+          </div>
+        )}
+
+        <AnalysisCarousel>
+          {shows.map((node) => (
+            <AnalysisItem key={node["id"]} node={node} />
+          ))}
+        </AnalysisCarousel>
+      </div>
     </div>
   );
 }
