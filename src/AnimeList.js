@@ -116,6 +116,7 @@ export function PlaceholderItem() {
 }
 
 const TOP_PICKS_CATEGORY = "Your Top 3";
+const HERO_CATEGORIES = new Set([TOP_PICKS_CATEGORY, "Hidden Gems for You", "Top Movies for You"]);
 
 export function AnimeContent(data, selectedGenre) {
 
@@ -143,12 +144,15 @@ export function AnimeContent(data, selectedGenre) {
         return (
           <>
             {topPicks.length > 0 && <TopPicksHero shows={topPicks} />}
-            {otherCategories.map((item) => {
-              const category = item;
+            {otherCategories.map((category) => {
               const render = data.shows
                 .filter((item) => category.items.includes(item.id))
                 .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
-                return <AnimeListCarousel key={category.name} shows={render} category={category} />;
+
+              if (HERO_CATEGORIES.has(category.name)) {
+                return <TopPicksHero key={category.name} shows={render} title={category.name} />;
+              }
+              return <AnimeListCarousel key={category.name} shows={render} category={category} />;
             })}
           </>
         )
@@ -159,7 +163,7 @@ export function AnimeContent(data, selectedGenre) {
   }
 }
 
-function TopPicksHero({ shows }) {
+function TopPicksHero({ shows, title }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     containScroll: "trimSnaps",
@@ -228,6 +232,7 @@ function TopPicksHero({ shows }) {
 
   return (
     <div className="hero-section mb-8 pb-8 pt-6" style={{ background: 'radial-gradient(ellipse 160% 100% at center, rgba(23,37,84,0.3) 0%, rgba(24,24,27,0.5) 70%, rgb(24,24,27) 100%)' }}>
+      {title && <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{title}</h2>}
       <div className="lg:flex lg:justify-center lg:gap-6 lg:px-6">
         <div className="overflow-hidden lg:contents cursor-grab active:cursor-grabbing" ref={emblaRef}>
           <div className="flex lg:contents">
