@@ -262,6 +262,129 @@ function TopPicksHero({ shows, title }) {
   );
 }
 
+export function AnalysisContent(data) {
+  if (data === undefined || data.length === 0) {
+    return;
+  }
+
+  if (!data?.categories) {
+    return null;
+  }
+
+  return (
+    <div className="flex flex-wrap justify-center gap-6 px-6 py-6">
+      {data.categories.map((category) => {
+        const shows = data.shows
+          .filter((item) => category.items.includes(item.id))
+          .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
+
+        return <AnalysisCard key={category.name} category={category} shows={shows} />;
+      })}
+    </div>
+  );
+}
+
+function AnalysisCard({ category, shows }) {
+  const stats = category.stats;
+
+  return (
+    <div className="w-full rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-4 md:w-[calc(50%-0.75rem)] xl:w-[calc(33.333%-1rem)]">
+      <h3 className="mb-2 font-sans text-lg font-semibold tracking-wide text-white">
+        {category.name}
+      </h3>
+
+      {stats && (
+        <div className="mb-3 flex gap-4 text-sm">
+          <div className="flex items-baseline gap-1">
+            <span className="font-bold text-blue-200">{stats.count}</span>
+            <span className="text-xs text-zinc-400">titles</span>
+          </div>
+          <div className="flex items-baseline gap-1">
+            <span className="font-bold text-blue-200">{stats.mean_score?.toFixed(1)}</span>
+            <span className="text-xs text-zinc-400">avg</span>
+          </div>
+          <div className="flex items-baseline gap-1">
+            <span className="font-bold text-blue-200">{stats.completion_rate?.toFixed(0)}%</span>
+            <span className="text-xs text-zinc-400">completed</span>
+          </div>
+        </div>
+      )}
+
+      <AnalysisCarousel>
+        {shows.map((node) => (
+          <AnalysisItem key={node["id"]} node={node} />
+        ))}
+      </AnalysisCarousel>
+    </div>
+  );
+}
+
+function AnalysisCarousel({ children }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    slidesToScroll: "auto",
+    containScroll: "trimSnaps",
+  });
+
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, onSelect]);
+
+  return (
+    <div className="relative">
+      <div className="overflow-x-clip" ref={emblaRef}>
+        <div className="flex gap-1">
+          {Array.isArray(children) ? children.map((child, i) => (
+            <div className="flex-[0_0_25%] min-w-0" key={i}>
+              {child}
+            </div>
+          )) : children}
+        </div>
+      </div>
+      {canScrollPrev && (
+        <button
+          className="absolute left-0 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border-none bg-blue-500/90 text-white shadow cursor-pointer hover:bg-blue-600"
+          onClick={() => emblaApi?.scrollPrev()}
+          aria-label="Previous slides"
+        >
+          <ChevronLeftIcon fontSize="small" />
+        </button>
+      )}
+      {canScrollNext && (
+        <button
+          className="absolute right-0 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border-none bg-blue-500/90 text-white shadow cursor-pointer hover:bg-blue-600"
+          onClick={() => emblaApi?.scrollNext()}
+          aria-label="Next slides"
+        >
+          <ChevronRightIcon fontSize="small" />
+        </button>
+      )}
+    </div>
+  );
+}
+
+function AnalysisItem({ node }) {
+  const url = `https://anilist.co/anime/${node["id"]}`;
+
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer" className="block rounded">
+      <img className="max-h-[150px] rounded" src={node["cover_image"]} alt={node["title"]} />
+    </a>
+  );
+}
+
 export function AnimeListFlex(shows, genreTitle) {
   return (
     <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>

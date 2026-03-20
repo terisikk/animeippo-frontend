@@ -4,7 +4,7 @@ import TopBar from "./TopBar";
 
 import "./App.css";
 import testJson from "./TestData";
-import { AnimeContent, PlaceHolderContent } from "./AnimeList";
+import { AnimeContent, AnalysisContent, PlaceHolderContent } from "./AnimeList";
 import { fetchAnimeList } from "./api";
 
 import TemporaryDrawer from "./Drawer";
@@ -37,6 +37,14 @@ function App() {
       localStorage.setItem("animeippo_last_user", new_user);
       setUser(new_user);
     }
+  };
+
+  const handleSwitchUser = () => {
+    setShows(null);
+    setContentReady(false);
+    setUser("");
+    setMode("recommend");
+    localStorage.removeItem("animeippo_last_user");
   };
 
   const fetchAnimeListCb = useCallback(fetchAnimeList, []);
@@ -76,11 +84,11 @@ function App() {
             setActiveYear={setActiveYear}
             loading={loading}
             contentReady={contentReady}
-            onSubmit={handleSearch}
             user={user}
             mode={mode}
             setMode={setMode}
             toggleDrawer={toggleDrawer}
+            onSwitchUser={handleSwitchUser}
           />
         )}
 
@@ -88,7 +96,9 @@ function App() {
           {loading
             ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p>{PlaceHolderContent()}</>
             : shows != null
-            ? AnimeContent(shows?.data, selectedGenre)
+            ? mode === "analyse"
+              ? AnalysisContent(shows?.data)
+              : AnimeContent(shows?.data, selectedGenre)
             : user !== ""
             ? backendErrorMessage()
             : null}

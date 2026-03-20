@@ -5,6 +5,7 @@ const CACHE_TTL = 1000 * 60 * 60 * 24; // 1 day
 export function fetchAnimeList(user, year, setLoading, setShows, setContentReady, mode = "recommend") {
   if (user !== "") {
     setLoading(true);
+    setShows(null);
 
     const domain = process.env.REACT_APP_API_URL || "http://localhost:5000";
     const url = `${domain}/${mode}?user=${user}&year=${year}`;
