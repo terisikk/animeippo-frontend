@@ -360,11 +360,11 @@ function AnalysisCarousel({ children }) {
   }, [emblaApi, onSelect]);
 
   return (
-    <div className="relative">
+    <div className="group/carousel relative">
       <div className="overflow-x-clip" ref={emblaRef}>
         <div className="flex gap-1">
           {Array.isArray(children) ? children.map((child, i) => (
-            <div className="flex-[0_0_25%] min-w-0" key={i}>
+            <div className="flex-[0_0_23%] min-w-0" key={i}>
               {child}
             </div>
           )) : children}
@@ -372,7 +372,7 @@ function AnalysisCarousel({ children }) {
       </div>
       {canScrollPrev && (
         <button
-          className="absolute left-0 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border-none bg-blue-500/90 text-white shadow cursor-pointer hover:bg-blue-600"
+          className="absolute left-0 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border-none bg-blue-500/90 text-white shadow cursor-pointer opacity-0 transition-opacity duration-200 group-hover/carousel:opacity-100 hover:bg-blue-600"
           onClick={() => emblaApi?.scrollPrev()}
           aria-label="Previous slides"
         >
@@ -381,7 +381,7 @@ function AnalysisCarousel({ children }) {
       )}
       {canScrollNext && (
         <button
-          className="absolute right-0 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border-none bg-blue-500/90 text-white shadow cursor-pointer hover:bg-blue-600"
+          className="absolute right-0 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border-none bg-blue-500/90 text-white shadow cursor-pointer opacity-0 transition-opacity duration-200 group-hover/carousel:opacity-100 hover:bg-blue-600"
           onClick={() => emblaApi?.scrollNext()}
           aria-label="Next slides"
         >
@@ -448,9 +448,9 @@ export function AnimeItem(node) {
     <a key={node["id"]} href={url} target="_blank" rel="noopener noreferrer" className="group flex w-fit flex-col rounded bg-zinc-900 duration-300 ease-in hover:scale-110 hover:bg-zinc-600 hover:z-10">
       <div className="card-image-container relative flex items-end">
         <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
-        {node["status"] === "not_yet_released" && (
+        {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (
           <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-center font-sans text-xs uppercase text-white rounded">
-            Upcoming {node["season"]}
+            Upcoming {node["season"]?.toLowerCase()}
           </span>
         )}
         {debugMode && scoreFields.length > 0 && (
