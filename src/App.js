@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { SearchForm } from "./Header";
 import TopBar from "./TopBar";
 
@@ -17,12 +17,14 @@ function App() {
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
   const [user, setUser] = useState(() => localStorage.getItem("animeippo_last_user") || "");
   const [contentReady, setContentReady] = useState(false);
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
   const [mode, setMode] = useState("recommend");
 
-  const toggleDrawer = (newOpen) => () => {
-    setDrawerOpen(newOpen);
-  };
+  const toggleMenu = useCallback((menu) => () => {
+    setOpenMenu((prev) => prev === menu ? null : menu);
+  }, []);
+
+  const closeMenu = useCallback(() => setOpenMenu(null), []);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -60,6 +62,20 @@ function App() {
 
   const hasContent = loading || contentReady;
 
+  const content = useMemo(() => (
+    <div>
+      {loading
+        ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p>{PlaceHolderContent()}</>
+        : shows != null
+        ? mode === "analyse"
+          ? AnalysisContent(shows?.data)
+          : AnimeContent(shows?.data, selectedGenre)
+        : user !== ""
+        ? backendErrorMessage()
+        : null}
+    </div>
+  ), [loading, mode, user, shows, selectedGenre]);
+
   return (
     <main className="App-Content h-full overflow-hidden bg-zinc-900">
       <div
@@ -87,28 +103,23 @@ function App() {
             user={user}
             mode={mode}
             setMode={setMode}
-            toggleDrawer={toggleDrawer}
+            toggleMenu={toggleMenu}
+            openMenu={openMenu}
+            closeMenu={closeMenu}
             onSwitchUser={handleSwitchUser}
           />
         )}
 
-        <div>
-          {loading
-            ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p>{PlaceHolderContent()}</>
-            : shows != null
-            ? mode === "analyse"
-              ? AnalysisContent(shows?.data)
-              : AnimeContent(shows?.data, selectedGenre)
-            : user !== ""
-            ? backendErrorMessage()
-            : null}
-        </div>
+        {content}
         { shows?.data ? <TemporaryDrawer
           tags={shows.data.tags}
           shows={shows.data.shows}
-          open={drawerOpen}
-          toggleDrawer={toggleDrawer}
+          open={openMenu === "drawer"}
+          closeMenu={closeMenu}
           setSelectedGenre={setSelectedGenre}
+          mode={mode}
+          setMode={setMode}
+          onSwitchUser={handleSwitchUser}
         ></TemporaryDrawer> : null }
       </div>
     </main>

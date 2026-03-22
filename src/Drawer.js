@@ -8,8 +8,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
+import HomeIcon from '@mui/icons-material/Home';
 
-export default function TemporaryDrawer({ tags, shows, open, toggleDrawer, setSelectedGenre }) {
+export default function TemporaryDrawer({ tags, shows, open, closeMenu, setSelectedGenre, mode, setMode, onSwitchUser }) {
   const [searchQuery, setSearchQuery] = React.useState("");
 
   const availableTags = React.useMemo(() => {
@@ -34,10 +37,46 @@ export default function TemporaryDrawer({ tags, shows, open, toggleDrawer, setSe
   const DrawerList = (
     <Box sx={{
       width: 250,
-      bgcolor: '#18181b',
+      bgcolor: '#27272a',
       height: '100%'
     }} role="presentation">
-      <Box sx={{ p: 2 }} onClick={(e) => e.stopPropagation()}>
+      {/* Navigation */}
+      <Box onClick={closeMenu}>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => setMode("recommend")}
+              sx={{ '&:hover': { bgcolor: '#3f3f46' } }}
+              selected={mode === "recommend"}
+            >
+              <ListItemIcon><HomeIcon sx={{ color: mode === "recommend" ? '#60a5fa' : '#a1a1aa' }} /></ListItemIcon>
+              <ListItemText primary="Home" sx={{ color: mode === "recommend" ? '#60a5fa' : '#bfdbfe' }} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => setMode("analyse")}
+              sx={{ '&:hover': { bgcolor: '#3f3f46' } }}
+              selected={mode === "analyse"}
+            >
+              <ListItemIcon><BarChartIcon sx={{ color: mode === "analyse" ? '#60a5fa' : '#a1a1aa' }} /></ListItemIcon>
+              <ListItemText primary="Analysis" sx={{ color: mode === "analyse" ? '#60a5fa' : '#bfdbfe' }} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={onSwitchUser}
+              sx={{ '&:hover': { bgcolor: '#3f3f46' } }}
+            >
+              <ListItemIcon><SwapHorizIcon sx={{ color: '#a1a1aa' }} /></ListItemIcon>
+              <ListItemText primary="Switch User" sx={{ color: '#bfdbfe' }} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
+      <Divider sx={{ borderColor: '#3f3f46' }} />
+      {/* Genre filter (hidden in analysis mode) */}
+      {mode !== "analyse" && <><Box sx={{ p: 2 }} onClick={(e) => e.stopPropagation()}>
         <Typography variant="h6" sx={{ mb: 1.5, color: '#fff', fontWeight: 600 }}>Genres</Typography>
         <input
           type="text"
@@ -58,7 +97,7 @@ export default function TemporaryDrawer({ tags, shows, open, toggleDrawer, setSe
           onBlur={(e) => e.target.style.borderColor = '#52525b'}
         />
       </Box>
-      <Box onClick={toggleDrawer(false)}>
+      <Box onClick={closeMenu}>
         <List>
             <ListItem key="All" disablePadding onClick={() => handleGenreSelect("All")}>
               <ListItemButton sx={{
@@ -83,6 +122,7 @@ export default function TemporaryDrawer({ tags, shows, open, toggleDrawer, setSe
           ))}
         </List>
       </Box>
+      </>}
     </Box>
   );
 
@@ -90,11 +130,11 @@ export default function TemporaryDrawer({ tags, shows, open, toggleDrawer, setSe
     <div>
       <Drawer
         open={open}
-        onClose={toggleDrawer(false)}
+        onClose={closeMenu}
+        transitionDuration={150}
         PaperProps={{
-          sx: {
-            bgcolor: '#18181b',
-          }
+          sx: { bgcolor: '#27272a' },
+          className: 'scrollbar-thin-zinc',
         }}
       >
         {DrawerList}
