@@ -1,7 +1,13 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ClearIcon from '@mui/icons-material/Clear';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 
 function EmblaCarousel({ children }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -118,49 +124,318 @@ export function PlaceholderItem() {
 const TOP_PICKS_CATEGORY = "Your Top 3";
 const HERO_CATEGORIES = new Set([TOP_PICKS_CATEGORY, "Hidden Gems for You", "Top Movies for You"]);
 
-export function AnimeContent(data, selectedGenre) {
+export function AnimeContent(data) {
 
   if (data === undefined || data.length === 0) {
     return
   }
 
-  if (selectedGenre !== "All") {
-    const render = data?.shows.filter((item) => item.genres?.includes(selectedGenre) || item.tags?.includes(selectedGenre));
+  if (data?.categories) {
+    const topPicksCategory = data.categories.find((c) => c.name === TOP_PICKS_CATEGORY);
+    const otherCategories = data.categories.filter((c) => c.name !== TOP_PICKS_CATEGORY);
+
+    const topPicks = topPicksCategory
+      ? data.shows
+          .filter((item) => topPicksCategory.items.includes(item.id))
+          .sort((a, b) => topPicksCategory.items.indexOf(a.id) - topPicksCategory.items.indexOf(b.id))
+      : [];
 
     return (
-          AnimeListFlex(render, selectedGenre)
-      )
+      <>
+        <h1 className="ml-6 mt-6 font-sans text-3xl font-bold tracking-tight text-white">Picked for You</h1>
+        {topPicks.length > 0 && <TopPicksHero shows={topPicks} />}
+        {otherCategories.map((category) => {
+          const render = data.shows
+            .filter((item) => category.items.includes(item.id))
+            .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
+
+          if (HERO_CATEGORIES.has(category.name)) {
+            return <TopPicksHero key={category.name} shows={render} title={category.name} />;
+          }
+          return <AnimeListCarousel key={category.name} shows={render} category={category} />;
+        })}
+      </>
+    )
   } else {
-      if (data?.categories) {
-        const topPicksCategory = data.categories.find((c) => c.name === TOP_PICKS_CATEGORY);
-        const otherCategories = data.categories.filter((c) => c.name !== TOP_PICKS_CATEGORY);
-
-        const topPicks = topPicksCategory
-          ? data.shows
-              .filter((item) => topPicksCategory.items.includes(item.id))
-              .sort((a, b) => topPicksCategory.items.indexOf(a.id) - topPicksCategory.items.indexOf(b.id))
-          : [];
-
-        return (
-          <>
-            {topPicks.length > 0 && <TopPicksHero shows={topPicks} />}
-            {otherCategories.map((category) => {
-              const render = data.shows
-                .filter((item) => category.items.includes(item.id))
-                .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
-
-              if (HERO_CATEGORIES.has(category.name)) {
-                return <TopPicksHero key={category.name} shows={render} title={category.name} />;
-              }
-              return <AnimeListCarousel key={category.name} shows={render} category={category} />;
-            })}
-          </>
-        )
-      } else {
-        // If no categories, show all shows in a flex layout
-        return AnimeListFlex(data?.shows || []);
-      }
+    return AnimeListFlex(data?.shows || []);
   }
+}
+
+function FilterDropdown({ label, value, options, onChange, width = "w-[140px]" }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const activeLabel = options.find(o => o.value === value)?.label || label;
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        className={`${width} flex cursor-pointer items-center justify-between gap-1 rounded border-none bg-zinc-800 px-4 py-2 font-sans text-sm font-medium tracking-wide text-blue-200 transition-colors duration-200 hover:bg-zinc-700`}
+      >
+        <span className="truncate">{activeLabel}</span>
+        <ExpandMoreIcon sx={{ fontSize: 18, transition: 'transform 0.2s', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+      </button>
+      {open && (
+        <div className={`absolute left-0 top-full z-30 ${width} bg-zinc-800 shadow-lg`}>
+          <List disablePadding>
+            {options.map(o => (
+              <ListItem key={o.value} disablePadding>
+                <ListItemButton
+                  selected={value === o.value}
+                  onClick={() => { onChange(o.value); setOpen(false); }}
+                  sx={{ '&:hover': { bgcolor: '#3f3f46' } }}
+                >
+                  <ListItemText primary={o.label} sx={{ color: value === o.value ? '#ffffff' : '#bfdbfe' }} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function GenreCombobox({ selectedGenre, onSelect, genres, tags, matchCounts, searchQuery, setSearchQuery }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const comboRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (comboRef.current && !comboRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const query = searchQuery.toLowerCase();
+  const filteredGenres = query ? genres.filter(g => g.toLowerCase().includes(query)) : genres;
+  const filteredTags = query ? tags.filter(t => t.toLowerCase().includes(query)) : tags;
+
+  const handleSelect = (value) => {
+    onSelect(value);
+    setSearchQuery("");
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="relative w-[200px]" ref={comboRef}>
+      {selectedGenre !== "All" ? (
+        <button
+          onClick={() => { handleSelect("All"); setIsOpen(false); }}
+          className="flex w-full cursor-pointer items-center justify-between gap-1 rounded border-none bg-zinc-800 px-4 py-2 font-sans text-sm font-medium tracking-wide text-blue-200 transition-colors duration-200 hover:bg-zinc-700"
+        >
+          <span className="truncate">{selectedGenre}</span>
+          <ClearIcon sx={{ fontSize: 16 }} />
+        </button>
+      ) : (
+        <button
+          className="flex w-full cursor-pointer items-center justify-between gap-1 rounded border-none bg-zinc-800 px-4 py-2 font-sans text-sm font-medium tracking-wide text-blue-200 transition-colors duration-200 hover:bg-zinc-700"
+          onClick={() => setIsOpen(o => !o)}
+        >
+          <input
+            type="text"
+            placeholder="All genres & tags"
+            value={searchQuery}
+            onChange={(e) => { e.stopPropagation(); setSearchQuery(e.target.value); setIsOpen(true); }}
+            onFocus={() => setIsOpen(true)}
+            aria-label="Search genres and tags"
+            className="w-full border-none bg-transparent p-0 font-sans text-sm font-medium tracking-wide text-blue-200 placeholder-blue-200/50 outline-none"
+          />
+          <ExpandMoreIcon sx={{ fontSize: 18, transition: 'transform 0.2s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+        </button>
+      )}
+      {isOpen && selectedGenre === "All" && (
+        <div className="absolute left-0 top-full z-30 max-h-72 w-[250px] overflow-y-auto bg-zinc-800 shadow-lg">
+          <List disablePadding>
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => handleSelect("All")} sx={{ '&:hover': { bgcolor: '#3f3f46' } }}>
+                <ListItemText primary="All" sx={{ color: '#bfdbfe' }} />
+                <span className="text-xs text-zinc-500">{matchCounts.get("All")}</span>
+              </ListItemButton>
+            </ListItem>
+            {filteredGenres.map(g => (
+              <ListItem key={g} disablePadding>
+                <ListItemButton onClick={() => handleSelect(g)} sx={{ '&:hover': { bgcolor: '#3f3f46' } }}>
+                  <ListItemText primary={g} sx={{ color: '#bfdbfe' }} />
+                  <span className="text-xs text-zinc-500">{matchCounts.get(g) ?? 0}</span>
+                </ListItemButton>
+              </ListItem>
+            ))}
+            {filteredTags.length > 0 && (
+              <ListItem>
+                <ListItemText primary="Tags" sx={{ color: '#71717a', '& .MuiTypography-root': { fontSize: '0.75rem', textTransform: 'uppercase' } }} />
+              </ListItem>
+            )}
+            {filteredTags.map(t => (
+              <ListItem key={t} disablePadding>
+                <ListItemButton onClick={() => handleSelect(t)} sx={{ '&:hover': { bgcolor: '#3f3f46' } }}>
+                  <ListItemText primary={t} sx={{ color: '#bfdbfe' }} />
+                  <span className="text-xs text-zinc-500">{matchCounts.get(t) ?? 0}</span>
+                </ListItemButton>
+              </ListItem>
+            ))}
+            {filteredGenres.length === 0 && filteredTags.length === 0 && (
+              <ListItem>
+                <ListItemText primary="No matches" sx={{ color: '#71717a' }} />
+              </ListItem>
+            )}
+          </List>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const STATUS_OPTIONS = [
+  { value: "", label: "All statuses" },
+  { value: "FINISHED", label: "Finished" },
+  { value: "RELEASING", label: "Releasing" },
+  { value: "NOT_YET_RELEASED", label: "Upcoming" },
+];
+
+const SEASON_OPTIONS = [
+  { value: "", label: "All seasons" },
+  { value: "WINTER", label: "Winter" },
+  { value: "SPRING", label: "Spring" },
+  { value: "SUMMER", label: "Summer" },
+  { value: "FALL", label: "Fall" },
+];
+
+export function BrowseContent({ data }) {
+  const [selectedGenre, setSelectedGenre] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [seasonFilter, setSeasonFilter] = useState("");
+
+  const availableGenres = useMemo(() => {
+    const presentGenres = new Set();
+    for (const show of (data?.shows || [])) {
+      for (const g of (show.genres || [])) presentGenres.add(g);
+    }
+    return [...presentGenres].sort();
+  }, [data?.shows]);
+
+  const availableTags = useMemo(() => {
+    const presentTags = new Set();
+    for (const show of (data?.shows || [])) {
+      for (const tag of (show.tags || [])) presentTags.add(tag);
+    }
+    return (data?.tags || []).filter(tag => presentTags.has(tag) && !availableGenres.includes(tag));
+  }, [data?.tags, data?.shows, availableGenres]);
+
+  const matchCounts = useMemo(() => {
+    const counts = new Map();
+    let shows = data?.shows || [];
+    if (statusFilter) shows = shows.filter(s => s.status === statusFilter);
+    if (seasonFilter) shows = shows.filter(s => s.season === seasonFilter);
+    for (const show of shows) {
+      for (const g of (show.genres || [])) {
+        counts.set(g, (counts.get(g) || 0) + 1);
+      }
+      for (const t of (show.tags || [])) {
+        counts.set(t, (counts.get(t) || 0) + 1);
+      }
+    }
+    counts.set("All", shows.length);
+    return counts;
+  }, [data?.shows, statusFilter, seasonFilter]);
+
+  const filteredShows = useMemo(() => {
+    let result = data?.shows || [];
+    if (selectedGenre !== "All") result = result.filter(s => s.genres?.includes(selectedGenre) || s.tags?.includes(selectedGenre));
+    if (statusFilter) result = result.filter(s => s.status === statusFilter);
+    if (seasonFilter) result = result.filter(s => s.season === seasonFilter);
+    return result;
+  }, [data?.shows, selectedGenre, statusFilter, seasonFilter]);
+
+  const hasActiveFilters = selectedGenre !== "All" || statusFilter || seasonFilter;
+
+  const clearAllFilters = () => {
+    setSelectedGenre("All");
+    setStatusFilter("");
+    setSeasonFilter("");
+    setSearchQuery("");
+  };
+
+  if (!data) return null;
+
+  return (
+    <>
+      <div className="my-4 py-3">
+        <h1 className="mb-3 pl-6 font-sans text-3xl font-bold tracking-tight text-white">Your Recommendations</h1>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <GenreCombobox
+            selectedGenre={selectedGenre}
+            onSelect={setSelectedGenre}
+            genres={availableGenres}
+            tags={availableTags}
+            matchCounts={matchCounts}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          <FilterDropdown label="Status" value={statusFilter} options={STATUS_OPTIONS} onChange={setStatusFilter} />
+          <FilterDropdown label="Season" value={seasonFilter} options={SEASON_OPTIONS} onChange={setSeasonFilter} />
+        </div>
+        {hasActiveFilters && (
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+            <span className="text-sm text-zinc-400">Showing:</span>
+            {selectedGenre !== "All" && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-blue-600 px-3 py-0.5 text-sm text-white">
+                {selectedGenre}
+                <button onClick={() => setSelectedGenre("All")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label={`Remove ${selectedGenre} filter`}>
+                  <ClearIcon style={{ fontSize: 14 }} />
+                </button>
+              </span>
+            )}
+            {statusFilter && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-blue-600 px-3 py-0.5 text-sm text-white">
+                {STATUS_OPTIONS.find(o => o.value === statusFilter)?.label}
+                <button onClick={() => setStatusFilter("")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label="Remove status filter">
+                  <ClearIcon style={{ fontSize: 14 }} />
+                </button>
+              </span>
+            )}
+            {seasonFilter && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-blue-600 px-3 py-0.5 text-sm text-white">
+                {SEASON_OPTIONS.find(o => o.value === seasonFilter)?.label}
+                <button onClick={() => setSeasonFilter("")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label="Remove season filter">
+                  <ClearIcon style={{ fontSize: 14 }} />
+                </button>
+              </span>
+            )}
+            <button
+              onClick={clearAllFilters}
+              className="cursor-pointer border-none bg-transparent px-2 py-0.5 text-sm text-zinc-400 hover:text-white"
+            >
+              Clear all
+            </button>
+          </div>
+        )}
+      </div>
+      <div aria-live="polite">
+        {filteredShows.length > 0
+          ? AnimeListFlex(filteredShows, selectedGenre !== "All" ? selectedGenre : undefined)
+          : (
+            <div className="flex justify-center py-16 text-zinc-400 text-lg">
+              No shows match these filters.
+            </div>
+          )
+        }
+      </div>
+    </>
+  );
 }
 
 function TopPicksHero({ shows, title }) {
@@ -272,6 +547,8 @@ export function AnalysisContent(data) {
   }
 
   return (
+    <>
+    <h1 className="ml-6 mt-6 font-sans text-3xl font-bold tracking-tight text-white">Your Profile Insights</h1>
     <div className="flex flex-wrap justify-center gap-6 px-6 py-6">
       {data.categories.map((category, index) => {
         const shows = data.shows
@@ -281,6 +558,7 @@ export function AnalysisContent(data) {
         return <AnalysisCard key={category.name} category={category} shows={shows} index={index} />;
       })}
     </div>
+    </>
   );
 }
 
@@ -409,7 +687,11 @@ export function AnimeListFlex(shows, genreTitle) {
         <h2 className="mb-5 text-center font-sans text-2xl font-medium tracking-wide text-white">{genreTitle}</h2>
       )}
       <div className="flex flex-wrap justify-center gap-4">
-        {shows.map((node) => AnimeItem(node))}
+        {shows.map((node, i) => (
+          <div key={node["id"]} className="animate-hero-fade-in" style={{ animationDelay: `${Math.min(i * 30, 600)}ms` }}>
+            {AnimeItem(node)}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -445,7 +727,7 @@ export function AnimeItem(node) {
   }
 
   return (
-    <a key={node["id"]} href={url} target="_blank" rel="noopener noreferrer" className="group flex w-fit flex-col rounded bg-zinc-900 duration-300 ease-in hover:scale-110 hover:bg-zinc-600 hover:z-10">
+    <a key={node["id"]} href={url} target="_blank" rel="noopener noreferrer" className="group flex w-fit flex-col rounded bg-zinc-900 duration-300 ease-in hover:scale-105 hover:bg-zinc-600 hover:z-10">
       <div className="card-image-container relative flex items-end">
         <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} />
         {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (

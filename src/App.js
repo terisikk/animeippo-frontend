@@ -4,14 +4,11 @@ import TopBar from "./TopBar";
 
 import "./App.css";
 import testJson from "./TestData";
-import { AnimeContent, AnalysisContent, PlaceHolderContent } from "./AnimeList";
+import { AnimeContent, AnalysisContent, PlaceHolderContent, BrowseContent } from "./AnimeList";
 import { fetchAnimeList } from "./api";
-
-import TemporaryDrawer from "./Drawer";
 
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState("All");
   const [shows, setShows] = useState(null);
   const [loading, setLoading] = useState(false);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
@@ -51,14 +48,16 @@ function App() {
 
   const fetchAnimeListCb = useCallback(fetchAnimeList, []);
 
+  const apiMode = mode === "browse" ? "recommend" : mode;
+
   useEffect(() => {
     if (process.env.REACT_APP_MOCK_BACKEND === "true") {
       setShows(testJson());
       setContentReady(true);
     } else {
-      fetchAnimeListCb(user, activeYear, setLoading, setShows, setContentReady, mode);
+      fetchAnimeListCb(user, activeYear, setLoading, setShows, setContentReady, apiMode);
     }
-  }, [user, activeYear, fetchAnimeListCb, mode]);
+  }, [user, activeYear, fetchAnimeListCb, apiMode]);
 
   const hasContent = loading || contentReady;
 
@@ -69,15 +68,17 @@ function App() {
         : shows != null
         ? mode === "analyse"
           ? AnalysisContent(shows?.data)
-          : AnimeContent(shows?.data, selectedGenre)
+          : mode === "browse"
+          ? <BrowseContent data={shows?.data} />
+          : AnimeContent(shows?.data)
         : user !== ""
         ? backendErrorMessage()
         : null}
     </div>
-  ), [loading, mode, user, shows, selectedGenre]);
+  ), [loading, mode, user, shows]);
 
   return (
-    <main className="App-Content h-full overflow-hidden bg-zinc-900">
+    <main className="App-Content min-h-full bg-zinc-900">
       <div
         className={`${hasContent ? "pt-0" : "h-screen pt-[15%]"} transition-all duration-1000 ease-out`}
       >
@@ -111,16 +112,6 @@ function App() {
         )}
 
         {content}
-        { shows?.data ? <TemporaryDrawer
-          tags={shows.data.tags}
-          shows={shows.data.shows}
-          open={openMenu === "drawer"}
-          closeMenu={closeMenu}
-          setSelectedGenre={setSelectedGenre}
-          mode={mode}
-          setMode={setMode}
-          onSwitchUser={handleSwitchUser}
-        ></TemporaryDrawer> : null }
       </div>
     </main>
   );

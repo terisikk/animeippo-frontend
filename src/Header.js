@@ -13,7 +13,7 @@ export function HeaderTabBar({ activeYear, contentReady, setActiveYear, loading 
   }
 
   return (
-    <div className={`flex w-full flex-nowrap justify-center ${contentReady ? "visible" : "hidden"}`}>
+    <div className={`flex flex-nowrap items-stretch justify-center ${contentReady ? "visible" : "hidden"}`}>
       <Tab text={activeYear - 1} active={false} onClick={() => setActiveYear(activeYear - 1)} disabled={loading} />
       <Tab text={activeYear} active={true} onClick={() => setActiveYear(activeYear)} disabled={loading} />
       {renderLastTab && (
@@ -72,9 +72,9 @@ export function SearchForm({ onSubmit, loading, contentReady, user }) {
 function Tab({ active, onClick, text, disabled }) {
   return (
     <button
-      className={`${
-        active ? "border-b-2 border-blue-400 text-blue-200" : "text-white hover:bg-zinc-700"
-      } m:text-md xs:text-sm lg:my-0 my-2 mr-2 line-clamp-1 w-36 cursor-pointer text-clip rounded rounded-b-none py-2 text-center font-sans text-xl font-medium tracking-wide`}
+      className={`cursor-pointer border-0 bg-transparent px-5 font-sans text-lg font-semibold tracking-wide transition-colors duration-200 hover:bg-zinc-800 ${
+        active ? "text-white !border-b-2 border-blue-400" : "text-zinc-400"
+      }`}
       onClick={onClick}
       disabled={disabled}
     >
