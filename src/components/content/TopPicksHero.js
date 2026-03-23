@@ -1,0 +1,102 @@
+import { useState, useEffect, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { anilistUrl } from "../../styles";
+
+export function TopPicksHero({ shows, title }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    containScroll: "trimSnaps",
+    breakpoints: {
+      '(min-width: 1024px)': { active: false },
+    },
+  });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", () => {
+      setScrollSnaps(emblaApi.scrollSnapList());
+      onSelect();
+    });
+  }, [emblaApi, onSelect]);
+
+  const cards = shows.slice(0, 3).map((node) => {
+    const url = anilistUrl(node["id"]);
+
+    return (
+      <a key={node["id"]} href={url} target="_blank" rel="noopener noreferrer" className="group relative flex flex-row items-start gap-4 rounded-lg p-3 overflow-hidden transition-all duration-300 hover:bg-zinc-800/50 hover:scale-105">
+        <img
+          className="absolute inset-0 h-full w-full rounded-lg object-cover blur-2xl opacity-30 pointer-events-none"
+          src={node["cover_image"]}
+          alt=""
+          aria-hidden="true"
+        />
+        <div className="relative shrink-0">
+          <img
+            className="card-image rounded"
+            src={node["cover_image"]}
+            alt={node["title"]}
+          />
+        </div>
+        <div className="relative min-w-0 pt-1 flex flex-col self-stretch" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
+          <h3 className="line-clamp-2 font-sans text-xl font-semibold tracking-wide text-white">
+            {node["title"]}
+          </h3>
+          <p className="mt-2 flex flex-col gap-1">
+            {node["genres"]?.slice(0, 8).map((genre) => (
+              <span key={genre} className="font-sans text-sm font-medium tracking-wide text-blue-100">
+                {genre}
+              </span>
+            ))}
+          </p>
+          {node["recommend_score"] != null && (
+            <span className="mt-auto pt-4 inline-block font-sans text-3xl font-bold text-blue-400">
+              {(node["recommend_score"] * 100).toFixed(0)}%
+            </span>
+          )}
+        </div>
+      </a>
+    );
+  });
+
+  return (
+    <div className="hero-section mb-8 pb-8 pt-6" style={{ background: 'radial-gradient(ellipse 160% 100% at center, rgba(23,37,84,0.3) 0%, rgba(24,24,27,0.5) 70%, rgb(24,24,27) 100%)' }}>
+      {title && <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{title}</h2>}
+      <div className="lg:flex lg:justify-center lg:gap-6 lg:px-6">
+        <div className="overflow-x-clip overflow-y-visible lg:contents cursor-grab active:cursor-grabbing" ref={emblaRef}>
+          <div className="flex lg:contents">
+            {cards.map((card, i) => (
+              <div className="hero-slide flex-[0_0_100%] min-w-0 lg:flex-1 px-6 lg:px-0 animate-hero-fade-in" style={{ animationDelay: `${i * 150}ms` }} key={i}>
+                {card}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {scrollSnaps.length > 1 && (
+        <div className="flex justify-center gap-2 mt-4 lg:hidden">
+          {scrollSnaps.map((_, i) => (
+            <button
+              key={i}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === selectedIndex ? "w-6 bg-blue-400" : "w-2 bg-zinc-600"
+              }`}
+              onClick={() => emblaApi?.scrollTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

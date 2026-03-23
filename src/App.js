@@ -4,7 +4,10 @@ import TopBar from "./TopBar";
 
 import "./App.css";
 import testJson from "./TestData";
-import { AnimeContent, AnalysisContent, PlaceHolderContent, BrowseContent } from "./AnimeList";
+import { AnimeContent } from "./components/content/AnimeContent";
+import { AnalysisContent } from "./components/analysis/AnalysisContent";
+import { PlaceHolderContent } from "./components/placeholder/PlaceholderContent";
+import { BrowseContent } from "./components/browse/BrowseContent";
 import { fetchAnimeList } from "./api";
 
 

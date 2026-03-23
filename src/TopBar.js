@@ -1,4 +1,6 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
+import { useClickOutside } from "./hooks/useClickOutside";
+import { colors, listItemHoverSx } from "./styles";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import AppsIcon from '@mui/icons-material/Apps';
@@ -44,13 +46,7 @@ export default function TopBar({
   const profileOpen = openMenu === "profile";
   const navOpen = openMenu === "nav";
 
-  useEffect(() => {
-    const handleClick = (e) => {
-      if (headerRef.current && !headerRef.current.contains(e.target)) closeMenu();
-    };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [closeMenu]);
+  useClickOutside(headerRef, closeMenu);
 
   const goHome = () => {
     if (mode !== "recommend") setMode("recommend");
@@ -137,13 +133,13 @@ export default function TopBar({
               <ListItem key={m.key} disablePadding>
                 <ListItemButton
                   onClick={() => { setMode(m.key); closeMenu(); }}
-                  sx={{ '&:hover': { bgcolor: '#3f3f46' } }}
+                  sx={listItemHoverSx}
                   selected={mode === m.key}
                 >
-                  <ListItemIcon sx={{ color: mode === m.key ? '#ffffff' : '#a1a1aa' }}>
+                  <ListItemIcon sx={{ color: mode === m.key ? '#ffffff' : colors.zinc400 }}>
                     {m.icon}
                   </ListItemIcon>
-                  <ListItemText primary={m.label} sx={{ color: mode === m.key ? '#ffffff' : '#bfdbfe' }} />
+                  <ListItemText primary={m.label} sx={{ color: mode === m.key ? '#ffffff' : colors.blue200 }} />
                 </ListItemButton>
               </ListItem>
             ))}
@@ -161,19 +157,19 @@ export default function TopBar({
         <div className="w-[250px] bg-zinc-800 shadow-lg">
           <List>
             <ListItem>
-              <ListItemIcon><AccountCircleIcon sx={{ color: '#bfdbfe' }} /></ListItemIcon>
+              <ListItemIcon><AccountCircleIcon sx={{ color: colors.blue200 }} /></ListItemIcon>
               <ListItemText primary={user} sx={{ color: '#fff' }} />
             </ListItem>
           </List>
-          <Divider sx={{ borderColor: '#3f3f46' }} />
+          <Divider sx={{ borderColor: colors.zinc600 }} />
           <List>
             <ListItem disablePadding>
               <ListItemButton
                 onClick={() => { onSwitchUser(); closeMenu(); }}
-                sx={{ '&:hover': { bgcolor: '#3f3f46' } }}
+                sx={listItemHoverSx}
               >
-                <ListItemIcon><SwapHorizIcon sx={{ color: '#a1a1aa' }} /></ListItemIcon>
-                <ListItemText primary="Switch User" sx={{ color: '#bfdbfe' }} />
+                <ListItemIcon><SwapHorizIcon sx={{ color: colors.zinc400 }} /></ListItemIcon>
+                <ListItemText primary="Switch User" sx={{ color: colors.blue200 }} />
               </ListItemButton>
             </ListItem>
           </List>
