@@ -40,15 +40,13 @@ export function TopPicksHero({ shows, title }) {
           src={node["cover_image"]}
           alt=""
           aria-hidden="true"
-          loading="lazy"
         />
-        <div className="relative shrink-0">
+        <div className="relative shrink-0 aspect-[2/3] h-[250px] lg:h-[300px]">
           <img
-            className="card-image rounded"
+            className="h-full w-full rounded object-cover"
             src={node["cover_image"]}
             alt={node["title"]}
-            loading="lazy"
-          />
+            />
         </div>
         <div className="relative min-w-0 pt-1 flex flex-col self-stretch" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
           <h3 className="line-clamp-2 font-sans text-xl font-semibold tracking-wide text-white">

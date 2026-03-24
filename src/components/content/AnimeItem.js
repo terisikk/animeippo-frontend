@@ -1,9 +1,11 @@
 import { memo } from "react";
 import { anilistUrl } from "../../styles";
+import { useLazyImage } from "../../hooks/useLazyImage";
 
 export const AnimeItem = memo(function AnimeItem({ node }) {
   const url = anilistUrl(node["id"]);
   const debugMode = process.env.REACT_APP_DEBUG === "true";
+  const img = useLazyImage(node["cover_image"]);
 
   let scoreFields = debugMode ? Object.keys(node).filter(key =>
     key.includes('score') || key.includes('Score')
@@ -20,7 +22,7 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" className="group flex w-fit flex-col rounded bg-zinc-900 duration-300 ease-in hover:scale-105 hover:bg-zinc-600 hover:z-10">
       <div className="card-image-container relative flex items-end">
-        <img className="card-image rounded" src={node["cover_image"]} alt={node["title"]} loading="lazy" />
+        <img ref={img.ref} className="card-image rounded" src={img.src} alt={node["title"]} />
         {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (
           <span className="absolute bottom-2 left-2 bg-red-500 px-2 py-1 text-center font-sans text-xs uppercase text-white rounded">
             Upcoming {node["season"]?.toLowerCase()}

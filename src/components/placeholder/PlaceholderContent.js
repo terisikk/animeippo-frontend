@@ -31,7 +31,7 @@ function PlaceholderList() {
 function PlaceholderItem() {
   return (
     <div className="group flex flex-col rounded">
-      <img className="card-image rounded" src="./placeholder.png" alt="" loading="lazy" />
+      <img className="card-image rounded" src="./placeholder.png" alt="" />
       <div className="card-text h-28">
         <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200">
           ...
