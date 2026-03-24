@@ -1,9 +1,45 @@
+import { useState } from "react";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { AnalysisCarousel } from "../carousel/AnalysisCarousel";
 import { AnalysisItem } from "./AnalysisItem";
+import { colors } from "../../styles";
 
-export function AnalysisCard({ category, shows, index }) {
+const toggleGroupSx = {
+  width: '100%',
+  mb: 1.5,
+  '& .MuiToggleButton-root': {
+    flex: 1,
+    py: 0.5,
+    px: 1,
+    fontSize: '0.75rem',
+    textTransform: 'none',
+    color: colors.blue200,
+    borderColor: 'transparent',
+    '&:hover': { bgcolor: colors.zinc600 },
+    '&.Mui-selected': {
+      bgcolor: 'rgba(96,165,250,0.15)',
+      color: '#fff',
+      '&:hover': { bgcolor: 'rgba(96,165,250,0.25)' },
+    },
+    '&.Mui-disabled': {
+      opacity: 0.4,
+      color: colors.zinc400,
+    },
+  },
+  bgcolor: 'rgba(63,63,70,0.4)',
+  borderRadius: 1,
+};
+
+export function AnalysisCard({ category, shows, recommendations = [], index }) {
+  const [view, setView] = useState("watched");
   const stats = category.stats;
   const accentImage = shows[0]?.cover_image;
+  const hasRecs = recommendations.length > 0;
+
+  const handleView = (_, newView) => {
+    if (newView !== null) setView(newView);
+  };
 
   return (
     <div
@@ -29,10 +65,6 @@ export function AnalysisCard({ category, shows, index }) {
         {stats && (
           <div className="mb-3 flex gap-4 text-sm">
             <div className="flex items-baseline gap-1">
-              <span className="font-bold text-blue-200">{stats.count}</span>
-              <span className="text-xs text-zinc-400">titles</span>
-            </div>
-            <div className="flex items-baseline gap-1">
               <span className="font-bold text-blue-200">{stats.mean_score != null ? stats.mean_score.toFixed(1) : "?"}</span>
               <span className="text-xs text-zinc-400">avg</span>
             </div>
@@ -43,8 +75,23 @@ export function AnalysisCard({ category, shows, index }) {
           </div>
         )}
 
+        <ToggleButtonGroup
+          value={view}
+          exclusive
+          onChange={handleView}
+          size="small"
+          sx={toggleGroupSx}
+        >
+          <ToggleButton value="watched">
+            Your titles ({shows.length})
+          </ToggleButton>
+          <ToggleButton value="recommendations" disabled={!hasRecs}>
+            Recommendations ({recommendations.length})
+          </ToggleButton>
+        </ToggleButtonGroup>
+
         <AnalysisCarousel>
-          {shows.map((node) => (
+          {(view === "recommendations" && hasRecs ? recommendations : shows).map((node) => (
             <AnalysisItem key={node["id"]} node={node} />
           ))}
         </AnalysisCarousel>

@@ -10,6 +10,8 @@ export function AnalysisContent(data) {
     return null;
   }
 
+  const seasonalMap = new Map(data.seasonal?.map(s => [s.id, s]) || []);
+
   return (
     <>
     <h1 className={`ml-6 mt-6 ${PAGE_TITLE}`}>Your Profile Insights</h1>
@@ -19,7 +21,11 @@ export function AnalysisContent(data) {
           .filter((item) => category.items.includes(item.id))
           .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
 
-        return <AnalysisCard key={category.name} category={category} shows={shows} index={index} />;
+        const recommendations = (category.recommendations || [])
+          .map(id => seasonalMap.get(id))
+          .filter(Boolean);
+
+        return <AnalysisCard key={category.name} category={category} shows={shows} recommendations={recommendations} index={index} />;
       })}
     </div>
     </>

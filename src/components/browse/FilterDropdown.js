@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { FILTER_BUTTON, colors, listItemHoverSx } from "../../styles";
 
-export function FilterDropdown({ label, value, options, onChange, width = "w-[140px]" }) {
+export function FilterDropdown({ title, label, value, options, onChange, width = "w-[140px]" }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -18,6 +18,7 @@ export function FilterDropdown({ label, value, options, onChange, width = "w-[14
 
   return (
     <div className="relative" ref={ref}>
+      {title && <span className="mb-1 block text-xs font-medium tracking-wide text-zinc-400">{title}</span>}
       <button
         onClick={() => setOpen(o => !o)}
         className={`${width} ${FILTER_BUTTON}`}

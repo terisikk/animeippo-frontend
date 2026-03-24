@@ -27,6 +27,7 @@ export function GenreCombobox({ selectedGenre, onSelect, genres, tags, matchCoun
 
   return (
     <div className="relative w-[200px]" ref={comboRef}>
+      <span className="mb-1 block text-xs font-medium tracking-wide text-zinc-400">Genre / Tag</span>
       {selectedGenre !== "All" ? (
         <button
           onClick={() => { handleSelect("All"); setIsOpen(false); }}

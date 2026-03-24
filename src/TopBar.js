@@ -52,7 +52,7 @@ export default function TopBar({
     if (mode !== "recommend") setMode("recommend");
   };
 
-  const showTabs = mode !== "analyse";
+  const showTabs = true;
 
   return (
     <div ref={headerRef} className="sticky top-0 z-40">

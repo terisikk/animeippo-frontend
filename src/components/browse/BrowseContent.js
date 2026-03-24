@@ -6,18 +6,34 @@ import { AnimeListFlex } from "../content/AnimeListFlex";
 import { PAGE_TITLE, ACTIVE_FILTER_PILL } from "../../styles";
 
 const STATUS_OPTIONS = [
-  { value: "", label: "All statuses" },
+  { value: "", label: "All" },
   { value: "FINISHED", label: "Finished" },
   { value: "RELEASING", label: "Releasing" },
   { value: "NOT_YET_RELEASED", label: "Upcoming" },
 ];
 
 const SEASON_OPTIONS = [
-  { value: "", label: "All seasons" },
+  { value: "", label: "All" },
   { value: "WINTER", label: "Winter" },
   { value: "SPRING", label: "Spring" },
   { value: "SUMMER", label: "Summer" },
   { value: "FALL", label: "Fall" },
+];
+
+const FORMAT_OPTIONS = [
+  { value: "", label: "All" },
+  { value: "TV", label: "TV" },
+  { value: "MOVIE", label: "Movie" },
+  { value: "OVA", label: "OVA" },
+  { value: "ONA", label: "ONA" },
+  { value: "TV_SHORT", label: "TV Short" },
+  { value: "SPECIAL", label: "Special" },
+];
+
+const LIST_STATUS_OPTIONS = [
+  { value: "", label: "All" },
+  { value: "on_list", label: "On my list" },
+  { value: "not_on_list", label: "Not on my list" },
 ];
 
 export function BrowseContent({ data }) {
@@ -25,6 +41,8 @@ export function BrowseContent({ data }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [seasonFilter, setSeasonFilter] = useState("");
+  const [formatFilter, setFormatFilter] = useState("");
+  const [listStatusFilter, setListStatusFilter] = useState("");
 
   const availableGenres = useMemo(() => {
     const presentGenres = new Set();
@@ -47,6 +65,9 @@ export function BrowseContent({ data }) {
     let shows = data?.shows || [];
     if (statusFilter) shows = shows.filter(s => s.status === statusFilter);
     if (seasonFilter) shows = shows.filter(s => s.season === seasonFilter);
+    if (formatFilter) shows = shows.filter(s => s.format === formatFilter);
+    if (listStatusFilter === "on_list") shows = shows.filter(s => s.user_status != null);
+    else if (listStatusFilter === "not_on_list") shows = shows.filter(s => s.user_status == null);
     for (const show of shows) {
       for (const g of (show.genres || [])) {
         counts.set(g, (counts.get(g) || 0) + 1);
@@ -57,22 +78,27 @@ export function BrowseContent({ data }) {
     }
     counts.set("All", shows.length);
     return counts;
-  }, [data?.shows, statusFilter, seasonFilter]);
+  }, [data?.shows, statusFilter, seasonFilter, formatFilter, listStatusFilter]);
 
   const filteredShows = useMemo(() => {
     let result = data?.shows || [];
     if (selectedGenre !== "All") result = result.filter(s => s.genres?.includes(selectedGenre) || s.tags?.includes(selectedGenre));
     if (statusFilter) result = result.filter(s => s.status === statusFilter);
     if (seasonFilter) result = result.filter(s => s.season === seasonFilter);
-    return result;
-  }, [data?.shows, selectedGenre, statusFilter, seasonFilter]);
+    if (formatFilter) result = result.filter(s => s.format === formatFilter);
+    if (listStatusFilter === "on_list") result = result.filter(s => s.user_status != null);
+    else if (listStatusFilter === "not_on_list") result = result.filter(s => s.user_status == null);
+    return [...result].sort((a, b) => (b.recommend_score ?? 0) - (a.recommend_score ?? 0));
+  }, [data?.shows, selectedGenre, statusFilter, seasonFilter, formatFilter, listStatusFilter]);
 
-  const hasActiveFilters = selectedGenre !== "All" || statusFilter || seasonFilter;
+  const hasActiveFilters = selectedGenre !== "All" || statusFilter || seasonFilter || formatFilter || listStatusFilter;
 
   const clearAllFilters = () => {
     setSelectedGenre("All");
     setStatusFilter("");
     setSeasonFilter("");
+    setFormatFilter("");
+    setListStatusFilter("");
     setSearchQuery("");
   };
 
@@ -92,8 +118,10 @@ export function BrowseContent({ data }) {
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />
-          <FilterDropdown label="Status" value={statusFilter} options={STATUS_OPTIONS} onChange={setStatusFilter} />
-          <FilterDropdown label="Season" value={seasonFilter} options={SEASON_OPTIONS} onChange={setSeasonFilter} />
+          <FilterDropdown title="Airing Status" label="Status" value={statusFilter} options={STATUS_OPTIONS} onChange={setStatusFilter} />
+          <FilterDropdown title="Season" label="Season" value={seasonFilter} options={SEASON_OPTIONS} onChange={setSeasonFilter} />
+          <FilterDropdown title="Format" label="Format" value={formatFilter} options={FORMAT_OPTIONS} onChange={setFormatFilter} />
+          <FilterDropdown title="My List" label="List" value={listStatusFilter} options={LIST_STATUS_OPTIONS} onChange={setListStatusFilter} />
         </div>
         {hasActiveFilters && (
           <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
@@ -118,6 +146,22 @@ export function BrowseContent({ data }) {
               <span className={ACTIVE_FILTER_PILL}>
                 {SEASON_OPTIONS.find(o => o.value === seasonFilter)?.label}
                 <button onClick={() => setSeasonFilter("")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label="Remove season filter">
+                  <ClearIcon style={{ fontSize: 14 }} />
+                </button>
+              </span>
+            )}
+            {formatFilter && (
+              <span className={ACTIVE_FILTER_PILL}>
+                {FORMAT_OPTIONS.find(o => o.value === formatFilter)?.label}
+                <button onClick={() => setFormatFilter("")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label="Remove format filter">
+                  <ClearIcon style={{ fontSize: 14 }} />
+                </button>
+              </span>
+            )}
+            {listStatusFilter && (
+              <span className={ACTIVE_FILTER_PILL}>
+                {LIST_STATUS_OPTIONS.find(o => o.value === listStatusFilter)?.label}
+                <button onClick={() => setListStatusFilter("")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label="Remove list status filter">
                   <ClearIcon style={{ fontSize: 14 }} />
                 </button>
               </span>
