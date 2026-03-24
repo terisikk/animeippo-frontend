@@ -177,7 +177,7 @@ export function BrowseContent({ data }) {
       </div>
       <div aria-live="polite">
         {filteredShows.length > 0
-          ? AnimeListFlex(filteredShows, selectedGenre !== "All" ? selectedGenre : undefined)
+          ? <AnimeListFlex shows={filteredShows} genreTitle={selectedGenre !== "All" ? selectedGenre : undefined} />
           : (
             <div className="flex justify-center py-16 text-zinc-400 text-lg">
               No shows match these filters.

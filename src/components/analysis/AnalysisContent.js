@@ -1,7 +1,13 @@
+import { useMemo } from "react";
 import { AnalysisCard } from "./AnalysisCard";
 import { PAGE_TITLE } from "../../styles";
 
-export function AnalysisContent(data) {
+export function AnalysisContent({ data }) {
+  const seasonalMap = useMemo(
+    () => new Map(data?.seasonal?.map(s => [s.id, s]) || []),
+    [data?.seasonal]
+  );
+
   if (data === undefined || data.length === 0) {
     return;
   }
@@ -9,8 +15,6 @@ export function AnalysisContent(data) {
   if (!data?.categories) {
     return null;
   }
-
-  const seasonalMap = new Map(data.seasonal?.map(s => [s.id, s]) || []);
 
   return (
     <>

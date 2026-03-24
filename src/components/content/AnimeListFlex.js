@@ -1,7 +1,7 @@
 import { AnimeItem } from "./AnimeItem";
 import { SECTION_TITLE } from "../../styles";
 
-export function AnimeListFlex(shows, genreTitle) {
+export function AnimeListFlex({ shows, genreTitle }) {
   return (
     <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
       {genreTitle && (
@@ -10,7 +10,7 @@ export function AnimeListFlex(shows, genreTitle) {
       <div className="flex flex-wrap justify-center gap-4">
         {shows.map((node, i) => (
           <div key={node["id"]} className="animate-hero-fade-in" style={{ animationDelay: `${Math.min(i * 30, 600)}ms` }}>
-            {AnimeItem(node)}
+            <AnimeItem node={node} />
           </div>
         ))}
       </div>

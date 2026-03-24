@@ -47,7 +47,7 @@ export function EmblaCarousel({ children }) {
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container flex">
           {Array.isArray(children) ? children.map((child, i) => (
-            <div className="embla__slide flex justify-center" key={i}>
+            <div className="embla__slide flex justify-center" key={child.key ?? i}>
               {child}
             </div>
           )) : children}

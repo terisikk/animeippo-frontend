@@ -31,7 +31,7 @@ export function AnalysisCarousel({ children }) {
       <div className="overflow-x-clip" ref={emblaRef}>
         <div className="flex gap-1">
           {Array.isArray(children) ? children.map((child, i) => (
-            <div className="flex-[0_0_23%] min-w-0" key={i}>
+            <div className="flex-[0_0_23%] min-w-0" key={child.key ?? i}>
               {child}
             </div>
           )) : children}

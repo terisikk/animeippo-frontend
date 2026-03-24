@@ -3,7 +3,6 @@ import { SearchForm } from "./Header";
 import TopBar from "./TopBar";
 
 import "./App.css";
-import testJson from "./TestData";
 import { AnimeContent } from "./components/content/AnimeContent";
 import { AnalysisContent } from "./components/analysis/AnalysisContent";
 import { PlaceHolderContent } from "./components/placeholder/PlaceholderContent";
@@ -55,8 +54,10 @@ function App() {
 
   useEffect(() => {
     if (process.env.REACT_APP_MOCK_BACKEND === "true") {
-      setShows(testJson());
-      setContentReady(true);
+      import("./TestData").then(({ default: testJson }) => {
+        setShows(testJson());
+        setContentReady(true);
+      });
     } else {
       fetchAnimeListCb(user, activeYear, setLoading, setShows, setContentReady, apiMode);
     }
@@ -67,13 +68,13 @@ function App() {
   const content = useMemo(() => (
     <div>
       {loading
-        ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p>{PlaceHolderContent()}</>
+        ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p><PlaceHolderContent /></>
         : shows != null
         ? mode === "analyse"
-          ? AnalysisContent(shows?.data)
+          ? <AnalysisContent data={shows?.data} />
           : mode === "browse"
           ? <BrowseContent data={shows?.data} />
-          : AnimeContent(shows?.data)
+          : <AnimeContent data={shows?.data} />
         : user !== ""
         ? backendErrorMessage()
         : null}

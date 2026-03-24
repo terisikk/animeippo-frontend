@@ -7,7 +7,7 @@ export function AnimeListCarousel({ shows, category }) {
   <div className={`pb-8 ${shows.length ? "visible" : "hidden"}`}>
       <h2 className={`mb-5 ml-5 ${SECTION_TITLE}`}>{category.name}</h2>
       <EmblaCarousel>
-        {shows.map((node) => AnimeItem(node))}
+        {shows.map((node) => <AnimeItem key={node["id"]} node={node} />)}
       </EmblaCarousel>
       </div>
   )

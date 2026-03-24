@@ -40,12 +40,14 @@ export function TopPicksHero({ shows, title }) {
           src={node["cover_image"]}
           alt=""
           aria-hidden="true"
+          loading="lazy"
         />
         <div className="relative shrink-0">
           <img
             className="card-image rounded"
             src={node["cover_image"]}
             alt={node["title"]}
+            loading="lazy"
           />
         </div>
         <div className="relative min-w-0 pt-1 flex flex-col self-stretch" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
@@ -76,7 +78,7 @@ export function TopPicksHero({ shows, title }) {
         <div className="overflow-x-clip overflow-y-visible lg:contents cursor-grab active:cursor-grabbing" ref={emblaRef}>
           <div className="flex lg:contents">
             {cards.map((card, i) => (
-              <div className="hero-slide flex-[0_0_100%] min-w-0 lg:flex-1 px-6 lg:px-0 animate-hero-fade-in" style={{ animationDelay: `${i * 150}ms` }} key={i}>
+              <div className="hero-slide flex-[0_0_100%] min-w-0 lg:flex-1 px-6 lg:px-0 animate-hero-fade-in" style={{ animationDelay: `${i * 150}ms` }} key={card.key}>
                 {card}
               </div>
             ))}
