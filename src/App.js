@@ -15,9 +15,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
   const [user, setUser] = useState(() => localStorage.getItem("animeippo_last_user") || "");
-  const [contentReady, setContentReady] = useState(false);
+  const [contentReady, setContentReady] = useState(null);
   const [openMenu, setOpenMenu] = useState(null);
   const [mode, setMode] = useState("recommend");
+  const [provider, setProvider] = useState(() => localStorage.getItem("animeippo_provider") || "anilist");
 
   const toggleMenu = useCallback((menu) => () => {
     setOpenMenu((prev) => prev === menu ? null : menu);
@@ -36,16 +37,32 @@ function App() {
         if (k.includes("user=" + user)) localStorage.removeItem(k);
       });
       localStorage.setItem("animeippo_last_user", new_user);
+      setShows(null);
+      setContentReady(null);
+      setLoading(true);
+      setActiveYear(new Date().getFullYear());
       setUser(new_user);
     }
   };
 
   const handleSwitchUser = () => {
     setShows(null);
-    setContentReady(false);
+    setContentReady(null);
+    setActiveYear(new Date().getFullYear());
     setUser("");
     setMode("recommend");
     localStorage.removeItem("animeippo_last_user");
+  };
+
+  const handleSetProvider = (newProvider) => {
+    if (newProvider !== provider) {
+      localStorage.setItem("animeippo_provider", newProvider);
+      setProvider(newProvider);
+      setShows(null);
+      setContentReady(null);
+      setUser("");
+      localStorage.removeItem("animeippo_last_user");
+    }
   };
 
   const fetchAnimeListCb = useCallback(fetchAnimeList, []);
@@ -59,9 +76,9 @@ function App() {
         setContentReady(true);
       });
     } else {
-      fetchAnimeListCb(user, activeYear, setLoading, setShows, setContentReady, apiMode);
+      fetchAnimeListCb(user, activeYear, setLoading, setShows, setContentReady, apiMode, provider);
     }
-  }, [user, activeYear, fetchAnimeListCb, apiMode]);
+  }, [user, activeYear, fetchAnimeListCb, apiMode, provider]);
 
   const hasContent = loading || contentReady;
 
@@ -75,7 +92,7 @@ function App() {
           : mode === "browse"
           ? <BrowseContent data={shows?.data} />
           : <AnimeContent data={shows?.data} />
-        : user !== ""
+        : user !== "" && contentReady === false
         ? backendErrorMessage()
         : null}
     </div>
@@ -93,7 +110,7 @@ function App() {
               Animeippo
             </h1>
             <div className="flex justify-center">
-              <SearchForm onSubmit={handleSearch} loading={loading} contentReady={contentReady} user={user} />
+              <SearchForm onSubmit={handleSearch} loading={loading} contentReady={contentReady} user={user} provider={provider} setProvider={handleSetProvider} />
             </div>
           </>
         )}
@@ -112,6 +129,8 @@ function App() {
             openMenu={openMenu}
             closeMenu={closeMenu}
             onSwitchUser={handleSwitchUser}
+            provider={provider}
+            setProvider={handleSetProvider}
           />
         )}
 

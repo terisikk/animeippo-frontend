@@ -6,6 +6,7 @@ import { PAGE_TITLE } from "../../styles";
 
 const TOP_PICKS_CATEGORY = "Your Top 3";
 const HERO_CATEGORIES = new Set([TOP_PICKS_CATEGORY, "Hidden Gems for You", "Top Movies for You"]);
+const DEBUG_MODE = process.env.REACT_APP_DEBUG === "true";
 
 function resolveShows(data, category) {
   return data.shows
@@ -21,7 +22,7 @@ export function AnimeContent({ data }) {
     const topPicksCategory = data.categories.find((c) => c.name === TOP_PICKS_CATEGORY);
     return {
       topPicks: topPicksCategory ? resolveShows(data, topPicksCategory) : [],
-      otherCategories: data.categories.filter((c) => c.name !== TOP_PICKS_CATEGORY),
+      otherCategories: data.categories.filter((c) => c.name !== TOP_PICKS_CATEGORY && (DEBUG_MODE || c.name !== "Debug")),
     };
   }, [data]);
 

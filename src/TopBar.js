@@ -39,7 +39,8 @@ function HeaderIconButton({ open, onClick, icon, children }) {
 
 export default function TopBar({
   activeYear, setActiveYear, loading, contentReady,
-  user, mode, setMode, toggleMenu, openMenu, closeMenu, onSwitchUser
+  user, mode, setMode, toggleMenu, openMenu, closeMenu, onSwitchUser,
+  provider, setProvider
 }) {
   const headerRef = useRef(null);
   const topRowRef = useRef(null);
@@ -158,7 +159,11 @@ export default function TopBar({
           <List>
             <ListItem>
               <ListItemIcon><AccountCircleIcon sx={{ color: colors.blue200 }} /></ListItemIcon>
-              <ListItemText primary={user} sx={{ color: '#fff' }} />
+              <ListItemText
+                primary={user}
+                secondary={provider === "mixed" ? "MAL" : "AniList"}
+                sx={{ color: '#fff', '& .MuiListItemText-secondary': { color: colors.zinc400 } }}
+              />
             </ListItem>
           </List>
           <Divider sx={{ borderColor: colors.zinc600 }} />

@@ -23,8 +23,14 @@ export function HeaderTabBar({ activeYear, contentReady, setActiveYear, loading 
   );
 }
 
-export function SearchForm({ onSubmit, loading, contentReady, user }) {
+const PROVIDERS = [
+  { key: "anilist", label: "AniList" },
+  { key: "mixed", label: "MAL" },
+];
+
+export function SearchForm({ onSubmit, loading, contentReady, user, provider, setProvider }) {
   const [editing, setEditing] = useState(!user);
+  const placeholder = provider === "mixed" ? "MAL username" : "AniList username";
 
   const handleSubmit = (e) => {
     onSubmit(e);
@@ -44,28 +50,46 @@ export function SearchForm({ onSubmit, loading, contentReady, user }) {
   }
 
   return (
-    <form className="flex items-center" onSubmit={handleSubmit} onBlur={(e) => {
-      if (!e.currentTarget.contains(e.relatedTarget) && user) setEditing(false);
-    }}>
-      <input
-        className="rounded-l border border-blue-700 p-2.5 disabled:!bg-gray-400 disabled:text-gray-600"
-        name="maluser"
-        type="text"
-        placeholder="Anilist username"
-        defaultValue={user}
-        disabled={loading}
-        autoFocus={!!user}
-      />
-      <label className="margin-0 text-white" id="recommendLabel" htmlFor="maluser">
-        <button
-          type="submit"
-          className="rounded-r border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : <SearchIcon />}
-        </button>
-      </label>
-      <input type="submit" hidden />
-    </form>
+    <div className="flex flex-col items-center gap-3">
+      <form className="flex items-center" onSubmit={handleSubmit} onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget) && user) setEditing(false);
+      }}>
+        <input
+          className="rounded-l border border-blue-700 p-2.5 disabled:!bg-gray-400 disabled:text-gray-600"
+          name="maluser"
+          type="text"
+          placeholder={placeholder}
+          defaultValue={user}
+          disabled={loading}
+          autoFocus={!!user}
+        />
+        <label className="margin-0 text-white" id="recommendLabel" htmlFor="maluser">
+          <button
+            type="submit"
+            className="rounded-r border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : <SearchIcon />}
+          </button>
+        </label>
+        <input type="submit" hidden />
+      </form>
+      <div className="flex rounded-lg bg-zinc-800 p-0.5 text-sm">
+        {PROVIDERS.map((p) => (
+          <button
+            key={p.key}
+            type="button"
+            onClick={() => setProvider(p.key)}
+            className={`rounded-md px-4 py-1 font-sans font-medium tracking-wide transition-colors ${
+              provider === p.key
+                ? "bg-blue-600 text-white"
+                : "text-blue-200 hover:bg-zinc-700"
+            }`}
+          >
+            {p.label}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 

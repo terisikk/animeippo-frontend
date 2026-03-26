@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { AnalysisCard } from "./AnalysisCard";
 import { PAGE_TITLE } from "../../styles";
 
+const DEBUG_MODE = process.env.REACT_APP_DEBUG === "true";
+
 export function AnalysisContent({ data }) {
   const seasonalMap = useMemo(
     () => new Map(data?.seasonal?.map(s => [s.id, s]) || []),
@@ -20,7 +22,7 @@ export function AnalysisContent({ data }) {
     <>
     <h1 className={`ml-6 mt-6 ${PAGE_TITLE}`}>Your Profile Insights</h1>
     <div className="flex flex-wrap justify-center gap-6 px-6 py-6">
-      {data.categories.map((category, index) => {
+      {data.categories.filter((c) => DEBUG_MODE || c.name !== "Debug").map((category, index) => {
         const shows = data.shows
           .filter((item) => category.items.includes(item.id))
           .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
