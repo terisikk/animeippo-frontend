@@ -88,7 +88,7 @@ export function BrowseContent({ data }) {
     if (formatFilter) result = result.filter(s => s.format === formatFilter);
     if (listStatusFilter === "on_list") result = result.filter(s => s.user_status != null);
     else if (listStatusFilter === "not_on_list") result = result.filter(s => s.user_status == null);
-    return [...result].sort((a, b) => (b.recommend_score ?? 0) - (a.recommend_score ?? 0));
+    return [...result].sort((a, b) => (b.discovery_score ?? 0) - (a.discovery_score ?? 0));
   }, [data?.shows, selectedGenre, statusFilter, seasonFilter, formatFilter, listStatusFilter]);
 
   const hasActiveFilters = selectedGenre !== "All" || statusFilter || seasonFilter || formatFilter || listStatusFilter;

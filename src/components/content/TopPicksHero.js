@@ -59,9 +59,9 @@ export function TopPicksHero({ shows, title }) {
               </span>
             ))}
           </p>
-          {node["recommend_score"] != null && (
+          {node["discovery_score"] != null && (
             <span className="mt-auto pt-4 inline-block font-sans text-3xl font-bold text-blue-400">
-              {(node["recommend_score"] * 100).toFixed(0)}%
+              {(node["discovery_score"] * 100).toFixed(0)}%
             </span>
           )}
         </div>

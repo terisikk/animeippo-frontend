@@ -31,7 +31,7 @@
                     "Shrine Maiden",
                     "Body Horror"
                 ],
-                "recommend_score": 0.8695999999999999,
+                "discovery_score": 0.8695999999999999,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.1362,
@@ -91,7 +91,7 @@
                     "Coastal",
                     "Super Power"
                 ],
-                "recommend_score": 0.86264,
+                "discovery_score": 0.86264,
                 "user_status": "PLANNING",
                 "format": "MOVIE",
                 "clusterscore": 0.12539999999999998,
@@ -140,7 +140,7 @@
                     "Historical",
                     "Cult"
                 ],
-                "recommend_score": 0.8508,
+                "discovery_score": 0.8508,
                 "user_status": "PLANNING",
                 "format": "MOVIE",
                 "clusterscore": 0.1494,
@@ -185,7 +185,7 @@
                     "Motorcycles",
                     "Female Protagonist"
                 ],
-                "recommend_score": 0.81842,
+                "discovery_score": 0.81842,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.1296,
@@ -234,7 +234,7 @@
                     "Heterosexual",
                     "Ojou-sama"
                 ],
-                "recommend_score": 0.80142,
+                "discovery_score": 0.80142,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.1392,
@@ -283,7 +283,7 @@
                     "Dissociative Identities",
                     "Volleyball"
                 ],
-                "recommend_score": 0.7998000000000001,
+                "discovery_score": 0.7998000000000001,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.1278,
@@ -336,7 +336,7 @@
                     "Butler",
                     "Tomboy"
                 ],
-                "recommend_score": 0.79962,
+                "discovery_score": 0.79962,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.10619999999999999,
@@ -372,7 +372,7 @@
                     "Gods",
                     "Medieval"
                 ],
-                "recommend_score": 0.7763599999999999,
+                "discovery_score": 0.7763599999999999,
                 "user_status": "COMPLETED",
                 "format": "OVA",
                 "clusterscore": 0.135,
@@ -431,7 +431,7 @@
                     "Ghost",
                     "Desert"
                 ],
-                "recommend_score": 0.77562,
+                "discovery_score": 0.77562,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.10200000000000001,
@@ -478,7 +478,7 @@
                     "Ships",
                     "Assassins"
                 ],
-                "recommend_score": 0.77316,
+                "discovery_score": 0.77316,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.1464,
@@ -530,7 +530,7 @@
                     "Food",
                     "LGBTQ+ Themes"
                 ],
-                "recommend_score": 0.77036,
+                "discovery_score": 0.77036,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.10679999999999999,
@@ -578,7 +578,7 @@
                     "Femboy",
                     "Crossdressing"
                 ],
-                "recommend_score": 0.7646000000000001,
+                "discovery_score": 0.7646000000000001,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.11399999999999999,
@@ -631,7 +631,7 @@
                     "CGI",
                     "Rotoscoping"
                 ],
-                "recommend_score": 0.7475200000000001,
+                "discovery_score": 0.7475200000000001,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.1014,
@@ -675,7 +675,7 @@
                     "Zombie",
                     "Femboy"
                 ],
-                "recommend_score": 0.7455400000000001,
+                "discovery_score": 0.7455400000000001,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.0966,
@@ -725,7 +725,7 @@
                     "Guns",
                     "Gods"
                 ],
-                "recommend_score": 0.7435,
+                "discovery_score": 0.7435,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.1314,
@@ -763,7 +763,7 @@
                     "Cheerleading",
                     "Ensemble Cast"
                 ],
-                "recommend_score": 0.7133400000000001,
+                "discovery_score": 0.7133400000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1422,
@@ -803,7 +803,7 @@
                     "Shrine Maiden",
                     "Twins"
                 ],
-                "recommend_score": 0.7000400000000001,
+                "discovery_score": 0.7000400000000001,
                 "user_status": "PAUSED",
                 "format": "TV",
                 "clusterscore": 0.1266,
@@ -839,7 +839,7 @@
                     "Tragedy",
                     "Magic"
                 ],
-                "recommend_score": 0.68834,
+                "discovery_score": 0.68834,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.1482,
@@ -875,7 +875,7 @@
                     "Age Gap",
                     "Transgender"
                 ],
-                "recommend_score": 0.683,
+                "discovery_score": 0.683,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.1434,
@@ -919,7 +919,7 @@
                     "Triads",
                     "Gambling"
                 ],
-                "recommend_score": 0.66482,
+                "discovery_score": 0.66482,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.1128,
@@ -957,7 +957,7 @@
                     "Language Barrier",
                     "Food"
                 ],
-                "recommend_score": 0.66454,
+                "discovery_score": 0.66454,
                 "user_status": "COMPLETED",
                 "format": "OVA",
                 "clusterscore": 0.09179999999999999,
@@ -1004,7 +1004,7 @@
                     "Time Manipulation",
                     "Fairy Tale"
                 ],
-                "recommend_score": 0.6478,
+                "discovery_score": 0.6478,
                 "user_status": "PAUSED",
                 "format": "TV",
                 "clusterscore": 0.0702,
@@ -1053,7 +1053,7 @@
                     "Rape",
                     "Criminal Organization"
                 ],
-                "recommend_score": 0.63854,
+                "discovery_score": 0.63854,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.14579999999999999,
@@ -1091,7 +1091,7 @@
                     "Delinquents",
                     "Philosophy"
                 ],
-                "recommend_score": 0.6128200000000001,
+                "discovery_score": 0.6128200000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1338,
@@ -1131,7 +1131,7 @@
                     "Female Harem",
                     "Time Skip"
                 ],
-                "recommend_score": 0.6109,
+                "discovery_score": 0.6109,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.144,
@@ -1185,7 +1185,7 @@
                     "Fashion",
                     "Ice Skating"
                 ],
-                "recommend_score": 0.61032,
+                "discovery_score": 0.61032,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1152,
@@ -1246,7 +1246,7 @@
                     "Agender",
                     "Revenge"
                 ],
-                "recommend_score": 0.60792,
+                "discovery_score": 0.60792,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.10559999999999999,
@@ -1302,7 +1302,7 @@
                     "Swordplay",
                     "Surreal Comedy"
                 ],
-                "recommend_score": 0.5909,
+                "discovery_score": 0.5909,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1326,
@@ -1344,7 +1344,7 @@
                     "Achronological Order",
                     "Boys' Love"
                 ],
-                "recommend_score": 0.5831,
+                "discovery_score": 0.5831,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.14459999999999998,
@@ -1393,7 +1393,7 @@
                     "Aromantic",
                     "Disability"
                 ],
-                "recommend_score": 0.57916,
+                "discovery_score": 0.57916,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.0696,
@@ -1441,7 +1441,7 @@
                     "Creature Taming",
                     "Slavery"
                 ],
-                "recommend_score": 0.5757,
+                "discovery_score": 0.5757,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.12719999999999998,
@@ -1480,7 +1480,7 @@
                     "Nudity",
                     "Chimera"
                 ],
-                "recommend_score": 0.5703,
+                "discovery_score": 0.5703,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.132,
@@ -1519,7 +1519,7 @@
                     "Skeleton",
                     "Vore"
                 ],
-                "recommend_score": 0.5669,
+                "discovery_score": 0.5669,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.1344,
@@ -1563,7 +1563,7 @@
                     "Disability",
                     "Primarily Female Cast"
                 ],
-                "recommend_score": 0.5666200000000001,
+                "discovery_score": 0.5666200000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.138,
@@ -1592,7 +1592,7 @@
                     "Chibi",
                     "Elf"
                 ],
-                "recommend_score": 0.5645,
+                "discovery_score": 0.5645,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0906,
@@ -1641,7 +1641,7 @@
                     "Bisexual",
                     "Mopeds"
                 ],
-                "recommend_score": 0.56436,
+                "discovery_score": 0.56436,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.08460000000000001,
@@ -1683,7 +1683,7 @@
                     "Unrequited Love",
                     "Nudity"
                 ],
-                "recommend_score": 0.5638000000000001,
+                "discovery_score": 0.5638000000000001,
                 "user_status": "PLANNING",
                 "format": "TV",
                 "clusterscore": 0.1416,
@@ -1725,7 +1725,7 @@
                     "Estranged Family",
                     "Time Skip"
                 ],
-                "recommend_score": 0.5618,
+                "discovery_score": 0.5618,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1404,
@@ -1765,7 +1765,7 @@
                     "Delinquents",
                     "Gyaru"
                 ],
-                "recommend_score": 0.5586599999999999,
+                "discovery_score": 0.5586599999999999,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1452,
@@ -1801,7 +1801,7 @@
                     "Religion",
                     "Cosplay"
                 ],
-                "recommend_score": 0.55804,
+                "discovery_score": 0.55804,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1368,
@@ -1838,7 +1838,7 @@
                     "School Club",
                     "School"
                 ],
-                "recommend_score": 0.5463000000000001,
+                "discovery_score": 0.5463000000000001,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0786,
@@ -1874,7 +1874,7 @@
                     "Achromatic",
                     "Youkai"
                 ],
-                "recommend_score": 0.5419799999999999,
+                "discovery_score": 0.5419799999999999,
                 "user_status": "PLANNING",
                 "format": "TV",
                 "clusterscore": 0.14759999999999998,
@@ -1913,7 +1913,7 @@
                     "Body Horror",
                     "LGBTQ+ Themes"
                 ],
-                "recommend_score": 0.53938,
+                "discovery_score": 0.53938,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1182,
@@ -1962,7 +1962,7 @@
                     "Time Skip",
                     "Tragedy"
                 ],
-                "recommend_score": 0.5391000000000001,
+                "discovery_score": 0.5391000000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1308,
@@ -2000,7 +2000,7 @@
                     "Large Breasts",
                     "CGI"
                 ],
-                "recommend_score": 0.53544,
+                "discovery_score": 0.53544,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1488,
@@ -2038,7 +2038,7 @@
                     "Work",
                     "Rural"
                 ],
-                "recommend_score": 0.5331600000000002,
+                "discovery_score": 0.5331600000000002,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.09119999999999999,
@@ -2079,7 +2079,7 @@
                     "Acting",
                     "Food"
                 ],
-                "recommend_score": 0.5303,
+                "discovery_score": 0.5303,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1206,
@@ -2119,7 +2119,7 @@
                     "Parenthood",
                     "School"
                 ],
-                "recommend_score": 0.52618,
+                "discovery_score": 0.52618,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1104,
@@ -2158,7 +2158,7 @@
                     "Tennis",
                     "Primarily Teen Cast"
                 ],
-                "recommend_score": 0.5255000000000001,
+                "discovery_score": 0.5255000000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.12480000000000001,
@@ -2215,7 +2215,7 @@
                     "Unrequited Love",
                     "Nudity"
                 ],
-                "recommend_score": 0.5240400000000001,
+                "discovery_score": 0.5240400000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1164,
@@ -2251,7 +2251,7 @@
                     "Drawing",
                     "Baseball"
                 ],
-                "recommend_score": 0.5234600000000001,
+                "discovery_score": 0.5234600000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.14100000000000001,
@@ -2280,7 +2280,7 @@
                     "Kaiju",
                     "Urban Fantasy"
                 ],
-                "recommend_score": 0.52122,
+                "discovery_score": 0.52122,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.061200000000000004,
@@ -2310,7 +2310,7 @@
                     "Urban",
                     "Military"
                 ],
-                "recommend_score": 0.5186200000000001,
+                "discovery_score": 0.5186200000000001,
                 "user_status": "COMPLETED",
                 "format": "SPECIAL",
                 "clusterscore": 0.055799999999999995,
@@ -2355,7 +2355,7 @@
                     "Drugs",
                     "Guns"
                 ],
-                "recommend_score": 0.51804,
+                "discovery_score": 0.51804,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.147,
@@ -2392,7 +2392,7 @@
                     "Table Tennis",
                     "Gyaru"
                 ],
-                "recommend_score": 0.5178200000000002,
+                "discovery_score": 0.5178200000000002,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1428,
@@ -2425,7 +2425,7 @@
                     "Shogi",
                     "Acting"
                 ],
-                "recommend_score": 0.5166999999999999,
+                "discovery_score": 0.5166999999999999,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1284,
@@ -2467,7 +2467,7 @@
                     "Cannibalism",
                     "Found Family"
                 ],
-                "recommend_score": 0.5165,
+                "discovery_score": 0.5165,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1386,
@@ -2525,7 +2525,7 @@
                     "Twins",
                     "Elderly Protagonist"
                 ],
-                "recommend_score": 0.5126000000000001,
+                "discovery_score": 0.5126000000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.08520000000000001,
@@ -2573,7 +2573,7 @@
                     "Boarding School",
                     "Disability"
                 ],
-                "recommend_score": 0.5069,
+                "discovery_score": 0.5069,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1032,
@@ -2609,7 +2609,7 @@
                     "Baseball",
                     "Basketball"
                 ],
-                "recommend_score": 0.50386,
+                "discovery_score": 0.50386,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1122,
@@ -2654,7 +2654,7 @@
                     "Tsundere",
                     "Ojou-sama"
                 ],
-                "recommend_score": 0.50376,
+                "discovery_score": 0.50376,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.13019999999999998,
@@ -2691,7 +2691,7 @@
                     "Trains",
                     "Food"
                 ],
-                "recommend_score": 0.503,
+                "discovery_score": 0.503,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.0642,
@@ -2746,7 +2746,7 @@
                     "Elf",
                     "Gods"
                 ],
-                "recommend_score": 0.5021,
+                "discovery_score": 0.5021,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.1188,
@@ -2802,7 +2802,7 @@
                     "Tsundere",
                     "Gods"
                 ],
-                "recommend_score": 0.5013,
+                "discovery_score": 0.5013,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.09419999999999999,
@@ -2849,7 +2849,7 @@
                     "Achronological Order",
                     "Clone"
                 ],
-                "recommend_score": 0.49439999999999995,
+                "discovery_score": 0.49439999999999995,
                 "user_status": "COMPLETED",
                 "format": "ONA",
                 "clusterscore": 0.0768,
@@ -2883,7 +2883,7 @@
                     "Female Protagonist",
                     "Love Triangle"
                 ],
-                "recommend_score": 0.49258,
+                "discovery_score": 0.49258,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.1398,
@@ -2917,7 +2917,7 @@
                     "Female Protagonist",
                     "Rural"
                 ],
-                "recommend_score": 0.4889,
+                "discovery_score": 0.4889,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.08819999999999999,
@@ -2960,7 +2960,7 @@
                     "Nudity",
                     "Desert"
                 ],
-                "recommend_score": 0.48819999999999997,
+                "discovery_score": 0.48819999999999997,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0894,
@@ -2990,7 +2990,7 @@
                     "Shounen",
                     "Male Protagonist"
                 ],
-                "recommend_score": 0.48679999999999995,
+                "discovery_score": 0.48679999999999995,
                 "user_status": null,
                 "format": "SPECIAL",
                 "clusterscore": 0.13319999999999999,
@@ -3025,7 +3025,7 @@
                     "Criminal Organization",
                     "Found Family"
                 ],
-                "recommend_score": 0.48574000000000006,
+                "discovery_score": 0.48574000000000006,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.1356,
@@ -3070,7 +3070,7 @@
                     "Motorcycles",
                     "Skateboarding"
                 ],
-                "recommend_score": 0.4821,
+                "discovery_score": 0.4821,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0798,
@@ -3128,7 +3128,7 @@
                     "Modeling",
                     "Kaiju"
                 ],
-                "recommend_score": 0.48172000000000004,
+                "discovery_score": 0.48172000000000004,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.093,
@@ -3168,7 +3168,7 @@
                     "Incest",
                     "Iyashikei"
                 ],
-                "recommend_score": 0.48066,
+                "discovery_score": 0.48066,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.126,
@@ -3207,7 +3207,7 @@
                     "Gyaru",
                     "Chibi"
                 ],
-                "recommend_score": 0.4791000000000001,
+                "discovery_score": 0.4791000000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0714,
@@ -3243,7 +3243,7 @@
                     "Ghost",
                     "LGBTQ+ Themes"
                 ],
-                "recommend_score": 0.4762514760914761,
+                "discovery_score": 0.4762514760914761,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0408,
@@ -3266,7 +3266,7 @@
                 "id": 200639,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx200639-AxI6hMu80so5.png",
                 "tags": [],
-                "recommend_score": 0.4702,
+                "discovery_score": 0.4702,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.15,
@@ -3316,7 +3316,7 @@
                     "Ghost",
                     "Gyaru"
                 ],
-                "recommend_score": 0.4642,
+                "discovery_score": 0.4642,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0384,
@@ -3363,7 +3363,7 @@
                     "Yandere",
                     "Age Regression"
                 ],
-                "recommend_score": 0.4623,
+                "discovery_score": 0.4623,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0804,
@@ -3399,7 +3399,7 @@
                     "Gore",
                     "Spearplay"
                 ],
-                "recommend_score": 0.45810000000000006,
+                "discovery_score": 0.45810000000000006,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.10260000000000001,
@@ -3444,7 +3444,7 @@
                     "Animals",
                     "Swordplay"
                 ],
-                "recommend_score": 0.4577,
+                "discovery_score": 0.4577,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.1158,
@@ -3487,7 +3487,7 @@
                     "Rape",
                     "Twins"
                 ],
-                "recommend_score": 0.4574,
+                "discovery_score": 0.4574,
                 "user_status": null,
                 "format": "SPECIAL",
                 "clusterscore": 0.0864,
@@ -3526,7 +3526,7 @@
                     "CGI",
                     "Chibi"
                 ],
-                "recommend_score": 0.45647999999999994,
+                "discovery_score": 0.45647999999999994,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1212,
@@ -3568,7 +3568,7 @@
                     "Slapstick",
                     "Nudity"
                 ],
-                "recommend_score": 0.45358000000000004,
+                "discovery_score": 0.45358000000000004,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1218,
@@ -3616,7 +3616,7 @@
                     "Surreal Comedy",
                     "Revenge"
                 ],
-                "recommend_score": 0.4532,
+                "discovery_score": 0.4532,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0954,
@@ -3649,7 +3649,7 @@
                     "Gore",
                     "Adoption"
                 ],
-                "recommend_score": 0.4513,
+                "discovery_score": 0.4513,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1134,
@@ -3693,7 +3693,7 @@
                     "Dissociative Identities",
                     "Gore"
                 ],
-                "recommend_score": 0.44774,
+                "discovery_score": 0.44774,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.10859999999999999,
@@ -3742,7 +3742,7 @@
                     "Magic",
                     "Shounen"
                 ],
-                "recommend_score": 0.44660000000000005,
+                "discovery_score": 0.44660000000000005,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.10500000000000001,
@@ -3782,7 +3782,7 @@
                     "Shapeshifting",
                     "Animals"
                 ],
-                "recommend_score": 0.4463,
+                "discovery_score": 0.4463,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0732,
@@ -3820,7 +3820,7 @@
                     "Cute Girls Doing Cute Things",
                     "Kemonomimi"
                 ],
-                "recommend_score": 0.44246,
+                "discovery_score": 0.44246,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.12240000000000001,
@@ -3862,7 +3862,7 @@
                     "Yuri",
                     "Post-Apocalyptic"
                 ],
-                "recommend_score": 0.43799999999999994,
+                "discovery_score": 0.43799999999999994,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0486,
@@ -3901,7 +3901,7 @@
                     "Memory Manipulation",
                     "Time Loop"
                 ],
-                "recommend_score": 0.43779999999999997,
+                "discovery_score": 0.43779999999999997,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.11699999999999999,
@@ -3960,7 +3960,7 @@
                     "Gore",
                     "Crossdressing"
                 ],
-                "recommend_score": 0.43584,
+                "discovery_score": 0.43584,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1194,
@@ -3992,7 +3992,7 @@
                     "Homeless",
                     "Achronological Order"
                 ],
-                "recommend_score": 0.43134,
+                "discovery_score": 0.43134,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.03,
@@ -4033,7 +4033,7 @@
                     "Heterosexual",
                     "Food"
                 ],
-                "recommend_score": 0.4288,
+                "discovery_score": 0.4288,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.129,
@@ -4072,7 +4072,7 @@
                     "CGI",
                     "Tragedy"
                 ],
-                "recommend_score": 0.42222,
+                "discovery_score": 0.42222,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.12,
@@ -4113,7 +4113,7 @@
                     "Curses",
                     "Medieval"
                 ],
-                "recommend_score": 0.4203,
+                "discovery_score": 0.4203,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.10919999999999999,
@@ -4155,7 +4155,7 @@
                     "Magic",
                     "Disability"
                 ],
-                "recommend_score": 0.41941999999999996,
+                "discovery_score": 0.41941999999999996,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.108,
@@ -4200,7 +4200,7 @@
                     "LGBTQ+ Themes",
                     "Yuri"
                 ],
-                "recommend_score": 0.41746000000000005,
+                "discovery_score": 0.41746000000000005,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0432,
@@ -4234,7 +4234,7 @@
                     "Seinen",
                     "Time Skip"
                 ],
-                "recommend_score": 0.41744000000000003,
+                "discovery_score": 0.41744000000000003,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0744,
@@ -4282,7 +4282,7 @@
                     "Found Family",
                     "Rape"
                 ],
-                "recommend_score": 0.4165,
+                "discovery_score": 0.4165,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.069,
@@ -4318,7 +4318,7 @@
                     "Age Gap",
                     "Nudity"
                 ],
-                "recommend_score": 0.41341999999999995,
+                "discovery_score": 0.41341999999999995,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.087,
@@ -4357,7 +4357,7 @@
                     "Time Skip",
                     "Love Triangle"
                 ],
-                "recommend_score": 0.40548,
+                "discovery_score": 0.40548,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.1074,
@@ -4400,7 +4400,7 @@
                     "Hikikomori",
                     "Meta"
                 ],
-                "recommend_score": 0.40541999999999995,
+                "discovery_score": 0.40541999999999995,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.078,
@@ -4452,7 +4452,7 @@
                     "Body Swapping",
                     "Kaiju"
                 ],
-                "recommend_score": 0.40459999999999996,
+                "discovery_score": 0.40459999999999996,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.07379999999999999,
@@ -4498,7 +4498,7 @@
                     "Urban Fantasy",
                     "Tsundere"
                 ],
-                "recommend_score": 0.40299999999999997,
+                "discovery_score": 0.40299999999999997,
                 "user_status": "CURRENT",
                 "format": "TV",
                 "clusterscore": 0.0348,
@@ -4546,7 +4546,7 @@
                     "Cute Girls Doing Cute Things",
                     "Parody"
                 ],
-                "recommend_score": 0.4002,
+                "discovery_score": 0.4002,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0816,
@@ -4583,7 +4583,7 @@
                     "Nudity",
                     "CGI"
                 ],
-                "recommend_score": 0.39884000000000003,
+                "discovery_score": 0.39884000000000003,
                 "user_status": "PLANNING",
                 "format": "MOVIE",
                 "clusterscore": 0.0684,
@@ -4627,7 +4627,7 @@
                     "Twins",
                     "Time Skip"
                 ],
-                "recommend_score": 0.39872,
+                "discovery_score": 0.39872,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.081,
@@ -4668,7 +4668,7 @@
                     "Travel",
                     "Guns"
                 ],
-                "recommend_score": 0.39546,
+                "discovery_score": 0.39546,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0858,
@@ -4715,7 +4715,7 @@
                     "Chibi",
                     "Baseball"
                 ],
-                "recommend_score": 0.39538000000000006,
+                "discovery_score": 0.39538000000000006,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.0972,
@@ -4747,7 +4747,7 @@
                     "Body Image",
                     "Iyashikei"
                 ],
-                "recommend_score": 0.39388,
+                "discovery_score": 0.39388,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.053399999999999996,
@@ -4779,7 +4779,7 @@
                     "School Club",
                     "Band"
                 ],
-                "recommend_score": 0.3936,
+                "discovery_score": 0.3936,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1242,
@@ -4817,7 +4817,7 @@
                     "Aliens",
                     "Survival"
                 ],
-                "recommend_score": 0.38839999999999997,
+                "discovery_score": 0.38839999999999997,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.049800000000000004,
@@ -4851,7 +4851,7 @@
                     "Chibi",
                     "Slavery"
                 ],
-                "recommend_score": 0.38809999999999995,
+                "discovery_score": 0.38809999999999995,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.1176,
@@ -4903,7 +4903,7 @@
                     "Rape",
                     "Lactation"
                 ],
-                "recommend_score": 0.38654,
+                "discovery_score": 0.38654,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.1146,
@@ -4939,7 +4939,7 @@
                     "War",
                     "Cute Boys Doing Cute Things"
                 ],
-                "recommend_score": 0.3805,
+                "discovery_score": 0.3805,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.123,
@@ -4971,7 +4971,7 @@
                     "School",
                     "LGBTQ+ Themes"
                 ],
-                "recommend_score": 0.3792,
+                "discovery_score": 0.3792,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.09,
@@ -5008,7 +5008,7 @@
                     "Male Protagonist",
                     "Badminton"
                 ],
-                "recommend_score": 0.37884000000000007,
+                "discovery_score": 0.37884000000000007,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0462,
@@ -5048,7 +5048,7 @@
                     "School",
                     "Mountaineering"
                 ],
-                "recommend_score": 0.37854,
+                "discovery_score": 0.37854,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1002,
@@ -5082,7 +5082,7 @@
                     "Seinen",
                     "LGBTQ+ Themes"
                 ],
-                "recommend_score": 0.37779999999999997,
+                "discovery_score": 0.37779999999999997,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.08879999999999999,
@@ -5117,7 +5117,7 @@
                     "Conspiracy",
                     "Dragons"
                 ],
-                "recommend_score": 0.37370000000000003,
+                "discovery_score": 0.37370000000000003,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0618,
@@ -5170,7 +5170,7 @@
                     "Mafia",
                     "Trains"
                 ],
-                "recommend_score": 0.3722,
+                "discovery_score": 0.3722,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.08220000000000001,
@@ -5214,7 +5214,7 @@
                     "Shounen",
                     "Primarily Teen Cast"
                 ],
-                "recommend_score": 0.3692,
+                "discovery_score": 0.3692,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.063,
@@ -5254,7 +5254,7 @@
                     "Dragons",
                     "Vampire"
                 ],
-                "recommend_score": 0.36757999999999996,
+                "discovery_score": 0.36757999999999996,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1374,
@@ -5294,7 +5294,7 @@
                     "Unrequited Love",
                     "Transgender"
                 ],
-                "recommend_score": 0.3644,
+                "discovery_score": 0.3644,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.06359999999999999,
@@ -5322,7 +5322,7 @@
                     "Fairy Tale",
                     "Isekai"
                 ],
-                "recommend_score": 0.3631,
+                "discovery_score": 0.3631,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0474,
@@ -5361,7 +5361,7 @@
                     "Swordplay",
                     "Kemonomimi"
                 ],
-                "recommend_score": 0.36269999999999997,
+                "discovery_score": 0.36269999999999997,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1236,
@@ -5394,7 +5394,7 @@
                     "Urban Fantasy",
                     "Found Family"
                 ],
-                "recommend_score": 0.36086,
+                "discovery_score": 0.36086,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1044,
@@ -5436,7 +5436,7 @@
                     "LGBTQ+ Themes",
                     "Yuri"
                 ],
-                "recommend_score": 0.36010000000000003,
+                "discovery_score": 0.36010000000000003,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0984,
@@ -5477,7 +5477,7 @@
                     "Parenthood",
                     "Urban"
                 ],
-                "recommend_score": 0.35819999999999996,
+                "discovery_score": 0.35819999999999996,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0726,
@@ -5512,7 +5512,7 @@
                     "Foreign",
                     "Fishing"
                 ],
-                "recommend_score": 0.357,
+                "discovery_score": 0.357,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.075,
@@ -5560,7 +5560,7 @@
                     "War",
                     "Medieval"
                 ],
-                "recommend_score": 0.35447999999999996,
+                "discovery_score": 0.35447999999999996,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.11159999999999999,
@@ -5605,7 +5605,7 @@
                     "Drawing",
                     "Crossdressing"
                 ],
-                "recommend_score": 0.3534,
+                "discovery_score": 0.3534,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0978,
@@ -5660,7 +5660,7 @@
                     "Aliens",
                     "Dungeon"
                 ],
-                "recommend_score": 0.34846000000000005,
+                "discovery_score": 0.34846000000000005,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.111,
@@ -5695,7 +5695,7 @@
                     "Horticulture",
                     "Agriculture"
                 ],
-                "recommend_score": 0.3469,
+                "discovery_score": 0.3469,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0576,
@@ -5735,7 +5735,7 @@
                     "Guns",
                     "Dystopian"
                 ],
-                "recommend_score": 0.34630000000000005,
+                "discovery_score": 0.34630000000000005,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1008,
@@ -5772,7 +5772,7 @@
                     "Suicide",
                     "Twins"
                 ],
-                "recommend_score": 0.3458,
+                "discovery_score": 0.3458,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.099,
@@ -5809,7 +5809,7 @@
                     "Shogi",
                     "Maids"
                 ],
-                "recommend_score": 0.3446,
+                "discovery_score": 0.3446,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.062400000000000004,
@@ -5848,7 +5848,7 @@
                     "LGBTQ+ Themes",
                     "School"
                 ],
-                "recommend_score": 0.33918,
+                "discovery_score": 0.33918,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0504,
@@ -5893,7 +5893,7 @@
                     "Kemonomimi",
                     "Artificial Intelligence"
                 ],
-                "recommend_score": 0.33809999999999996,
+                "discovery_score": 0.33809999999999996,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.031799999999999995,
@@ -5921,7 +5921,7 @@
                     "Military",
                     "Male Protagonist"
                 ],
-                "recommend_score": 0.336,
+                "discovery_score": 0.336,
                 "user_status": "PLANNING",
                 "format": "MOVIE",
                 "clusterscore": 0.1098,
@@ -5967,7 +5967,7 @@
                     "Gender Bending",
                     "LGBTQ+ Themes"
                 ],
-                "recommend_score": 0.3337199999999999,
+                "discovery_score": 0.3337199999999999,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.096,
@@ -6015,7 +6015,7 @@
                     "Anthropomorphism",
                     "Body Horror"
                 ],
-                "recommend_score": 0.33140000000000003,
+                "discovery_score": 0.33140000000000003,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.066,
@@ -6049,7 +6049,7 @@
                     "Primarily Male Cast",
                     "Unrequited Love"
                 ],
-                "recommend_score": 0.33130000000000004,
+                "discovery_score": 0.33130000000000004,
                 "user_status": null,
                 "format": "SPECIAL",
                 "clusterscore": 0.0396,
@@ -6081,7 +6081,7 @@
                     "Demons",
                     "Exorcism"
                 ],
-                "recommend_score": 0.33112,
+                "discovery_score": 0.33112,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.06,
@@ -6118,7 +6118,7 @@
                     "Heterosexual",
                     "Male Protagonist"
                 ],
-                "recommend_score": 0.328,
+                "discovery_score": 0.328,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.072,
@@ -6152,7 +6152,7 @@
                     "Coming of Age",
                     "Dystopian"
                 ],
-                "recommend_score": 0.3258,
+                "discovery_score": 0.3258,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0246,
@@ -6190,7 +6190,7 @@
                     "Drugs",
                     "Heterosexual"
                 ],
-                "recommend_score": 0.32539999999999997,
+                "discovery_score": 0.32539999999999997,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.09960000000000001,
@@ -6229,7 +6229,7 @@
                     "Detective",
                     "Restaurant"
                 ],
-                "recommend_score": 0.32380000000000003,
+                "discovery_score": 0.32380000000000003,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0948,
@@ -6268,7 +6268,7 @@
                     "Spearplay",
                     "Urban"
                 ],
-                "recommend_score": 0.3221,
+                "discovery_score": 0.3221,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.054,
@@ -6303,7 +6303,7 @@
                     "Age Regression",
                     "Femboy"
                 ],
-                "recommend_score": 0.3197,
+                "discovery_score": 0.3197,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.1038,
@@ -6339,7 +6339,7 @@
                     "Video Games",
                     "Iyashikei"
                 ],
-                "recommend_score": 0.3145,
+                "discovery_score": 0.3145,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0522,
@@ -6370,7 +6370,7 @@
                     "Episodic",
                     "Ensemble Cast"
                 ],
-                "recommend_score": 0.31088000000000005,
+                "discovery_score": 0.31088000000000005,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0354,
@@ -6403,7 +6403,7 @@
                     "Family Life",
                     "Female Protagonist"
                 ],
-                "recommend_score": 0.3102,
+                "discovery_score": 0.3102,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0834,
@@ -6434,7 +6434,7 @@
                     "Work",
                     "Primarily Adult Cast"
                 ],
-                "recommend_score": 0.3095,
+                "discovery_score": 0.3095,
                 "user_status": null,
                 "format": "SPECIAL",
                 "clusterscore": 0.0366,
@@ -6468,7 +6468,7 @@
                     "Idol",
                     "Nudity"
                 ],
-                "recommend_score": 0.30750000000000005,
+                "discovery_score": 0.30750000000000005,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0792,
@@ -6502,7 +6502,7 @@
                     "Pregnancy",
                     "Nudity"
                 ],
-                "recommend_score": 0.3053,
+                "discovery_score": 0.3053,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.042,
@@ -6539,7 +6539,7 @@
                     "Memory Manipulation",
                     "Medieval"
                 ],
-                "recommend_score": 0.30184000000000005,
+                "discovery_score": 0.30184000000000005,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0516,
@@ -6575,7 +6575,7 @@
                     "VTuber",
                     "LGBTQ+ Themes"
                 ],
-                "recommend_score": 0.30048,
+                "discovery_score": 0.30048,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.084,
@@ -6611,7 +6611,7 @@
                     "Memory Manipulation",
                     "School"
                 ],
-                "recommend_score": 0.2958,
+                "discovery_score": 0.2958,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0924,
@@ -6645,7 +6645,7 @@
                     "Boys' Love",
                     "Bullying"
                 ],
-                "recommend_score": 0.29544,
+                "discovery_score": 0.29544,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0774,
@@ -6680,7 +6680,7 @@
                     "Magic",
                     "Bisexual"
                 ],
-                "recommend_score": 0.29496000000000006,
+                "discovery_score": 0.29496000000000006,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0936,
@@ -6731,7 +6731,7 @@
                     "Meta",
                     "Time Manipulation"
                 ],
-                "recommend_score": 0.29396,
+                "discovery_score": 0.29396,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0492,
@@ -6760,7 +6760,7 @@
                     "School",
                     "Advertisement"
                 ],
-                "recommend_score": 0.29359999999999997,
+                "discovery_score": 0.29359999999999997,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0756,
@@ -6801,7 +6801,7 @@
                     "Space",
                     "Reincarnation"
                 ],
-                "recommend_score": 0.2928,
+                "discovery_score": 0.2928,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0678,
@@ -6826,7 +6826,7 @@
                     "Aliens",
                     "Space"
                 ],
-                "recommend_score": 0.29269999999999996,
+                "discovery_score": 0.29269999999999996,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.024,
@@ -6857,7 +6857,7 @@
                     "Disability",
                     "Male Harem"
                 ],
-                "recommend_score": 0.2921,
+                "discovery_score": 0.2921,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0708,
@@ -6908,7 +6908,7 @@
                     "Environmental",
                     "Superhero"
                 ],
-                "recommend_score": 0.29126,
+                "discovery_score": 0.29126,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0294,
@@ -6948,7 +6948,7 @@
                     "Guns",
                     "Suicide"
                 ],
-                "recommend_score": 0.2874,
+                "discovery_score": 0.2874,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0342,
@@ -6980,7 +6980,7 @@
                     "LGBTQ+ Themes",
                     "Cute Boys Doing Cute Things"
                 ],
-                "recommend_score": 0.28519999999999995,
+                "discovery_score": 0.28519999999999995,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0276,
@@ -7012,7 +7012,7 @@
                     "Slapstick",
                     "Male Protagonist"
                 ],
-                "recommend_score": 0.2844,
+                "discovery_score": 0.2844,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.036,
@@ -7051,7 +7051,7 @@
                     "Butler",
                     "Shapeshifting"
                 ],
-                "recommend_score": 0.2825,
+                "discovery_score": 0.2825,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0672,
@@ -7081,7 +7081,7 @@
                     "Full CGI",
                     "Desert"
                 ],
-                "recommend_score": 0.2794,
+                "discovery_score": 0.2794,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0216,
@@ -7115,7 +7115,7 @@
                     "Slavery",
                     "Fitness"
                 ],
-                "recommend_score": 0.27909999999999996,
+                "discovery_score": 0.27909999999999996,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0876,
@@ -7151,7 +7151,7 @@
                     "Age Gap",
                     "Blackmail"
                 ],
-                "recommend_score": 0.2788,
+                "discovery_score": 0.2788,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0588,
@@ -7175,7 +7175,7 @@
                 "id": 207848,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx207848-Vo4EzCwJ3NZ1.png",
                 "tags": [],
-                "recommend_score": 0.27432,
+                "discovery_score": 0.27432,
                 "user_status": null,
                 "format": "SPECIAL",
                 "clusterscore": 0.015,
@@ -7207,7 +7207,7 @@
                     "Heterosexual",
                     "Badminton"
                 ],
-                "recommend_score": 0.2737,
+                "discovery_score": 0.2737,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.045599999999999995,
@@ -7239,7 +7239,7 @@
                     "Crime",
                     "Gods"
                 ],
-                "recommend_score": 0.2712,
+                "discovery_score": 0.2712,
                 "user_status": "COMPLETED",
                 "format": "TV",
                 "clusterscore": 0.0582,
@@ -7275,7 +7275,7 @@
                     "Shounen",
                     "Cute Girls Doing Cute Things"
                 ],
-                "recommend_score": 0.2695,
+                "discovery_score": 0.2695,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0468,
@@ -7303,7 +7303,7 @@
                     "Vertical Video",
                     "Monster Girl"
                 ],
-                "recommend_score": 0.26704000000000006,
+                "discovery_score": 0.26704000000000006,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0204,
@@ -7333,7 +7333,7 @@
                     "Villainess",
                     "Dragons"
                 ],
-                "recommend_score": 0.26409999999999995,
+                "discovery_score": 0.26409999999999995,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0414,
@@ -7368,7 +7368,7 @@
                     "Chibi",
                     "Iyashikei"
                 ],
-                "recommend_score": 0.2591,
+                "discovery_score": 0.2591,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.044399999999999995,
@@ -7400,7 +7400,7 @@
                     "Urban",
                     "Found Family"
                 ],
-                "recommend_score": 0.25739999999999996,
+                "discovery_score": 0.25739999999999996,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0648,
@@ -7440,7 +7440,7 @@
                     "Espionage",
                     "Cute Boys Doing Cute Things"
                 ],
-                "recommend_score": 0.2558,
+                "discovery_score": 0.2558,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0654,
@@ -7477,7 +7477,7 @@
                     "Twins",
                     "Adoption"
                 ],
-                "recommend_score": 0.2542,
+                "discovery_score": 0.2542,
                 "user_status": "DROPPED",
                 "format": "TV",
                 "clusterscore": 0.0762,
@@ -7503,7 +7503,7 @@
                 "tags": [
                     "Chibi"
                 ],
-                "recommend_score": 0.2534,
+                "discovery_score": 0.2534,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0108,
@@ -7542,7 +7542,7 @@
                     "Female Harem",
                     "Gyaru"
                 ],
-                "recommend_score": 0.2533,
+                "discovery_score": 0.2533,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0564,
@@ -7579,7 +7579,7 @@
                     "Yuri",
                     "Inseki"
                 ],
-                "recommend_score": 0.25029999999999997,
+                "discovery_score": 0.25029999999999997,
                 "user_status": "PAUSED",
                 "format": "TV",
                 "clusterscore": 0.0606,
@@ -7606,7 +7606,7 @@
                     "Primarily Female Cast",
                     "Isekai"
                 ],
-                "recommend_score": 0.2493,
+                "discovery_score": 0.2493,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.030600000000000002,
@@ -7653,7 +7653,7 @@
                     "Chibi",
                     "LGBTQ+ Themes"
                 ],
-                "recommend_score": 0.24760000000000001,
+                "discovery_score": 0.24760000000000001,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0828,
@@ -7694,7 +7694,7 @@
                     "Athletics",
                     "Primarily Male Cast"
                 ],
-                "recommend_score": 0.2464,
+                "discovery_score": 0.2464,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0594,
@@ -7728,7 +7728,7 @@
                     "Criminal Organization",
                     "Food"
                 ],
-                "recommend_score": 0.24520000000000003,
+                "discovery_score": 0.24520000000000003,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0372,
@@ -7758,7 +7758,7 @@
                     "Time Manipulation",
                     "Swordplay"
                 ],
-                "recommend_score": 0.24448,
+                "discovery_score": 0.24448,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.033,
@@ -7793,7 +7793,7 @@
                     "Educational",
                     "Body Horror"
                 ],
-                "recommend_score": 0.2406,
+                "discovery_score": 0.2406,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.021,
@@ -7824,7 +7824,7 @@
                     "Seinen",
                     "School Club"
                 ],
-                "recommend_score": 0.23600000000000004,
+                "discovery_score": 0.23600000000000004,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.031200000000000002,
@@ -7857,7 +7857,7 @@
                     "Male Protagonist",
                     "Shoujo"
                 ],
-                "recommend_score": 0.232,
+                "discovery_score": 0.232,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0552,
@@ -7881,7 +7881,7 @@
                 "tags": [
                     "Time Manipulation"
                 ],
-                "recommend_score": 0.2277,
+                "discovery_score": 0.2277,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.018,
@@ -7916,7 +7916,7 @@
                     "School",
                     "Swimming"
                 ],
-                "recommend_score": 0.22680000000000003,
+                "discovery_score": 0.22680000000000003,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.05279999999999999,
@@ -7949,7 +7949,7 @@
                     "Primarily Adult Cast",
                     "Non-fiction"
                 ],
-                "recommend_score": 0.2262,
+                "discovery_score": 0.2262,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.056999999999999995,
@@ -7974,7 +7974,7 @@
                 "tags": [
                     "Rural"
                 ],
-                "recommend_score": 0.22496,
+                "discovery_score": 0.22496,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.011399999999999999,
@@ -8003,7 +8003,7 @@
                     "Philosophy",
                     "Stop Motion"
                 ],
-                "recommend_score": 0.22460000000000002,
+                "discovery_score": 0.22460000000000002,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.015600000000000001,
@@ -8033,7 +8033,7 @@
                     "Female Protagonist",
                     "Primarily Female Cast"
                 ],
-                "recommend_score": 0.2219,
+                "discovery_score": 0.2219,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0252,
@@ -8063,7 +8063,7 @@
                     "Episodic",
                     "Animals"
                 ],
-                "recommend_score": 0.22019999999999998,
+                "discovery_score": 0.22019999999999998,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0186,
@@ -8101,7 +8101,7 @@
                     "Ensemble Cast",
                     "Angels"
                 ],
-                "recommend_score": 0.21984,
+                "discovery_score": 0.21984,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.054599999999999996,
@@ -8126,7 +8126,7 @@
                 "tags": [
                     "Flash"
                 ],
-                "recommend_score": 0.21960000000000002,
+                "discovery_score": 0.21960000000000002,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.012,
@@ -8152,7 +8152,7 @@
                     "Chibi",
                     "Medicine"
                 ],
-                "recommend_score": 0.21760000000000002,
+                "discovery_score": 0.21760000000000002,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0036,
@@ -8188,7 +8188,7 @@
                     "Tsundere",
                     "Hikikomori"
                 ],
-                "recommend_score": 0.2123,
+                "discovery_score": 0.2123,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.042600000000000006,
@@ -8222,7 +8222,7 @@
                     "Female Protagonist",
                     "Magic"
                 ],
-                "recommend_score": 0.20729999999999998,
+                "discovery_score": 0.20729999999999998,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.027,
@@ -8252,7 +8252,7 @@
                     "Guns",
                     "Swordplay"
                 ],
-                "recommend_score": 0.2064,
+                "discovery_score": 0.2064,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.045,
@@ -8281,7 +8281,7 @@
                     "Aliens",
                     "Animals"
                 ],
-                "recommend_score": 0.20439999999999997,
+                "discovery_score": 0.20439999999999997,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.051000000000000004,
@@ -8318,7 +8318,7 @@
                     "Transgender",
                     "Vore"
                 ],
-                "recommend_score": 0.20432,
+                "discovery_score": 0.20432,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.048,
@@ -8353,7 +8353,7 @@
                     "Primarily Adult Cast",
                     "Gyaru"
                 ],
-                "recommend_score": 0.1984,
+                "discovery_score": 0.1984,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.06659999999999999,
@@ -8384,7 +8384,7 @@
                     "Henshin",
                     "Satire"
                 ],
-                "recommend_score": 0.1928,
+                "discovery_score": 0.1928,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0126,
@@ -8416,7 +8416,7 @@
                     "Female Protagonist",
                     "Male Protagonist"
                 ],
-                "recommend_score": 0.18769999999999998,
+                "discovery_score": 0.18769999999999998,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0336,
@@ -8442,7 +8442,7 @@
                     "No Dialogue",
                     "Family Life"
                 ],
-                "recommend_score": 0.18359999999999999,
+                "discovery_score": 0.18359999999999999,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.006599999999999999,
@@ -8475,7 +8475,7 @@
                     "School",
                     "Male Protagonist"
                 ],
-                "recommend_score": 0.1831,
+                "discovery_score": 0.1831,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.039,
@@ -8525,7 +8525,7 @@
                     "Episodic",
                     "Demons"
                 ],
-                "recommend_score": 0.18164,
+                "discovery_score": 0.18164,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0438,
@@ -8556,7 +8556,7 @@
                     "Crossover",
                     "Work"
                 ],
-                "recommend_score": 0.1804,
+                "discovery_score": 0.1804,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.026399999999999996,
@@ -8588,7 +8588,7 @@
                     "Flash",
                     "Kingdom Management"
                 ],
-                "recommend_score": 0.17529999999999998,
+                "discovery_score": 0.17529999999999998,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.022199999999999998,
@@ -8619,7 +8619,7 @@
                     "Kemonomimi",
                     "Episodic"
                 ],
-                "recommend_score": 0.1737,
+                "discovery_score": 0.1737,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0282,
@@ -8650,7 +8650,7 @@
                     "Idol",
                     "VTuber"
                 ],
-                "recommend_score": 0.158,
+                "discovery_score": 0.158,
                 "user_status": null,
                 "format": "TV",
                 "clusterscore": 0.0192,
@@ -8686,7 +8686,7 @@
                     "Parody",
                     "Slapstick"
                 ],
-                "recommend_score": 0.1556,
+                "discovery_score": 0.1556,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0324,
@@ -8723,7 +8723,7 @@
                     "Survival",
                     "CGI"
                 ],
-                "recommend_score": 0.15460000000000002,
+                "discovery_score": 0.15460000000000002,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0378,
@@ -8755,7 +8755,7 @@
                     "Cars",
                     "Advertisement"
                 ],
-                "recommend_score": 0.1272,
+                "discovery_score": 0.1272,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0402,
@@ -8782,7 +8782,7 @@
                     "Mermaid",
                     "Male Protagonist"
                 ],
-                "recommend_score": 0.1259,
+                "discovery_score": 0.1259,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0174,
@@ -8805,7 +8805,7 @@
                 "id": 192810,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx192810-hQ9HxiiIXyfI.jpg",
                 "tags": [],
-                "recommend_score": 0.11614000000000001,
+                "discovery_score": 0.11614000000000001,
                 "user_status": null,
                 "format": "SPECIAL",
                 "clusterscore": 0.006,
@@ -8829,7 +8829,7 @@
                 "id": 193294,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx193294-cWRDRpwqGYDA.jpg",
                 "tags": [],
-                "recommend_score": 0.116,
+                "discovery_score": 0.116,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0054,
@@ -8851,7 +8851,7 @@
                 "id": 194879,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b194879-Vpu1bN1PuYcJ.jpg",
                 "tags": [],
-                "recommend_score": 0.1152,
+                "discovery_score": 0.1152,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0042,
@@ -8877,7 +8877,7 @@
                 "tags": [
                     "School"
                 ],
-                "recommend_score": 0.114,
+                "discovery_score": 0.114,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0234,
@@ -8904,7 +8904,7 @@
                     "Food",
                     "Crossover"
                 ],
-                "recommend_score": 0.113,
+                "discovery_score": 0.113,
                 "user_status": null,
                 "format": "SPECIAL",
                 "clusterscore": 0.0168,
@@ -8931,7 +8931,7 @@
                     "Female Protagonist",
                     "Primarily Female Cast"
                 ],
-                "recommend_score": 0.11200000000000002,
+                "discovery_score": 0.11200000000000002,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.022799999999999997,
@@ -8957,7 +8957,7 @@
                     "Golf",
                     "Chibi"
                 ],
-                "recommend_score": 0.1088,
+                "discovery_score": 0.1088,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0162,
@@ -8980,7 +8980,7 @@
                 "id": 186935,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx186935-WPDw5KNiCSGb.png",
                 "tags": [],
-                "recommend_score": 0.10860000000000002,
+                "discovery_score": 0.10860000000000002,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0102,
@@ -9011,7 +9011,7 @@
                     "Software Development",
                     "Heterosexual"
                 ],
-                "recommend_score": 0.1084,
+                "discovery_score": 0.1084,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.013199999999999998,
@@ -9036,7 +9036,7 @@
                 "tags": [
                     "Full CGI"
                 ],
-                "recommend_score": 0.10664,
+                "discovery_score": 0.10664,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0258,
@@ -9061,7 +9061,7 @@
                 "tags": [
                     "No Dialogue"
                 ],
-                "recommend_score": 0.1032,
+                "discovery_score": 0.1032,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0072,
@@ -9095,7 +9095,7 @@
                     "Nekomimi",
                     "Dragons"
                 ],
-                "recommend_score": 0.1019,
+                "discovery_score": 0.1019,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0096,
@@ -9118,7 +9118,7 @@
                 "id": 189733,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189733-PgwNxBPV1BSA.jpg",
                 "tags": [],
-                "recommend_score": 0.0958,
+                "discovery_score": 0.0958,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.009,
@@ -9146,7 +9146,7 @@
                     "Animals",
                     "Episodic"
                 ],
-                "recommend_score": 0.09110000000000001,
+                "discovery_score": 0.09110000000000001,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0198,
@@ -9169,7 +9169,7 @@
                 "id": 185901,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185901-iRIID6SJ3ugs.png",
                 "tags": [],
-                "recommend_score": 0.0858,
+                "discovery_score": 0.0858,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0006,
@@ -9195,7 +9195,7 @@
                     "School",
                     "Teacher"
                 ],
-                "recommend_score": 0.0669,
+                "discovery_score": 0.0669,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0288,
@@ -9218,7 +9218,7 @@
                 "id": 185900,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185900-c5hOndo2zcNd.png",
                 "tags": [],
-                "recommend_score": 0.0664,
+                "discovery_score": 0.0664,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0081,
@@ -9240,7 +9240,7 @@
                 "id": 188884,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx188884-pmEMLEcpTovv.png",
                 "tags": [],
-                "recommend_score": 0.06449999999999999,
+                "discovery_score": 0.06449999999999999,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0141,
@@ -9262,7 +9262,7 @@
                 "id": 204696,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx204696-Yet85OH1PeCF.png",
                 "tags": [],
-                "recommend_score": 0.0636,
+                "discovery_score": 0.0636,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0081,
@@ -9284,7 +9284,7 @@
                 "id": 208055,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx208055-MYa7If5ksFhp.jpg",
                 "tags": [],
-                "recommend_score": 0.05929999999999999,
+                "discovery_score": 0.05929999999999999,
                 "user_status": null,
                 "format": "MOVIE",
                 "clusterscore": 0.0141,
@@ -9306,7 +9306,7 @@
                 "id": 206349,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx206349-RzDGDKhWPiMN.png",
                 "tags": [],
-                "recommend_score": 0.04920000000000001,
+                "discovery_score": 0.04920000000000001,
                 "user_status": null,
                 "format": "SPECIAL",
                 "clusterscore": 0.0021,
@@ -9328,7 +9328,7 @@
                 "id": 199008,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199008-P45zksUSzTWD.png",
                 "tags": [],
-                "recommend_score": 0.04139999999999999,
+                "discovery_score": 0.04139999999999999,
                 "user_status": null,
                 "format": "TV_SHORT",
                 "clusterscore": 0.0048,
@@ -9350,7 +9350,7 @@
                 "id": 203146,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx203146-6Zx7wl6hOEFH.png",
                 "tags": [],
-                "recommend_score": 0.0412,
+                "discovery_score": 0.0412,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0021,
@@ -9372,7 +9372,7 @@
                 "id": 200375,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b200375-RxdzZA1qFTiZ.png",
                 "tags": [],
-                "recommend_score": 0.040400000000000005,
+                "discovery_score": 0.040400000000000005,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0021,
@@ -9394,7 +9394,7 @@
                 "id": 204474,
                 "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx204474-NfZorDxwxeXK.png",
                 "tags": [],
-                "recommend_score": 0.04,
+                "discovery_score": 0.04,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0021,
@@ -9421,7 +9421,7 @@
                     "Idol",
                     "Josei"
                 ],
-                "recommend_score": 0.0379,
+                "discovery_score": 0.0379,
                 "user_status": null,
                 "format": "ONA",
                 "clusterscore": 0.0,

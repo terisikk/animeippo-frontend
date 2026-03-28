@@ -13,8 +13,8 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
 
   if (debugMode && scoreFields.length > 0) {
     scoreFields = scoreFields.sort((a, b) => {
-      if (a === 'recommend_score') return -1;
-      if (b === 'recommend_score') return 1;
+      if (a === 'discovery_score') return -1;
+      if (b === 'discovery_score') return 1;
       return a.localeCompare(b);
     });
   }
@@ -32,8 +32,8 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
           <div className="absolute inset-0 bg-black bg-opacity-95 px-3 py-2 rounded text-xs text-white overflow-y-auto invisible group-hover:visible">
             {scoreFields.map((field) => (
               <div key={field} className="mb-1">
-                <span className={`font-semibold ${field === 'recommend_score' ? 'text-green-400' : 'text-blue-300'}`}>{field}:</span>{" "}
-                <span className={field === 'recommend_score' ? 'text-green-200 font-bold' : 'text-white'}>{typeof node[field] === 'number' ? node[field].toFixed(3) : node[field]}</span>
+                <span className={`font-semibold ${field === 'discovery_score' ? 'text-green-400' : 'text-blue-300'}`}>{field}:</span>{" "}
+                <span className={field === 'discovery_score' ? 'text-green-200 font-bold' : 'text-white'}>{typeof node[field] === 'number' ? node[field].toFixed(3) : node[field]}</span>
               </div>
             ))}
           </div>
