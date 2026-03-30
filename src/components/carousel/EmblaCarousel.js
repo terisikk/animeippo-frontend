@@ -44,11 +44,11 @@ export function EmblaCarousel({ children }) {
   }, [emblaApi]);
 
   return (
-    <div className="embla relative px-6" tabIndex={0} onKeyDown={handleKeyDown} role="region" aria-label="Carousel">
+    <div className="embla relative overflow-x-clip px-6" tabIndex={0} onKeyDown={handleKeyDown} role="region" aria-label="Carousel">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container flex">
           {Array.isArray(children) ? children.map((child, i) => (
-            <div className="embla__slide flex justify-center" key={child.key ?? i}>
+            <div className="embla__slide" key={child.key ?? i}>
               {child}
             </div>
           )) : children}

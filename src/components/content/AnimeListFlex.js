@@ -9,7 +9,7 @@ export function AnimeListFlex({ shows, genreTitle }) {
       )}
       <div className="flex flex-wrap justify-center gap-4">
         {shows.map((node, i) => (
-          <div key={node["id"]} className="animate-hero-fade-in" style={{ animationDelay: `${Math.min(i * 30, 600)}ms` }}>
+          <div key={node["id"]} className="w-52 animate-hero-fade-in" style={{ animationDelay: `${Math.min(i * 30, 600)}ms` }}>
             <AnimeItem node={node} />
           </div>
         ))}
