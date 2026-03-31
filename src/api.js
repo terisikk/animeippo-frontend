@@ -2,6 +2,14 @@ import axios from "axios";
 
 const CACHE_TTL = 1000 * 60 * 60 * 24; // 1 day
 
+function getSeason(date) {
+  const month = date.getMonth(); // 0-indexed
+  if (month < 3) return "winter";
+  if (month < 6) return "spring";
+  if (month < 9) return "summer";
+  return "fall";
+}
+
 export function fetchAnimeList(user, year, setLoading, setShows, setContentReady, mode = "recommend", provider = "anilist") {
   if (user !== "") {
     setLoading(true);
@@ -36,8 +44,9 @@ export async function fetchWithCache(url) {
   }
 
   if (cached) {
-    const { timestamp, data } = JSON.parse(cached);
-    if (Date.now() - timestamp < CACHE_TTL) {
+    const { timestamp, season, data } = JSON.parse(cached);
+    const currentSeason = getSeason(new Date());
+    if (Date.now() - timestamp < CACHE_TTL && season === currentSeason) {
       return data;
     }
   }
@@ -45,6 +54,7 @@ export async function fetchWithCache(url) {
   const response = await axios.get(url);
   localStorage.setItem(url, JSON.stringify({
     timestamp: Date.now(),
+    season: getSeason(new Date()),
     data: response.data,
   }));
 

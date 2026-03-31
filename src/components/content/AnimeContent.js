@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { TopPicksHero } from "./TopPicksHero";
 import { AnimeListCarousel } from "./AnimeListCarousel";
 import { AnimeListFlex } from "./AnimeListFlex";
-import { PAGE_TITLE } from "../../styles";
+
 
 const TOP_PICKS_CATEGORY = "Your Top 3";
 const HERO_CATEGORIES = new Set([TOP_PICKS_CATEGORY, "Hidden Gems for You", "Movie Night"]);

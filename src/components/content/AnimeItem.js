@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { anilistUrl } from "../../styles";
 import { useLazyImage } from "../../hooks/useLazyImage";
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 function toStars(value) {
   if (typeof value !== 'number') return String(value);
@@ -29,6 +30,9 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
     <a href={url} target="_blank" rel="noopener noreferrer" className="group grid grid-rows-[auto_4rem_3.5rem] sm:grid-rows-[auto_4rem_2.75rem] lg:mx-auto lg:max-w-[230px] rounded bg-zinc-900 duration-300 ease-in hover:scale-105 hover:bg-zinc-600 hover:z-10">
       <div className="relative aspect-[2/3] overflow-hidden">
         <img ref={img.ref} className="h-full w-full rounded-t object-cover" src={img.src} alt={node["title"]} />
+        {node["user_status"] != null && (
+          <BookmarkIcon className="absolute right-1 top-1 text-blue-400 opacity-80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]" style={{ fontSize: '1.25rem' }} />
+        )}
         {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (
           <span className="absolute bottom-2 left-2 rounded bg-red-500 px-2 py-1 text-center font-sans text-xs uppercase text-white">
             Upcoming {node["season"]?.toLowerCase()}
