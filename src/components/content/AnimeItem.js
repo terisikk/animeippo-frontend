@@ -26,7 +26,7 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
   }
 
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className="group mx-auto grid max-w-[230px] grid-rows-[auto_4rem_2.75rem] rounded bg-zinc-900 duration-300 ease-in hover:scale-105 hover:bg-zinc-600 hover:z-10">
+    <a href={url} target="_blank" rel="noopener noreferrer" className="group grid grid-rows-[auto_4rem_3.5rem] sm:grid-rows-[auto_4rem_2.75rem] lg:mx-auto lg:max-w-[230px] rounded bg-zinc-900 duration-300 ease-in hover:scale-105 hover:bg-zinc-600 hover:z-10">
       <div className="relative aspect-[2/3] overflow-hidden">
         <img ref={img.ref} className="h-full w-full rounded-t object-cover" src={img.src} alt={node["title"]} />
         {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (
