@@ -55,7 +55,7 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
         if (!e.currentTarget.contains(e.relatedTarget) && user) setEditing(false);
       }}>
         <input
-          className="rounded-l border border-blue-700 p-2.5 disabled:!bg-gray-400 disabled:text-gray-600"
+          className="rounded-l border border-blue-700 p-2.5 disabled:!bg-zinc-400 disabled:text-zinc-600"
           name="maluser"
           type="text"
           placeholder={placeholder}
@@ -66,7 +66,7 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
         <label className="margin-0 text-white" id="recommendLabel" htmlFor="maluser">
           <button
             type="submit"
-            className="rounded-r border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="rounded-r border border-blue-700 bg-blue-600 p-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
           >
             {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : <SearchIcon />}
           </button>
