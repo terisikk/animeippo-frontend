@@ -53,6 +53,12 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
             {node["season"]?.toLowerCase()}
           </span>
         )}
+        {node["status"]?.toUpperCase() === "RELEASING" && (
+          <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded bg-emerald-600 px-2 py-1 font-sans text-xs font-semibold capitalize text-white">
+            <CalendarMonthIcon sx={{ fontSize: 14 }} />
+            Airing
+          </span>
+        )}
         {debugMode && scoreFields.length > 0 && (
           <div className="invisible absolute inset-0 overflow-x-hidden overflow-y-auto rounded bg-black bg-opacity-95 px-3 py-2 text-xs text-white group-hover:visible">
             {scoreFields.map((field) => (

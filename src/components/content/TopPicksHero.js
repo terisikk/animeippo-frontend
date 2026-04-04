@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { anilistUrl } from "../../styles";
 import { FORMAT_LABELS } from "./AnimeItem";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 export function TopPicksHero({ shows, title }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -48,6 +49,18 @@ export function TopPicksHero({ shows, title }) {
             src={node["cover_image"]}
             alt={node["title"]}
             />
+          {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (
+            <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded bg-amber-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-amber-950">
+              <CalendarMonthIcon sx={{ fontSize: 14 }} />
+              {node["season"]?.toLowerCase()}
+            </span>
+          )}
+          {node["status"]?.toUpperCase() === "RELEASING" && (
+            <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded bg-emerald-600 px-2 py-1 font-sans text-xs font-semibold capitalize text-white">
+              <CalendarMonthIcon sx={{ fontSize: 14 }} />
+              Airing
+            </span>
+          )}
         </div>
         <div className="relative min-w-0 pt-1 flex flex-col self-stretch" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
           <h3 className="line-clamp-2 font-sans text-xl font-semibold tracking-wide text-white">
