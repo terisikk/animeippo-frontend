@@ -56,7 +56,7 @@ export function TopPicksHero({ shows, title }) {
             </span>
           )}
           {node["status"]?.toUpperCase() === "RELEASING" && (
-            <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded bg-emerald-600 px-2 py-1 font-sans text-xs font-semibold capitalize text-white">
+            <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded bg-emerald-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-emerald-950">
               <CalendarMonthIcon sx={{ fontSize: 14 }} />
               Airing
             </span>
