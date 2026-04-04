@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { anilistUrl } from "../../styles";
+import { FORMAT_LABELS } from "./AnimeItem";
 
 export function TopPicksHero({ shows, title }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -52,6 +53,11 @@ export function TopPicksHero({ shows, title }) {
           <h3 className="line-clamp-2 font-sans text-xl font-semibold tracking-wide text-white">
             {node["title"]}
           </h3>
+          {FORMAT_LABELS[node["format"]] && (
+            <span className="mt-1 self-start rounded bg-black/60 px-1.5 py-0.5 font-sans text-[0.625rem] font-medium uppercase tracking-wide text-white">
+              {FORMAT_LABELS[node["format"]]}
+            </span>
+          )}
           <p className="mt-2 flex flex-col gap-1">
             {node["genres"]?.slice(0, 8).map((genre) => (
               <span key={genre} className="font-sans text-sm font-medium tracking-wide text-blue-100">

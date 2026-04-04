@@ -4,7 +4,7 @@ import { useLazyImage } from "../../hooks/useLazyImage";
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
-const FORMAT_LABELS = {
+export const FORMAT_LABELS = {
   MOVIE: "Movie",
   ONA: "ONA",
   OVA: "OVA",
