@@ -16,6 +16,7 @@ function App() {
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
   const [user, setUser] = useState(() => localStorage.getItem("animeippo_last_user") || "");
   const [contentReady, setContentReady] = useState(null);
+  const [error, setError] = useState(null);
   const [openMenu, setOpenMenu] = useState(null);
   const [mode, setMode] = useState("recommend");
   const [provider, setProvider] = useState(() => localStorage.getItem("animeippo_provider") || "anilist");
@@ -39,6 +40,7 @@ function App() {
       localStorage.setItem("animeippo_last_user", new_user);
       setShows(null);
       setContentReady(null);
+      setError(null);
       setLoading(true);
       setActiveYear(new Date().getFullYear());
       setUser(new_user);
@@ -48,6 +50,7 @@ function App() {
   const handleSwitchUser = () => {
     setShows(null);
     setContentReady(null);
+    setError(null);
     setActiveYear(new Date().getFullYear());
     setUser("");
     setMode("recommend");
@@ -76,7 +79,8 @@ function App() {
         setContentReady(true);
       });
     } else {
-      fetchAnimeListCb(user, activeYear, setLoading, setShows, setContentReady, apiMode, provider);
+      setError(null);
+      fetchAnimeListCb(user, activeYear, setLoading, setShows, setContentReady, setError, apiMode, provider);
     }
   }, [user, activeYear, fetchAnimeListCb, apiMode, provider]);
 
@@ -92,11 +96,11 @@ function App() {
           : mode === "browse"
           ? <BrowseContent data={shows?.data} />
           : <AnimeContent data={shows?.data} />
-        : user !== "" && contentReady === false
-        ? backendErrorMessage()
+        : error != null
+        ? <p className="w-full text-center font-sans text-lg text-zinc-400">{error}</p>
         : null}
     </div>
-  ), [loading, mode, user, shows]);
+  ), [loading, mode, user, shows, error]);
 
   return (
     <main className="App-Content min-h-full bg-zinc-900">
@@ -140,9 +144,5 @@ function App() {
   );
 }
 
-
-function backendErrorMessage() {
-  return <p className="w-full text-center text-lg text-red-700">Could not find data for that user.</p>;
-}
 
 export default App;

@@ -10,7 +10,7 @@ function getSeason(date) {
   return "fall";
 }
 
-export function fetchAnimeList(user, year, setLoading, setShows, setContentReady, mode = "recommend", provider = "anilist") {
+export function fetchAnimeList(user, year, setLoading, setShows, setContentReady, setError, mode = "recommend", provider = "anilist") {
   if (user !== "") {
     setLoading(true);
     setShows(null);
@@ -27,10 +27,11 @@ export function fetchAnimeList(user, year, setLoading, setShows, setContentReady
         setContentReady(data);
       })
       .catch((error) => {
-        console.log(error);
+        const message = error.response?.data?.error || "Something went wrong. Please try again.";
         setLoading(false);
         setShows(null);
         setContentReady(false);
+        setError(message);
       });
   }
 }
