@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { anilistUrl } from "../../styles";
-import { FORMAT_LABELS } from "./AnimeItem";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { HeroDetails } from "../shared/HeroDetails";
 
 export function TopPicksHero({ shows, title }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -62,28 +62,7 @@ export function TopPicksHero({ shows, title }) {
             </span>
           )}
         </div>
-        <div className="relative min-w-0 pt-1 flex flex-col self-stretch" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
-          <h3 className="line-clamp-2 font-sans text-xl font-semibold tracking-wide text-white">
-            {node["title"]}
-          </h3>
-          {FORMAT_LABELS[node["format"]] && (
-            <span className="mt-1 self-start rounded bg-black/60 px-1.5 py-0.5 font-sans text-[0.625rem] font-medium uppercase tracking-wide text-white">
-              {FORMAT_LABELS[node["format"]]}
-            </span>
-          )}
-          <p className="mt-2 flex flex-col gap-1">
-            {node["genres"]?.slice(0, 8).map((genre) => (
-              <span key={genre} className="font-sans text-sm font-medium tracking-wide text-blue-100">
-                {genre}
-              </span>
-            ))}
-          </p>
-          {node["discovery_score"] != null && (
-            <span className="mt-auto pt-4 inline-block font-sans text-3xl font-bold text-blue-400">
-              {(node["discovery_score"] * 100).toFixed(0)}%
-            </span>
-          )}
-        </div>
+        <HeroDetails node={node} />
       </a>
     );
   });

@@ -14,12 +14,14 @@ import Divider from '@mui/material/Divider';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import TouchAppIcon from '@mui/icons-material/TouchApp';
 import { HeaderTabBar } from "./Header";
 
 const MODES = [
   { key: "recommend", label: "Home", icon: <HomeIcon sx={{ fontSize: 20 }} /> },
   { key: "browse", label: "Browse", icon: <ExploreIcon sx={{ fontSize: 20 }} /> },
   { key: "analyse", label: "Analysis", icon: <BarChartIcon sx={{ fontSize: 20 }} /> },
+  { key: "funnel", label: "Pick", icon: <TouchAppIcon sx={{ fontSize: 20 }} /> },
 ];
 
 function HeaderIconButton({ open, onClick, icon, children }) {

@@ -7,6 +7,7 @@ import { AnimeContent } from "./components/content/AnimeContent";
 import { AnalysisContent } from "./components/analysis/AnalysisContent";
 import { PlaceHolderContent } from "./components/placeholder/PlaceholderContent";
 import { BrowseContent } from "./components/browse/BrowseContent";
+import { FunnelContent } from "./components/funnel/FunnelContent";
 import { fetchAnimeList } from "./api";
 
 
@@ -70,7 +71,7 @@ function App() {
 
   const fetchAnimeListCb = useCallback(fetchAnimeList, []);
 
-  const apiMode = mode === "browse" ? "recommend" : mode;
+  const apiMode = (mode === "browse" || mode === "funnel") ? "recommend" : mode;
 
   useEffect(() => {
     if (process.env.REACT_APP_MOCK_BACKEND === "true") {
@@ -95,6 +96,8 @@ function App() {
           ? <AnalysisContent data={shows?.data} />
           : mode === "browse"
           ? <BrowseContent data={shows?.data} />
+          : mode === "funnel"
+          ? <FunnelContent data={shows?.data} />
           : <AnimeContent data={shows?.data} />
         : error != null
         ? <p className="w-full text-center font-sans text-lg text-zinc-400">{error}</p>
