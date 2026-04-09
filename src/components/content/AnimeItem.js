@@ -42,23 +42,27 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
         {node["user_status"] != null && (
           <BookmarkIcon className="absolute right-1 top-1 text-blue-400 opacity-80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]" style={{ fontSize: '1.25rem' }} />
         )}
-        {FORMAT_LABELS[node["format"]] && (
-          <span className="absolute left-1 top-1 rounded bg-black/60 px-1.5 py-0.5 font-sans text-[0.625rem] font-medium uppercase tracking-wide text-white">
-            {FORMAT_LABELS[node["format"]]}
-          </span>
-        )}
-        {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (
-          <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded bg-amber-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-amber-950">
-            <CalendarMonthIcon sx={{ fontSize: 14 }} />
-            {node["season"]?.toLowerCase()}
-          </span>
-        )}
-        {node["status"]?.toUpperCase() === "RELEASING" && (
-          <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded bg-emerald-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-emerald-950">
-            <CalendarMonthIcon sx={{ fontSize: 14 }} />
-            Airing
-          </span>
-        )}
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-1.5 pb-1.5">
+          <div>
+            {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (
+              <span className="flex items-center gap-1 rounded bg-amber-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-amber-950">
+                <CalendarMonthIcon sx={{ fontSize: 14 }} />
+                {node["season"]?.toLowerCase()}
+              </span>
+            )}
+            {node["status"]?.toUpperCase() === "RELEASING" && (
+              <span className="flex items-center gap-1 rounded bg-emerald-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-emerald-950">
+                <CalendarMonthIcon sx={{ fontSize: 14 }} />
+                Airing
+              </span>
+            )}
+          </div>
+          {FORMAT_LABELS[node["format"]] && (
+            <span className="rounded bg-black/60 px-1.5 py-0.5 font-sans text-[0.625rem] font-medium uppercase tracking-wide text-white">
+              {FORMAT_LABELS[node["format"]]}
+            </span>
+          )}
+        </div>
         {debugMode && scoreFields.length > 0 && (
           <div className="invisible absolute inset-0 overflow-x-hidden overflow-y-auto rounded bg-black bg-opacity-95 px-3 py-2 text-xs text-white group-hover:visible">
             {scoreFields.map((field) => (
