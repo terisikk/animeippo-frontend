@@ -40,13 +40,13 @@ const INTENSITIES = [
 
 const LENGTHS = [
   { key: "movie", label: "Movie", formats: ["MOVIE"], icon: <MovieIcon sx={{ fontSize: 28 }} />, color: "#c084fc" },
-  { key: "short", label: "Short", formats: ["TV_SHORT", "OVA", "SPECIAL"], icon: <TimerIcon sx={{ fontSize: 28 }} />, color: "#2dd4bf" },
   { key: "series", label: "Series", formats: ["TV", "ONA"], icon: <TvIcon sx={{ fontSize: 28 }} />, color: "#60a5fa" },
+  { key: "short", label: "Short", formats: ["TV_SHORT", "OVA", "SPECIAL"], icon: <TimerIcon sx={{ fontSize: 28 }} />, color: "#2dd4bf" },
 ];
 
 const NOVELTIES = [
-  { key: "match", label: "Best match", icon: <AutoAwesomeIcon sx={{ fontSize: 28 }} />, color: "#3b82f6" },
   { key: "surprise", label: "Surprise me", icon: <CasinoIcon sx={{ fontSize: 28 }} />, color: "#a78bfa" },
+  { key: "match", label: "Best match", icon: <AutoAwesomeIcon sx={{ fontSize: 28 }} />, color: "#3b82f6" },
   { key: "popular", label: "Most popular", icon: <TrendingUpIcon sx={{ fontSize: 28 }} />, color: "#34d399" },
 ];
 
