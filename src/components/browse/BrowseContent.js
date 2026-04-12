@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import ClearIcon from '@mui/icons-material/Clear';
 import { GenreCombobox } from "./GenreCombobox";
 import { FilterDropdown } from "./FilterDropdown";
@@ -36,13 +36,15 @@ const LIST_STATUS_OPTIONS = [
   { value: "not_on_list", label: "Not on my list" },
 ];
 
-export function BrowseContent({ data }) {
-  const [selectedGenre, setSelectedGenre] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
-  const [seasonFilter, setSeasonFilter] = useState("");
-  const [formatFilter, setFormatFilter] = useState("");
-  const [listStatusFilter, setListStatusFilter] = useState("");
+export function BrowseContent({ data, filters, setFilters }) {
+  const { selectedGenre, searchQuery, statusFilter, seasonFilter, formatFilter, listStatusFilter } = filters;
+  const update = (key) => (value) => setFilters(prev => ({ ...prev, [key]: value }));
+  const setSelectedGenre = update("selectedGenre");
+  const setSearchQuery = update("searchQuery");
+  const setStatusFilter = update("statusFilter");
+  const setSeasonFilter = update("seasonFilter");
+  const setFormatFilter = update("formatFilter");
+  const setListStatusFilter = update("listStatusFilter");
 
   const availableGenres = useMemo(() => {
     const presentGenres = new Set();
@@ -94,12 +96,14 @@ export function BrowseContent({ data }) {
   const hasActiveFilters = selectedGenre !== "All" || statusFilter || seasonFilter || formatFilter || listStatusFilter;
 
   const clearAllFilters = () => {
-    setSelectedGenre("All");
-    setStatusFilter("");
-    setSeasonFilter("");
-    setFormatFilter("");
-    setListStatusFilter("");
-    setSearchQuery("");
+    setFilters({
+      selectedGenre: "All",
+      searchQuery: "",
+      statusFilter: "",
+      seasonFilter: "",
+      formatFilter: "",
+      listStatusFilter: "",
+    });
   };
 
   if (!data) return null;

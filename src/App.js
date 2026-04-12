@@ -5,7 +5,7 @@ import TopBar from "./TopBar";
 import "./App.css";
 import { AnimeContent } from "./components/content/AnimeContent";
 import { AnalysisContent } from "./components/analysis/AnalysisContent";
-import { PlaceHolderContent } from "./components/placeholder/PlaceholderContent";
+import { PlaceHolderContent, AnalysisPlaceholderContent } from "./components/placeholder/PlaceholderContent";
 import { BrowseContent } from "./components/browse/BrowseContent";
 import { FunnelContent } from "./components/funnel/FunnelContent";
 import { fetchAnimeList } from "./api";
@@ -21,6 +21,14 @@ function App() {
   const [openMenu, setOpenMenu] = useState(null);
   const [mode, setMode] = useState("recommend");
   const [provider, setProvider] = useState(() => localStorage.getItem("animeippo_provider") || "anilist");
+  const [browseFilters, setBrowseFilters] = useState({
+    selectedGenre: "All",
+    searchQuery: "",
+    statusFilter: "",
+    seasonFilter: "",
+    formatFilter: "",
+    listStatusFilter: "",
+  });
 
   const toggleMenu = useCallback((menu) => () => {
     setOpenMenu((prev) => prev === menu ? null : menu);
@@ -90,12 +98,12 @@ function App() {
   const content = useMemo(() => (
     <div>
       {loading
-        ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p><PlaceHolderContent /></>
+        ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p>{mode === "analyse" ? <AnalysisPlaceholderContent /> : <PlaceHolderContent />}</>
         : shows != null
         ? mode === "analyse"
           ? <AnalysisContent data={shows?.data} />
           : mode === "browse"
-          ? <BrowseContent data={shows?.data} />
+          ? <BrowseContent data={shows?.data} filters={browseFilters} setFilters={setBrowseFilters} />
           : mode === "funnel"
           ? <FunnelContent data={shows?.data} />
           : <AnimeContent data={shows?.data} />
@@ -103,7 +111,7 @@ function App() {
         ? <p className="w-full text-center font-sans text-lg text-zinc-400">{error}</p>
         : null}
     </div>
-  ), [loading, mode, user, shows, error]);
+  ), [loading, mode, user, shows, error, browseFilters, setBrowseFilters]);
 
   return (
     <main className="App-Content min-h-full bg-zinc-900">
@@ -123,7 +131,7 @@ function App() {
         )}
 
         {/* Content state: TopBar replaces title + header */}
-        {hasContent && shows?.data && (
+        {hasContent && (
           <TopBar
             activeYear={activeYear}
             setActiveYear={setActiveYear}
