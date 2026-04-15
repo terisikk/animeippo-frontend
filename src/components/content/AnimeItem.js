@@ -36,7 +36,7 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
   }
 
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className="group grid grid-rows-[auto_4rem_4.5rem] sm:grid-rows-[auto_4rem_3.5rem] lg:mx-auto lg:max-w-[230px] rounded bg-zinc-900 duration-300 ease-in hover:scale-105 hover:bg-zinc-600 hover:z-10">
+    <a href={url} target="_blank" rel="noopener noreferrer" className="group relative grid grid-rows-[auto_4rem] lg:mx-auto lg:max-w-[230px] rounded-t bg-zinc-900 duration-300 ease-in hover:scale-105 hover:bg-zinc-600 hover:z-10">
       <div className="relative aspect-[2/3] overflow-hidden">
         <img ref={img.ref} className="h-full w-full rounded-t object-cover" src={img.src} alt={node["title"]} />
         {node["user_status"] != null && (
@@ -79,7 +79,7 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
           {node["title"]}
         </h4>
       </div>
-      <div className="invisible flex max-h-full flex-wrap content-start justify-center gap-1.5 overflow-hidden px-3 py-1 group-hover:visible">
+      <div className="invisible absolute top-[calc(100%-1px)] left-0 right-0 flex flex-wrap content-start justify-center gap-1.5 rounded-b bg-zinc-900 px-3 pt-1 pb-2.5 duration-300 ease-in group-hover:visible group-hover:bg-zinc-600">
         {node["genres"].map((genre) => (
           <span className="rounded-full border border-blue-300/20 px-2 py-0.5 font-sans text-xs font-medium text-blue-100" key={genre}>{genre}</span>
         ))}
