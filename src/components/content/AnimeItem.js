@@ -80,7 +80,7 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
         </h4>
       </div>
       <div className="invisible absolute top-[calc(100%-1px)] left-0 right-0 flex flex-wrap content-start justify-center gap-1.5 rounded-b bg-zinc-900 px-3 pt-1 pb-2.5 duration-300 ease-in group-hover:visible group-hover:bg-zinc-600">
-        {node["genres"].map((genre) => (
+        {(node["genres"] || []).map((genre) => (
           <span className="rounded-full border border-blue-300/20 px-2 py-0.5 font-sans text-xs font-medium text-blue-100" key={genre}>{genre}</span>
         ))}
       </div>

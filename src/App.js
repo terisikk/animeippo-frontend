@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import { SearchForm } from "./Header";
 import TopBar from "./TopBar";
 
@@ -95,13 +95,18 @@ function App() {
 
   const hasContent = loading || contentReady;
 
+  const lastAnalysisData = useRef(null);
+  if (shows?.data && mode === "analyse") lastAnalysisData.current = shows.data;
+
+  const analysisData = mode === "analyse" ? (shows?.data || lastAnalysisData.current) : null;
+
   const content = useMemo(() => (
     <div>
       {loading
         ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p>{mode === "analyse" ? <AnalysisPlaceholderContent /> : <PlaceHolderContent />}</>
         : shows != null
         ? mode === "analyse"
-          ? <AnalysisContent data={shows?.data} />
+          ? null
           : mode === "browse"
           ? <BrowseContent data={shows?.data} filters={browseFilters} setFilters={setBrowseFilters} />
           : mode === "funnel"
@@ -110,8 +115,13 @@ function App() {
         : error != null
         ? <p className="w-full text-center font-sans text-lg text-zinc-400">{error}</p>
         : null}
+      {analysisData && (
+        <div className={loading ? "hidden" : undefined}>
+          <AnalysisContent data={analysisData} />
+        </div>
+      )}
     </div>
-  ), [loading, mode, user, shows, error, browseFilters, setBrowseFilters]);
+  ), [loading, mode, user, shows, error, browseFilters, setBrowseFilters, analysisData]);
 
   return (
     <main className="App-Content min-h-full bg-zinc-900">

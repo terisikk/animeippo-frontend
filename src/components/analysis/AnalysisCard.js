@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import { AnalysisCarousel } from "../carousel/AnalysisCarousel";
 import { AnalysisItem } from "./AnalysisItem";
 import { colors } from "../../styles";
@@ -31,11 +32,12 @@ const toggleGroupSx = {
   borderRadius: 1,
 };
 
-export function AnalysisCard({ category, shows, recommendations = [], index }) {
+export function AnalysisCard({ category, shows, recommendations = [], index, onExpand }) {
   const [view, setView] = useState("watched");
   const stats = category.stats;
   const accentImage = shows[0]?.cover_image;
   const hasRecs = recommendations.length > 0;
+  const activeShows = view === "recommendations" && hasRecs ? recommendations : shows;
 
   const handleView = (_, newView) => {
     if (newView !== null) setView(newView);
@@ -43,7 +45,7 @@ export function AnalysisCard({ category, shows, recommendations = [], index }) {
 
   return (
     <div
-      className="relative w-full rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-4 transition-all duration-300 hover:border-zinc-500/70 hover:shadow-lg hover:shadow-blue-900/20 animate-hero-fade-in md:w-[calc(50%-0.75rem)] xl:w-[calc(33.333%-1rem)]"
+      className="relative rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-4 transition-all duration-300 hover:border-zinc-500/70 hover:shadow-lg hover:shadow-blue-900/20 animate-hero-fade-in w-full md:w-[calc(50%-0.75rem)] xl:w-[calc(33.333%-1rem)]"
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {accentImage && (
@@ -58,9 +60,18 @@ export function AnalysisCard({ category, shows, recommendations = [], index }) {
       )}
 
       <div className="relative">
-        <h3 className="mb-2 font-sans text-lg font-semibold tracking-wide text-white">
-          {category.name}
-        </h3>
+        <div className="mb-2 flex items-center justify-between">
+          <h3 className="font-sans text-lg font-semibold tracking-wide text-white">
+            {category.name}
+          </h3>
+          <button
+            onClick={() => onExpand(category.name)}
+            className="flex items-center justify-center rounded border-none bg-transparent p-1 text-zinc-400 cursor-pointer transition-colors hover:text-white"
+            aria-label="Expand"
+          >
+            <OpenInFullIcon sx={{ fontSize: 18 }} />
+          </button>
+        </div>
 
         {stats && (
           <div className="mb-3 flex gap-4 text-sm">
@@ -91,7 +102,7 @@ export function AnalysisCard({ category, shows, recommendations = [], index }) {
         </ToggleButtonGroup>
 
         <AnalysisCarousel>
-          {(view === "recommendations" && hasRecs ? recommendations : shows).map((node) => (
+          {activeShows.map((node) => (
             <AnalysisItem key={node["id"]} node={node} />
           ))}
         </AnalysisCarousel>
