@@ -2,35 +2,8 @@ import { useState, useEffect } from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { AnimeItem } from "../content/AnimeItem";
-import { PAGE_TITLE, colors } from "../../styles";
-
-const toggleGroupSx = {
-  width: '100%',
-  maxWidth: 400,
-  mb: 1.5,
-  '& .MuiToggleButton-root': {
-    flex: 1,
-    py: 0.5,
-    px: 1,
-    fontSize: '0.75rem',
-    textTransform: 'none',
-    color: colors.blue200,
-    borderColor: 'transparent',
-    '&:hover': { bgcolor: colors.zinc600 },
-    '&.Mui-selected': {
-      bgcolor: 'rgba(96,165,250,0.15)',
-      color: '#fff',
-      '&:hover': { bgcolor: 'rgba(96,165,250,0.25)' },
-    },
-    '&.Mui-disabled': {
-      opacity: 0.4,
-      color: colors.zinc400,
-    },
-  },
-  bgcolor: 'rgba(63,63,70,0.4)',
-  borderRadius: 1,
-};
+import { AnimeGrid } from "../shared/AnimeGrid";
+import { PAGE_TITLE, toggleGroupSx } from "../../styles";
 
 export function AnalysisExpandedView({ category, shows, recommendations, onClose }) {
   const [view, setView] = useState("watched");
@@ -78,7 +51,7 @@ export function AnalysisExpandedView({ category, shows, recommendations, onClose
         exclusive
         onChange={handleView}
         size="small"
-        sx={toggleGroupSx}
+        sx={{ ...toggleGroupSx, maxWidth: 400 }}
       >
         <ToggleButton value="watched">
           Your titles ({shows.length})
@@ -88,12 +61,8 @@ export function AnalysisExpandedView({ category, shows, recommendations, onClose
         </ToggleButton>
       </ToggleButtonGroup>
 
-      <div className="flex flex-wrap justify-center gap-4 pt-2">
-        {activeShows.map((node, i) => (
-          <div key={node["id"]} className="w-52 animate-hero-fade-in hover:z-10" style={{ animationDelay: `${Math.min(i * 30, 600)}ms` }}>
-            <AnimeItem node={node} />
-          </div>
-        ))}
+      <div className="pt-2">
+        <AnimeGrid shows={activeShows} />
       </div>
     </div>
   );

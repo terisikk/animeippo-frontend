@@ -1,4 +1,4 @@
-import { AnimeItem } from "./AnimeItem";
+import { AnimeGrid } from "../shared/AnimeGrid";
 import { SECTION_TITLE } from "../../styles";
 
 export function AnimeListFlex({ shows, genreTitle }) {
@@ -7,13 +7,7 @@ export function AnimeListFlex({ shows, genreTitle }) {
       {genreTitle && (
         <h2 className={`mb-5 text-center ${SECTION_TITLE}`}>{genreTitle}</h2>
       )}
-      <div className="flex flex-wrap justify-center gap-4">
-        {shows.map((node, i) => (
-          <div key={node["id"]} className="w-52 animate-hero-fade-in hover:z-10" style={{ animationDelay: `${Math.min(i * 30, 600)}ms` }}>
-            <AnimeItem node={node} />
-          </div>
-        ))}
-      </div>
+      <AnimeGrid shows={shows} />
     </div>
   );
 }

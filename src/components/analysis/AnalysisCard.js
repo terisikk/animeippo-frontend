@@ -4,33 +4,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import { AnalysisCarousel } from "../carousel/AnalysisCarousel";
 import { AnalysisItem } from "./AnalysisItem";
-import { colors } from "../../styles";
-
-const toggleGroupSx = {
-  width: '100%',
-  mb: 1.5,
-  '& .MuiToggleButton-root': {
-    flex: 1,
-    py: 0.5,
-    px: 1,
-    fontSize: '0.75rem',
-    textTransform: 'none',
-    color: colors.blue200,
-    borderColor: 'transparent',
-    '&:hover': { bgcolor: colors.zinc600 },
-    '&.Mui-selected': {
-      bgcolor: 'rgba(96,165,250,0.15)',
-      color: '#fff',
-      '&:hover': { bgcolor: 'rgba(96,165,250,0.25)' },
-    },
-    '&.Mui-disabled': {
-      opacity: 0.4,
-      color: colors.zinc400,
-    },
-  },
-  bgcolor: 'rgba(63,63,70,0.4)',
-  borderRadius: 1,
-};
+import { toggleGroupSx } from "../../styles";
 
 export function AnalysisCard({ category, shows, recommendations = [], index, onExpand }) {
   const [view, setView] = useState("watched");

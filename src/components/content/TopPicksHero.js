@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { anilistUrl } from "../../styles";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { StatusBadge } from "../shared/StatusBadge";
 import { HeroDetails } from "../shared/HeroDetails";
 
 export function TopPicksHero({ shows, title }) {
@@ -49,18 +49,9 @@ export function TopPicksHero({ shows, title }) {
             src={node["cover_image"]}
             alt={node["title"]}
             />
-          {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (
-            <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded bg-amber-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-amber-950">
-              <CalendarMonthIcon sx={{ fontSize: 14 }} />
-              {node["season"]?.toLowerCase()}
-            </span>
-          )}
-          {node["status"]?.toUpperCase() === "RELEASING" && (
-            <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded bg-emerald-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-emerald-950">
-              <CalendarMonthIcon sx={{ fontSize: 14 }} />
-              Airing
-            </span>
-          )}
+          <div className="absolute bottom-2 left-2">
+            <StatusBadge status={node["status"]} season={node["season"]} />
+          </div>
         </div>
         <HeroDetails node={node} />
       </a>

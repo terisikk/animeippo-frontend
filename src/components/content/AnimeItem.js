@@ -2,15 +2,11 @@ import { memo } from "react";
 import { anilistUrl } from "../../styles";
 import { useLazyImage } from "../../hooks/useLazyImage";
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { StatusBadge } from "../shared/StatusBadge";
+import { FormatLabel } from "../shared/FormatLabel";
+import { GenrePill } from "../shared/GenrePill";
 
-export const FORMAT_LABELS = {
-  MOVIE: "Movie",
-  ONA: "ONA",
-  OVA: "OVA",
-  TV_SHORT: "Short",
-  SPECIAL: "Special",
-};
+export { FORMAT_LABELS } from "../shared/FormatLabel";
 
 function toStars(value) {
   if (typeof value !== 'number') return String(value);
@@ -44,24 +40,9 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
         )}
         <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-1.5 pb-1.5">
           <div>
-            {node["status"]?.toUpperCase() === "NOT_YET_RELEASED" && (
-              <span className="flex items-center gap-1 rounded bg-amber-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-amber-950">
-                <CalendarMonthIcon sx={{ fontSize: 14 }} />
-                {node["season"]?.toLowerCase()}
-              </span>
-            )}
-            {node["status"]?.toUpperCase() === "RELEASING" && (
-              <span className="flex items-center gap-1 rounded bg-emerald-500 px-2 py-1 font-sans text-xs font-semibold capitalize text-emerald-950">
-                <CalendarMonthIcon sx={{ fontSize: 14 }} />
-                Airing
-              </span>
-            )}
+            <StatusBadge status={node["status"]} season={node["season"]} />
           </div>
-          {FORMAT_LABELS[node["format"]] && (
-            <span className="rounded bg-black/60 px-1.5 py-0.5 font-sans text-[0.625rem] font-medium uppercase tracking-wide text-white">
-              {FORMAT_LABELS[node["format"]]}
-            </span>
-          )}
+          <FormatLabel format={node["format"]} />
         </div>
         {debugMode && scoreFields.length > 0 && (
           <div className="invisible absolute inset-0 overflow-x-hidden overflow-y-auto rounded bg-black bg-opacity-95 px-3 py-2 text-xs text-white group-hover:visible">
@@ -81,7 +62,7 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
       </div>
       <div className="invisible absolute top-[calc(100%-1px)] left-0 right-0 flex flex-wrap content-start justify-center gap-1.5 rounded-b bg-zinc-900 px-3 pt-1 pb-2.5 duration-300 ease-in group-hover:visible group-hover:bg-zinc-600">
         {(node["genres"] || []).map((genre) => (
-          <span className="rounded-full border border-blue-300/20 px-2 py-0.5 font-sans text-xs font-medium text-blue-100" key={genre}>{genre}</span>
+          <GenrePill key={genre} genre={genre} />
         ))}
       </div>
     </a>

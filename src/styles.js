@@ -13,4 +13,30 @@ export const colors = {
 
 export const listItemHoverSx = { '&:hover': { bgcolor: colors.zinc600 } };
 
+export const toggleGroupSx = {
+  width: '100%',
+  mb: 1.5,
+  '& .MuiToggleButton-root': {
+    flex: 1,
+    py: 0.5,
+    px: 1,
+    fontSize: '0.75rem',
+    textTransform: 'none',
+    color: colors.blue200,
+    borderColor: 'transparent',
+    '&:hover': { bgcolor: colors.zinc600 },
+    '&.Mui-selected': {
+      bgcolor: 'rgba(96,165,250,0.15)',
+      color: '#fff',
+      '&:hover': { bgcolor: 'rgba(96,165,250,0.25)' },
+    },
+    '&.Mui-disabled': {
+      opacity: 0.4,
+      color: colors.zinc400,
+    },
+  },
+  bgcolor: 'rgba(63,63,70,0.4)',
+  borderRadius: 1,
+};
+
 export const anilistUrl = (id) => `https://anilist.co/anime/${id}`;
