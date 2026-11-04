@@ -11,7 +11,7 @@ export { FORMAT_LABELS } from "../shared/FormatLabel";
 function toStars(value) {
   if (typeof value !== 'number') return String(value);
   const full = Math.round(value * 5);
-  return '\u2605'.repeat(full) + '\u2606'.repeat(5 - full);
+  return '\u2605'.repeat(full) //+ '\u2606'.repeat(5 - full);
 }
 
 export const AnimeItem = memo(function AnimeItem({ node }) {
@@ -49,7 +49,7 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
             {scoreFields.map((field) => (
               <div key={field} className="mb-1 flex justify-between gap-1">
                 <span className={`font-semibold ${field === 'discovery_score' ? 'text-green-400' : 'text-blue-300'}`}>{field}:</span>
-                <span className={field === 'discovery_score' ? 'text-yellow-300' : 'text-yellow-200'}>{toStars(node[field])}</span>
+                <span className={field === 'discovery_score' ? 'text-yellow-300' : 'text-yellow-200'}>{node[field]}</span>
               </div>
             ))}
           </div>
@@ -61,8 +61,8 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
         </h4>
       </div>
       <div className="invisible absolute top-[calc(100%-1px)] left-0 right-0 flex flex-wrap content-start justify-center gap-1.5 rounded-b bg-zinc-900 px-3 pt-1 pb-2.5 duration-300 ease-in group-hover:visible group-hover:bg-zinc-600">
-        {(node["genres"] || []).map((genre) => (
-          <GenrePill key={genre} genre={genre} />
+        {((node["description"]?.length ? node["description"] : node["genres"]) || []).map((item) => (
+          <GenrePill key={item} genre={item} />
         ))}
       </div>
     </a>

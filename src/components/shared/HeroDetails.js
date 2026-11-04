@@ -8,19 +8,10 @@ export function HeroDetails({ node, titleSize = "text-xl" }) {
         {node["title"]}
       </h3>
       <div className="mt-2 flex flex-wrap gap-1.5">
-        {node["genres"]?.slice(0, 6).map((genre) => (
-          <GenrePill key={genre} genre={genre} />
+        {((node["description"]?.length ? node["description"] : node["genres"]) || []).map((item) => (
+          <GenrePill key={item} genre={item} />
         ))}
       </div>
-      {node["moods"]?.length > 0 && (
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {node["moods"].map((mood) => (
-            <span key={mood} className="rounded-full border border-blue-300/20 bg-zinc-700/80 px-2 py-0.5 font-sans text-xs font-medium text-blue-200 capitalize">
-              {mood}
-            </span>
-          ))}
-        </div>
-      )}
       <div className="mt-auto flex items-center justify-between pt-4">
         {node["discovery_score"] != null && (
           <span className="font-sans text-3xl font-bold text-blue-400">
