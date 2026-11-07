@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { TopPicksHero } from "./TopPicksHero";
+import { HeroCarousel } from "./HeroCarousel";
 import { AnimeListCarousel } from "./AnimeListCarousel";
 import { AnimeListFlex } from "./AnimeListFlex";
 
@@ -32,14 +32,14 @@ export function AnimeContent({ data }) {
 
   if (data?.categories) {
     return (
-      <div className="mt-4">
-        {topPicks.length > 0 && <TopPicksHero shows={topPicks} title="Picked for You" />}
+      <div>
+        {topPicks.length > 0 && <HeroCarousel shows={topPicks} title="Picked for You" />}
         {otherCategories.map((category) => {
           const render = resolveShows(data, category);
           if (render.length === 0) return null;
 
           if (HERO_CATEGORIES.has(category.name)) {
-            return <TopPicksHero key={category.name} shows={render} title={category.name} />;
+            return <HeroCarousel key={category.name} shows={render} title={category.name} />;
           }
           return <AnimeListCarousel key={category.name} shows={render} category={category} />;
         })}

@@ -1,15 +1,11 @@
 import { memo } from "react";
 import { anilistUrl } from "../../styles";
-import { useLazyImage } from "../../hooks/useLazyImage";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { StatusBadge } from "../shared/StatusBadge";
 import { FormatLabel } from "../shared/FormatLabel";
-import { Box, Stack } from "@mui/material";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { GenrePill } from "../shared/GenrePill";
+import { CardMedia, Typography, Box, Stack } from "@mui/material";
+import { AnimeDescription } from "./AnimeDescription";
 
 export { FORMAT_LABELS } from "../shared/FormatLabel";
 
@@ -23,8 +19,7 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
   const url = anilistUrl(node["id"]);
   const debugMode = process.env.REACT_APP_DEBUG === "true";
 
-  // TODO: Just fetch the large on in backend
-  const img = node["cover_image"].replace("/medium", "/large");
+  const img = node["cover_image"]
 
   let scoreFields = debugMode ? Object.keys(node).filter((key) => key.includes("score") || key.includes("Score")) : [];
 
@@ -54,6 +49,7 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
         },
         cursor: "pointer",
       }}
+      key={node["id"]}
     >
       <a target="_blank" href={url} rel="noreferrer">
         <Card
@@ -107,19 +103,11 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
                   />
                 )}
               </Stack>
-              <Typography
-                variant="body2"
-                align="center"
-                sx={{
-                  color: "white",
-                  bottom: 0,
-                  padding: "0px 15px 15px 15px",
-                }}
-              >
-                {((node["description"]?.length ? node["description"] : node["genres"]) || [])
-                  .map((item) => item.replace(/ /g, "\u00A0"))
-                  .join(" ∙ ")}
-              </Typography>
+              <AnimeDescription node={node} sx={{
+                color: "white",
+                bottom: 0,
+                padding: "0px 15px 15px 15px",
+              }} />
             </Stack>
           </Box>
         </Card>
