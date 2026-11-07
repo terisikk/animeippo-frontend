@@ -20,10 +20,10 @@ Create `.env.development.local` and `.env.production.local` files with the follo
 REACT_APP_API_URL="http://127.0.0.1:5000"
 
 # Enable mock backend (uses local test data)
-REACT_APP_MOCK_BACKEND=false
+REACT_APP_MOCK_BACKEND=true
 
 # Enable debug mode (shows score overlays on anime cards)
-REACT_APP_DEBUG=false
+REACT_APP_DEBUG=true
 ```
 
 ### Environment Variable Options

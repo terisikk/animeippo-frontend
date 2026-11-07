@@ -4,6 +4,7 @@ import { GenreCombobox } from "./GenreCombobox";
 import { FilterDropdown } from "./FilterDropdown";
 import { AnimeListFlex } from "../content/AnimeListFlex";
 import { PAGE_TITLE, ACTIVE_FILTER_PILL } from "../../styles";
+import Chip from '@mui/material/Chip';
 
 const STATUS_OPTIONS = [
   { value: "", label: "All" },
@@ -131,44 +132,19 @@ export function BrowseContent({ data, filters, setFilters }) {
           <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
             <span className="text-sm text-zinc-400">Showing:</span>
             {selectedGenre !== "All" && (
-              <span className={ACTIVE_FILTER_PILL}>
-                {selectedGenre}
-                <button onClick={() => setSelectedGenre("All")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label={`Remove ${selectedGenre} filter`}>
-                  <ClearIcon style={{ fontSize: 14 }} />
-                </button>
-              </span>
+              <Chip label={selectedGenre} size="small" onClick={() => setSelectedGenre("All")} onDelete={() => setSelectedGenre("All")} color="primary" />
             )}
             {statusFilter && (
-              <span className={ACTIVE_FILTER_PILL}>
-                {STATUS_OPTIONS.find(o => o.value === statusFilter)?.label}
-                <button onClick={() => setStatusFilter("")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label="Remove status filter">
-                  <ClearIcon style={{ fontSize: 14 }} />
-                </button>
-              </span>
+              <Chip label={STATUS_OPTIONS.find(o => o.value === statusFilter)?.label} size="small" onClick={() => setStatusFilter("")} onDelete={() => setStatusFilter("")} color="primary" />
             )}
             {seasonFilter && (
-              <span className={ACTIVE_FILTER_PILL}>
-                {SEASON_OPTIONS.find(o => o.value === seasonFilter)?.label}
-                <button onClick={() => setSeasonFilter("")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label="Remove season filter">
-                  <ClearIcon style={{ fontSize: 14 }} />
-                </button>
-              </span>
+              <Chip label={SEASON_OPTIONS.find(o => o.value === seasonFilter)?.label} size="small" onClick={() => setSeasonFilter("")} onDelete={() => setSeasonFilter("")} color="primary" />
             )}
             {formatFilter && (
-              <span className={ACTIVE_FILTER_PILL}>
-                {FORMAT_OPTIONS.find(o => o.value === formatFilter)?.label}
-                <button onClick={() => setFormatFilter("")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label="Remove format filter">
-                  <ClearIcon style={{ fontSize: 14 }} />
-                </button>
-              </span>
+              <Chip label={FORMAT_OPTIONS.find(o => o.value === formatFilter)?.label} size="small" onClick={() => setFormatFilter("")} onDelete={() => setFormatFilter("")} color="primary" />
             )}
             {listStatusFilter && (
-              <span className={ACTIVE_FILTER_PILL}>
-                {LIST_STATUS_OPTIONS.find(o => o.value === listStatusFilter)?.label}
-                <button onClick={() => setListStatusFilter("")} className="flex items-center border-none bg-transparent p-0 text-white/70 cursor-pointer hover:text-white" aria-label="Remove list status filter">
-                  <ClearIcon style={{ fontSize: 14 }} />
-                </button>
-              </span>
+              <Chip label={LIST_STATUS_OPTIONS.find(o => o.value === listStatusFilter)?.label} size="small" onClick={() => setListStatusFilter("")} onDelete={() => setListStatusFilter("")} color="primary" />
             )}
             <button
               onClick={clearAllFilters}
