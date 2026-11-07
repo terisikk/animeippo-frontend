@@ -22,8 +22,10 @@ function toStars(value) {
 export const AnimeItem = memo(function AnimeItem({ node }) {
   const url = anilistUrl(node["id"]);
   const debugMode = process.env.REACT_APP_DEBUG === "true";
-  const img = node["cover_image"];
-
+  
+  // TODO: Just fetch the large on in backend
+  const img = node["cover_image"].replace("/medium", "/large"); 
+  
   let scoreFields = debugMode ? Object.keys(node).filter(key =>
     key.includes('score') || key.includes('Score')
   ) : [];
