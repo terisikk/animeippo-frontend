@@ -75,7 +75,7 @@ theme = createTheme(theme, {
     }),
     background: theme.palette.augmentColor({
       color: {
-        main: '#232323',
+        main: '#131313',
       },
       name: 'background',
     }),

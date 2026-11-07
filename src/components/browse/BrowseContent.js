@@ -132,19 +132,19 @@ export function BrowseContent({ data, filters, setFilters }) {
           <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
             <span className="text-sm text-zinc-400">Showing:</span>
             {selectedGenre !== "All" && (
-              <Chip label={selectedGenre} size="small" onClick={() => setSelectedGenre("All")} onDelete={() => setSelectedGenre("All")} color="primary" />
+              <Chip label={selectedGenre} size="small" onClick={() => setSelectedGenre("All")} onDelete={() => setSelectedGenre("All")} color="secondary" />
             )}
             {statusFilter && (
-              <Chip label={STATUS_OPTIONS.find(o => o.value === statusFilter)?.label} size="small" onClick={() => setStatusFilter("")} onDelete={() => setStatusFilter("")} color="primary" />
+              <Chip label={STATUS_OPTIONS.find(o => o.value === statusFilter)?.label} size="small" onClick={() => setStatusFilter("")} onDelete={() => setStatusFilter("")} color="secondary" />
             )}
             {seasonFilter && (
-              <Chip label={SEASON_OPTIONS.find(o => o.value === seasonFilter)?.label} size="small" onClick={() => setSeasonFilter("")} onDelete={() => setSeasonFilter("")} color="primary" />
+              <Chip label={SEASON_OPTIONS.find(o => o.value === seasonFilter)?.label} size="small" onClick={() => setSeasonFilter("")} onDelete={() => setSeasonFilter("")} color="secondary" />
             )}
             {formatFilter && (
-              <Chip label={FORMAT_OPTIONS.find(o => o.value === formatFilter)?.label} size="small" onClick={() => setFormatFilter("")} onDelete={() => setFormatFilter("")} color="primary" />
+              <Chip label={FORMAT_OPTIONS.find(o => o.value === formatFilter)?.label} size="small" onClick={() => setFormatFilter("")} onDelete={() => setFormatFilter("")} color="secondary" />
             )}
             {listStatusFilter && (
-              <Chip label={LIST_STATUS_OPTIONS.find(o => o.value === listStatusFilter)?.label} size="small" onClick={() => setListStatusFilter("")} onDelete={() => setListStatusFilter("")} color="primary" />
+              <Chip label={LIST_STATUS_OPTIONS.find(o => o.value === listStatusFilter)?.label} size="small" onClick={() => setListStatusFilter("")} onDelete={() => setListStatusFilter("")} color="secondary" />
             )}
             <button
               onClick={clearAllFilters}

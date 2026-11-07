@@ -4,7 +4,7 @@ import { useLazyImage } from "../../hooks/useLazyImage";
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { StatusBadge } from "../shared/StatusBadge";
 import { FormatLabel } from "../shared/FormatLabel";
-import Box from '@mui/material/Box'
+import { Box, Stack } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -45,6 +45,9 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
           '&:hover .reveal-me': {
             opacity: 1,
           },
+          '&:hover .hide-me': {
+            opacity: 0,
+          },
           '& .animeImage': {
             transition: 'scale 0.3s ease-in',
           },
@@ -68,43 +71,46 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
             title={node["title"]}
             sx={{ objectFit: 'cover', width: '100%', height: 'auto', aspectRatio: '2/3'}}
           />
+          <Box className="hide-me" sx={{position: 'absolute', bottom: 0, m: 1, transition: 'opacity 0.3s ease',}}>
+          <StatusBadge status={node["status"]} season={node["season"]} />
+          </Box>
+        <Stack className='reveal-me' spacing={1} sx={{
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
+            height: '50%',
+            opacity: 0,
+            transition: 'opacity 0.3s ease',
+            pointerEvents: 'none',
+            background: 'linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 40%, rgba(10, 10, 10, 0) 100%)',
+            justifyContent: 'flex-end',
+            alignItems: 'center'
+        }}> 
+        <Stack direction="row" spacing={1} sx={{alignItems: 'center'}}>
+          <StatusBadge status={node["status"]} season={node["season"]} />
+          <FormatLabel format={node["format"]} />
           {node["user_status"] != null && (
             <BookmarkIcon 
             sx={{
-              position: 'absolute',
-              top: 4,
-              right: 4,
               fontSize: '1.25rem', 
               color: 'primary.main', // or 'blue.400' if defined in your theme
               opacity: 0.8,
               filter: 'drop-shadow(0px 1px 3px rgba(0,0,0,0.8))'
             }} 
           />)}
-        <Box className='reveal-me' sx={{
-            position: 'absolute',
-            bottom: 0,
-            width: '100%',
-            height: '33%',
-            align: 'center',
-            opacity: 0,
-            transition: 'opacity 0.3s ease',
-            pointerEvents: 'none',
-            background: 'linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 40%, rgba(10, 10, 10, 0) 100%)',
-            justifyItems: 'center',
-        }}> 
-        <Typography 
-          variant="body2" 
-          align="center"
-          sx={{
-            color: 'white',
-            position: 'absolute',
-            bottom: 0,
-            padding: '15px 15px 15px 15px',
-          }}
-        >
-          {((node["description"]?.length ? node["description"] : node["genres"]) || []).map(item => item.replace(/ /g, '\u00A0')).join(' ∙ ')}
-        </Typography>
-        </Box>
+        </Stack>
+          <Typography 
+            variant="body2" 
+            align="center"
+            sx={{
+              color: 'white',
+              bottom: 0,
+              padding: '0px 15px 15px 15px',
+            }}
+          >
+            {((node["description"]?.length ? node["description"] : node["genres"]) || []).map(item => item.replace(/ /g, '\u00A0')).join(' ∙ ')}
+          </Typography>
+        </Stack>
       </Box>
     </Card>
     <Box>
