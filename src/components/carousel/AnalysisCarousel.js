@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 export function AnalysisCarousel({ children }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -30,11 +30,13 @@ export function AnalysisCarousel({ children }) {
     <div className="group/carousel relative">
       <div className="overflow-x-clip" ref={emblaRef}>
         <div className="flex gap-1">
-          {Array.isArray(children) ? children.map((child, i) => (
-            <div className="flex-[0_0_23%] xl:flex-[0_0_18%] min-w-0" key={child.key ?? i}>
-              {child}
-            </div>
-          )) : children}
+          {Array.isArray(children)
+            ? children.map((child, i) => (
+                <div className="flex-[0_0_23%] xl:flex-[0_0_18%] min-w-0" key={child.key ?? i}>
+                  {child}
+                </div>
+              ))
+            : children}
         </div>
       </div>
       {canScrollPrev && (

@@ -1,8 +1,8 @@
-import { Box, ThemeProvider, CssBaseline } from '@mui/material';
+import { Box, ThemeProvider, CssBaseline } from "@mui/material";
 import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import { SearchForm } from "./Header";
 import TopBar from "./TopBar";
-import theme from './styles';
+import theme from "./styles";
 
 import "./App.css";
 import { AnimeContent } from "./components/content/AnimeContent";
@@ -11,7 +11,6 @@ import { PlaceHolderContent, AnalysisPlaceholderContent } from "./components/pla
 import { BrowseContent } from "./components/browse/BrowseContent";
 import { FunnelContent } from "./components/funnel/FunnelContent";
 import { fetchAnimeList } from "./api";
-
 
 function App() {
   const [shows, setShows] = useState(null);
@@ -32,9 +31,12 @@ function App() {
     listStatusFilter: "",
   });
 
-  const toggleMenu = useCallback((menu) => () => {
-    setOpenMenu((prev) => prev === menu ? null : menu);
-  }, []);
+  const toggleMenu = useCallback(
+    (menu) => () => {
+      setOpenMenu((prev) => (prev === menu ? null : menu));
+    },
+    [],
+  );
 
   const closeMenu = useCallback(() => setOpenMenu(null), []);
 
@@ -45,7 +47,7 @@ function App() {
 
     if (new_user !== user) {
       // Clear old user's cached data
-      Object.keys(localStorage).forEach(k => {
+      Object.keys(localStorage).forEach((k) => {
         if (k.includes("user=" + user)) localStorage.removeItem(k);
       });
       localStorage.setItem("animeippo_last_user", new_user);
@@ -81,7 +83,7 @@ function App() {
 
   const fetchAnimeListCb = useCallback(fetchAnimeList, []);
 
-  const apiMode = (mode === "browse" || mode === "funnel") ? "recommend" : mode;
+  const apiMode = mode === "browse" || mode === "funnel" ? "recommend" : mode;
 
   useEffect(() => {
     if (process.env.REACT_APP_MOCK_BACKEND === "true") {
@@ -100,75 +102,88 @@ function App() {
   const lastAnalysisData = useRef(null);
   if (shows?.data && mode === "analyse") lastAnalysisData.current = shows.data;
 
-  const analysisData = mode === "analyse" ? (shows?.data || lastAnalysisData.current) : null;
+  const analysisData = mode === "analyse" ? shows?.data || lastAnalysisData.current : null;
 
-  const content = useMemo(() => (
-    <div>
-      {loading
-        ? <><p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">Loading {mode === "analyse" ? "analysis" : "recommendations"} for <span className="font-semibold text-white">{user}</span>...</p>{mode === "analyse" ? <AnalysisPlaceholderContent /> : <PlaceHolderContent />}</>
-        : shows != null
-        ? mode === "analyse"
-          ? null
-          : mode === "browse"
-          ? <BrowseContent data={shows?.data} filters={browseFilters} setFilters={setBrowseFilters} />
-          : mode === "funnel"
-          ? <FunnelContent data={shows?.data} />
-          : <AnimeContent data={shows?.data} />
-        : error != null
-        ? <p className="w-full text-center font-sans text-lg text-zinc-400">{error}</p>
-        : null}
-      {analysisData && (
-        <div className={loading ? "hidden" : undefined}>
-          <AnalysisContent data={analysisData} />
-        </div>
-      )}
-    </div>
-  ), [loading, mode, user, shows, error, browseFilters, setBrowseFilters, analysisData]);
+  const content = useMemo(
+    () => (
+      <div>
+        {loading ? (
+          <>
+            <p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">
+              Loading {mode === "analyse" ? "analysis" : "recommendations"} for{" "}
+              <span className="font-semibold text-white">{user}</span>...
+            </p>
+            {mode === "analyse" ? <AnalysisPlaceholderContent /> : <PlaceHolderContent />}
+          </>
+        ) : shows != null ? (
+          mode === "analyse" ? null : mode === "browse" ? (
+            <BrowseContent data={shows?.data} filters={browseFilters} setFilters={setBrowseFilters} />
+          ) : mode === "funnel" ? (
+            <FunnelContent data={shows?.data} />
+          ) : (
+            <AnimeContent data={shows?.data} />
+          )
+        ) : error != null ? (
+          <p className="w-full text-center font-sans text-lg text-zinc-400">{error}</p>
+        ) : null}
+        {analysisData && (
+          <div className={loading ? "hidden" : undefined}>
+            <AnalysisContent data={analysisData} />
+          </div>
+        )}
+      </div>
+    ),
+    [loading, mode, user, shows, error, browseFilters, setBrowseFilters, analysisData],
+  );
 
   return (
     <ThemeProvider theme={theme}>
-    <CssBaseline /> {/* Resets browser styles and applies default background */}
-    <Box component="main" bgcolor={'background.main'}>
-      <div
-        className={`${hasContent ? "pt-0" : "h-screen pt-[15%]"} transition-all duration-1000 ease-out`}
-      >
-        {/* Landing state: centered title + search */}
-        {!hasContent && (
-          <>
-            <h1 className="w-full pb-5 pl-5 pr-5 text-center text-6xl font-extrabold leading-none tracking-tight text-white">
-              Animeippo
-            </h1>
-            <div className="flex justify-center">
-              <SearchForm onSubmit={handleSearch} loading={loading} contentReady={contentReady} user={user} provider={provider} setProvider={handleSetProvider} />
-            </div>
-          </>
-        )}
+      <CssBaseline /> {/* Resets browser styles and applies default background */}
+      <Box component="main" bgcolor={"background.main"}>
+        <div className={`${hasContent ? "pt-0" : "h-screen pt-[15%]"} transition-all duration-1000 ease-out`}>
+          {/* Landing state: centered title + search */}
+          {!hasContent && (
+            <>
+              <h1 className="w-full pb-5 pl-5 pr-5 text-center text-6xl font-extrabold leading-none tracking-tight text-white">
+                Animeippo
+              </h1>
+              <div className="flex justify-center">
+                <SearchForm
+                  onSubmit={handleSearch}
+                  loading={loading}
+                  contentReady={contentReady}
+                  user={user}
+                  provider={provider}
+                  setProvider={handleSetProvider}
+                />
+              </div>
+            </>
+          )}
 
-        {/* Content state: TopBar replaces title + header */}
-        {hasContent && (
-          <TopBar
-            activeYear={activeYear}
-            setActiveYear={setActiveYear}
-            loading={loading}
-            contentReady={contentReady}
-            user={user}
-            mode={mode}
-            setMode={setMode}
-            toggleMenu={toggleMenu}
-            openMenu={openMenu}
-            closeMenu={closeMenu}
-            onSwitchUser={handleSwitchUser}
-            provider={provider}
-            setProvider={handleSetProvider}
-          />
-        )}
+          {/* Content state: TopBar replaces title + header */}
+          {hasContent && (
+            <TopBar
+              activeYear={activeYear}
+              setActiveYear={setActiveYear}
+              loading={loading}
+              contentReady={contentReady}
+              user={user}
+              mode={mode}
+              setMode={setMode}
+              toggleMenu={toggleMenu}
+              openMenu={openMenu}
+              closeMenu={closeMenu}
+              onSwitchUser={handleSwitchUser}
+              provider={provider}
+              setProvider={handleSetProvider}
+            />
+          )}
 
-        {content}
-      </div>
-    </Box>
+          {content}
+        </div>
+      </Box>
     </ThemeProvider>
   );
 }
-
 
 export default App;

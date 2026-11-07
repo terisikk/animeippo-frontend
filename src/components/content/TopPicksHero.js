@@ -9,7 +9,7 @@ export function TopPicksHero({ shows, title }) {
     align: "start",
     containScroll: "trimSnaps",
     breakpoints: {
-      '(min-width: 1024px)': { active: false },
+      "(min-width: 1024px)": { active: false },
     },
   });
 
@@ -36,7 +36,13 @@ export function TopPicksHero({ shows, title }) {
     const url = anilistUrl(node["id"]);
 
     return (
-      <a key={node["id"]} href={url} target="_blank" rel="noopener noreferrer" className="group relative flex flex-row items-start gap-4 rounded-lg p-3 overflow-hidden transition-all duration-300 hover:bg-zinc-800/50 hover:scale-105">
+      <a
+        key={node["id"]}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative flex flex-row items-start gap-4 rounded-lg p-3 overflow-hidden transition-all duration-300 hover:bg-zinc-800/50 hover:scale-105"
+      >
         <img
           className="absolute inset-0 h-full w-full rounded-lg object-cover blur-2xl opacity-30 pointer-events-none"
           src={node["cover_image"]}
@@ -44,11 +50,7 @@ export function TopPicksHero({ shows, title }) {
           aria-hidden="true"
         />
         <div className="relative shrink-0 aspect-[2/3] h-[250px] lg:h-[300px]">
-          <img
-            className="h-full w-full rounded object-cover"
-            src={node["cover_image"]}
-            alt={node["title"]}
-            />
+          <img className="h-full w-full rounded object-cover" src={node["cover_image"]} alt={node["title"]} />
           <div className="absolute bottom-2 left-2">
             <StatusBadge status={node["status"]} season={node["season"]} />
           </div>
@@ -59,13 +61,26 @@ export function TopPicksHero({ shows, title }) {
   });
 
   return (
-    <div className="hero-section mb-8 pb-8 pt-6" style={{ background: 'radial-gradient(ellipse 160% 100% at center, rgba(23,37,84,0.3) 0%, rgba(24,24,27,0.5) 70%, rgb(24,24,27) 100%)' }}>
+    <div
+      className="hero-section mb-8 pb-8 pt-6"
+      style={{
+        background:
+          "radial-gradient(ellipse 160% 100% at center, rgba(23,37,84,0.3) 0%, rgba(24,24,27,0.5) 70%, rgb(24,24,27) 100%)",
+      }}
+    >
       {title && <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{title}</h2>}
       <div className="lg:flex lg:justify-center lg:gap-6 lg:px-6">
-        <div className="overflow-x-clip overflow-y-visible lg:contents cursor-grab active:cursor-grabbing" ref={emblaRef}>
+        <div
+          className="overflow-x-clip overflow-y-visible lg:contents cursor-grab active:cursor-grabbing"
+          ref={emblaRef}
+        >
           <div className="flex lg:contents">
             {cards.map((card, i) => (
-              <div className="hero-slide flex-[0_0_100%] min-w-0 lg:flex-1 px-6 lg:px-0 animate-hero-fade-in" style={{ animationDelay: `${i * 150}ms` }} key={card.key}>
+              <div
+                className="hero-slide flex-[0_0_100%] min-w-0 lg:flex-1 px-6 lg:px-0 animate-hero-fade-in"
+                style={{ animationDelay: `${i * 150}ms` }}
+                key={card.key}
+              >
                 {card}
               </div>
             ))}

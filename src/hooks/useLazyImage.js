@@ -15,7 +15,7 @@ export function useLazyImage(src) {
           observer.disconnect();
         }
       },
-      { rootMargin: "200% 300%" }
+      { rootMargin: "200% 300%" },
     );
 
     observer.observe(el);

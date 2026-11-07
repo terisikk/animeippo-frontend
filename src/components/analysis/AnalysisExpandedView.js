@@ -34,7 +34,9 @@ export function AnalysisExpandedView({ category, shows, recommendations, onClose
           {stats && (
             <div className="mt-1 flex gap-4 text-sm">
               <div className="flex items-baseline gap-1">
-                <span className="font-bold text-blue-200">{stats.mean_score != null ? stats.mean_score.toFixed(1) : "?"}</span>
+                <span className="font-bold text-blue-200">
+                  {stats.mean_score != null ? stats.mean_score.toFixed(1) : "?"}
+                </span>
                 <span className="text-xs text-zinc-400">avg</span>
               </div>
               <div className="flex items-baseline gap-1">
@@ -53,9 +55,7 @@ export function AnalysisExpandedView({ category, shows, recommendations, onClose
         size="small"
         sx={{ ...toggleGroupSx, maxWidth: 400 }}
       >
-        <ToggleButton value="watched">
-          Your titles ({shows.length})
-        </ToggleButton>
+        <ToggleButton value="watched">Your titles ({shows.length})</ToggleButton>
         <ToggleButton value="recommendations" disabled={!hasRecs}>
           Recommendations ({recommendations.length})
         </ToggleButton>

@@ -1,43 +1,45 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
-export const FILTER_BUTTON = "flex cursor-pointer items-center justify-between gap-1 rounded border-none bg-zinc-800 px-4 py-2 font-sans text-sm font-medium tracking-wide text-blue-200 transition-colors duration-200 hover:bg-zinc-700";
-export const ACTIVE_FILTER_PILL = "inline-flex items-center gap-1 rounded-full bg-blue-600 px-3 py-0.5 text-sm text-white";
+export const FILTER_BUTTON =
+  "flex cursor-pointer items-center justify-between gap-1 rounded border-none bg-zinc-800 px-4 py-2 font-sans text-sm font-medium tracking-wide text-blue-200 transition-colors duration-200 hover:bg-zinc-700";
+export const ACTIVE_FILTER_PILL =
+  "inline-flex items-center gap-1 rounded-full bg-blue-600 px-3 py-0.5 text-sm text-white";
 export const PAGE_TITLE = "font-sans text-3xl font-bold tracking-tight text-white";
 export const SECTION_TITLE = "font-sans text-2xl font-medium tracking-wide text-white";
 
 export const colors = {
-  blue200: '#bfdbfe',
-  blue400: '#60a5fa',
-  zinc400: '#a1a1aa',
-  zinc500: '#71717a',
-  zinc600: '#3f3f46',
+  blue200: "#bfdbfe",
+  blue400: "#60a5fa",
+  zinc400: "#a1a1aa",
+  zinc500: "#71717a",
+  zinc600: "#3f3f46",
 };
 
-export const listItemHoverSx = { '&:hover': { bgcolor: colors.zinc600 } };
+export const listItemHoverSx = { "&:hover": { bgcolor: colors.zinc600 } };
 
 export const toggleGroupSx = {
-  width: '100%',
+  width: "100%",
   mb: 1.5,
-  '& .MuiToggleButton-root': {
+  "& .MuiToggleButton-root": {
     flex: 1,
     py: 0.5,
     px: 1,
-    fontSize: '0.75rem',
-    textTransform: 'none',
+    fontSize: "0.75rem",
+    textTransform: "none",
     color: colors.blue200,
-    borderColor: 'transparent',
-    '&:hover': { bgcolor: colors.zinc600 },
-    '&.Mui-selected': {
-      bgcolor: 'rgba(96,165,250,0.15)',
-      color: '#fff',
-      '&:hover': { bgcolor: 'rgba(96,165,250,0.25)' },
+    borderColor: "transparent",
+    "&:hover": { bgcolor: colors.zinc600 },
+    "&.Mui-selected": {
+      bgcolor: "rgba(96,165,250,0.15)",
+      color: "#fff",
+      "&:hover": { bgcolor: "rgba(96,165,250,0.25)" },
     },
-    '&.Mui-disabled': {
+    "&.Mui-disabled": {
       opacity: 0.4,
       color: colors.zinc400,
     },
   },
-  bgcolor: 'rgba(63,63,70,0.4)',
+  bgcolor: "rgba(63,63,70,0.4)",
   borderRadius: 1,
 };
 
@@ -47,15 +49,15 @@ let theme = createTheme({
 
   typography: {
     fontFamily: [
-      'ui-sans-serif',
-      'system-ui',
-      'sans-serif',
-      'Apple Color Emoji',
-      'Segoe UI Emoji', 
-      'Segoe UI Symbol', 
-      'Noto Color Emoji'
-    ].join(',')
-  }
+      "ui-sans-serif",
+      "system-ui",
+      "sans-serif",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      "Noto Color Emoji",
+    ].join(","),
+  },
 });
 
 theme = createTheme(theme, {
@@ -63,21 +65,21 @@ theme = createTheme(theme, {
   palette: {
     primary: theme.palette.augmentColor({
       color: {
-        main: '#66c7dc',
+        main: "#66c7dc",
       },
-      name: 'primary',
+      name: "primary",
     }),
     secondary: theme.palette.augmentColor({
       color: {
-        main: '#644539',
+        main: "#644539",
       },
-      name: 'secondary',
+      name: "secondary",
     }),
     background: theme.palette.augmentColor({
       color: {
-        main: '#131313',
+        main: "#131313",
       },
-      name: 'background',
+      name: "background",
     }),
   },
 });

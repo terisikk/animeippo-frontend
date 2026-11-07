@@ -21,9 +21,7 @@ function PlaceholderList() {
   return (
     <div className="pb-8">
       <h2 className={`ml-5 pb-5 ${SECTION_TITLE}`}>...</h2>
-      <EmblaCarousel>
-        {placeholders}
-      </EmblaCarousel>
+      <EmblaCarousel>{placeholders}</EmblaCarousel>
     </div>
   );
 }
@@ -47,7 +45,10 @@ export function AnalysisPlaceholderContent() {
       <h1 className={`ml-6 mt-6 ${PAGE_TITLE}`}>Your Profile Insights</h1>
       <div className="flex flex-wrap justify-center gap-6 px-6 py-6">
         {[...Array(6)].map((_, i) => (
-          <div key={i} className="w-full rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-4 md:w-[calc(50%-0.75rem)] xl:w-[calc(33.333%-1rem)]">
+          <div
+            key={i}
+            className="w-full rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-4 md:w-[calc(50%-0.75rem)] xl:w-[calc(33.333%-1rem)]"
+          >
             <div className="mb-2 h-6 w-1/2 rounded bg-zinc-700/50" />
             <div className="mb-3 flex gap-4">
               <div className="h-4 w-16 rounded bg-zinc-700/50" />

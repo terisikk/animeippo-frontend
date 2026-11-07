@@ -72,17 +72,21 @@ src/
 ## Features Detail
 
 ### Recommendation Mode
+
 - Browse anime recommendations based on your watching history
 - Filter by year and genre
 - See personalized scores (when backend debug mode is enabled)
 
 ### Analysis Mode
+
 - View insights about your anime watching preferences
 - Year selector is hidden in this mode
 - Analyze patterns in your viewing history
 
 ### Debug Mode
+
 When `REACT_APP_DEBUG=true`:
+
 - Overlays on anime cards show all scoring fields
 - Useful for understanding recommendation algorithm
 - Backend should also be in debug mode to send score data

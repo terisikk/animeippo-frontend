@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from "@mui/icons-material/Clear";
 import { GenreCombobox } from "./GenreCombobox";
 import { FilterDropdown } from "./FilterDropdown";
 import { AnimeListFlex } from "../content/AnimeListFlex";
 import { PAGE_TITLE, ACTIVE_FILTER_PILL } from "../../styles";
-import Chip from '@mui/material/Chip';
+import Chip from "@mui/material/Chip";
 
 const STATUS_OPTIONS = [
   { value: "", label: "All" },
@@ -39,7 +39,7 @@ const LIST_STATUS_OPTIONS = [
 
 export function BrowseContent({ data, filters, setFilters }) {
   const { selectedGenre, searchQuery, statusFilter, seasonFilter, formatFilter, listStatusFilter } = filters;
-  const update = (key) => (value) => setFilters(prev => ({ ...prev, [key]: value }));
+  const update = (key) => (value) => setFilters((prev) => ({ ...prev, [key]: value }));
   const setSelectedGenre = update("selectedGenre");
   const setSearchQuery = update("searchQuery");
   const setStatusFilter = update("statusFilter");
@@ -49,33 +49,33 @@ export function BrowseContent({ data, filters, setFilters }) {
 
   const availableGenres = useMemo(() => {
     const presentGenres = new Set();
-    for (const show of (data?.shows || [])) {
-      for (const g of (show.genres || [])) presentGenres.add(g);
+    for (const show of data?.shows || []) {
+      for (const g of show.genres || []) presentGenres.add(g);
     }
     return [...presentGenres].sort();
   }, [data?.shows]);
 
   const availableTags = useMemo(() => {
     const presentTags = new Set();
-    for (const show of (data?.shows || [])) {
-      for (const tag of (show.tags || [])) presentTags.add(tag);
+    for (const show of data?.shows || []) {
+      for (const tag of show.tags || []) presentTags.add(tag);
     }
-    return (data?.tags || []).filter(tag => presentTags.has(tag) && !availableGenres.includes(tag));
+    return (data?.tags || []).filter((tag) => presentTags.has(tag) && !availableGenres.includes(tag));
   }, [data?.tags, data?.shows, availableGenres]);
 
   const matchCounts = useMemo(() => {
     const counts = new Map();
     let shows = data?.shows || [];
-    if (statusFilter) shows = shows.filter(s => s.status === statusFilter);
-    if (seasonFilter) shows = shows.filter(s => s.season === seasonFilter);
-    if (formatFilter) shows = shows.filter(s => s.format === formatFilter);
-    if (listStatusFilter === "on_list") shows = shows.filter(s => s.user_status != null);
-    else if (listStatusFilter === "not_on_list") shows = shows.filter(s => s.user_status == null);
+    if (statusFilter) shows = shows.filter((s) => s.status === statusFilter);
+    if (seasonFilter) shows = shows.filter((s) => s.season === seasonFilter);
+    if (formatFilter) shows = shows.filter((s) => s.format === formatFilter);
+    if (listStatusFilter === "on_list") shows = shows.filter((s) => s.user_status != null);
+    else if (listStatusFilter === "not_on_list") shows = shows.filter((s) => s.user_status == null);
     for (const show of shows) {
-      for (const g of (show.genres || [])) {
+      for (const g of show.genres || []) {
         counts.set(g, (counts.get(g) || 0) + 1);
       }
-      for (const t of (show.tags || [])) {
+      for (const t of show.tags || []) {
         counts.set(t, (counts.get(t) || 0) + 1);
       }
     }
@@ -85,12 +85,13 @@ export function BrowseContent({ data, filters, setFilters }) {
 
   const filteredShows = useMemo(() => {
     let result = data?.shows || [];
-    if (selectedGenre !== "All") result = result.filter(s => s.genres?.includes(selectedGenre) || s.tags?.includes(selectedGenre));
-    if (statusFilter) result = result.filter(s => s.status === statusFilter);
-    if (seasonFilter) result = result.filter(s => s.season === seasonFilter);
-    if (formatFilter) result = result.filter(s => s.format === formatFilter);
-    if (listStatusFilter === "on_list") result = result.filter(s => s.user_status != null);
-    else if (listStatusFilter === "not_on_list") result = result.filter(s => s.user_status == null);
+    if (selectedGenre !== "All")
+      result = result.filter((s) => s.genres?.includes(selectedGenre) || s.tags?.includes(selectedGenre));
+    if (statusFilter) result = result.filter((s) => s.status === statusFilter);
+    if (seasonFilter) result = result.filter((s) => s.season === seasonFilter);
+    if (formatFilter) result = result.filter((s) => s.format === formatFilter);
+    if (listStatusFilter === "on_list") result = result.filter((s) => s.user_status != null);
+    else if (listStatusFilter === "not_on_list") result = result.filter((s) => s.user_status == null);
     return [...result].sort((a, b) => (b.discovery_score ?? 0) - (a.discovery_score ?? 0));
   }, [data?.shows, selectedGenre, statusFilter, seasonFilter, formatFilter, listStatusFilter]);
 
@@ -123,28 +124,82 @@ export function BrowseContent({ data, filters, setFilters }) {
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />
-          <FilterDropdown title="Airing Status" label="Status" value={statusFilter} options={STATUS_OPTIONS} onChange={setStatusFilter} />
-          <FilterDropdown title="Season" label="Season" value={seasonFilter} options={SEASON_OPTIONS} onChange={setSeasonFilter} />
-          <FilterDropdown title="Format" label="Format" value={formatFilter} options={FORMAT_OPTIONS} onChange={setFormatFilter} />
-          <FilterDropdown title="My List" label="List" value={listStatusFilter} options={LIST_STATUS_OPTIONS} onChange={setListStatusFilter} />
+          <FilterDropdown
+            title="Airing Status"
+            label="Status"
+            value={statusFilter}
+            options={STATUS_OPTIONS}
+            onChange={setStatusFilter}
+          />
+          <FilterDropdown
+            title="Season"
+            label="Season"
+            value={seasonFilter}
+            options={SEASON_OPTIONS}
+            onChange={setSeasonFilter}
+          />
+          <FilterDropdown
+            title="Format"
+            label="Format"
+            value={formatFilter}
+            options={FORMAT_OPTIONS}
+            onChange={setFormatFilter}
+          />
+          <FilterDropdown
+            title="My List"
+            label="List"
+            value={listStatusFilter}
+            options={LIST_STATUS_OPTIONS}
+            onChange={setListStatusFilter}
+          />
         </div>
         {hasActiveFilters && (
           <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
             <span className="text-sm text-zinc-400">Showing:</span>
             {selectedGenre !== "All" && (
-              <Chip label={selectedGenre} size="small" onClick={() => setSelectedGenre("All")} onDelete={() => setSelectedGenre("All")} color="secondary" />
+              <Chip
+                label={selectedGenre}
+                size="small"
+                onClick={() => setSelectedGenre("All")}
+                onDelete={() => setSelectedGenre("All")}
+                color="secondary"
+              />
             )}
             {statusFilter && (
-              <Chip label={STATUS_OPTIONS.find(o => o.value === statusFilter)?.label} size="small" onClick={() => setStatusFilter("")} onDelete={() => setStatusFilter("")} color="secondary" />
+              <Chip
+                label={STATUS_OPTIONS.find((o) => o.value === statusFilter)?.label}
+                size="small"
+                onClick={() => setStatusFilter("")}
+                onDelete={() => setStatusFilter("")}
+                color="secondary"
+              />
             )}
             {seasonFilter && (
-              <Chip label={SEASON_OPTIONS.find(o => o.value === seasonFilter)?.label} size="small" onClick={() => setSeasonFilter("")} onDelete={() => setSeasonFilter("")} color="secondary" />
+              <Chip
+                label={SEASON_OPTIONS.find((o) => o.value === seasonFilter)?.label}
+                size="small"
+                onClick={() => setSeasonFilter("")}
+                onDelete={() => setSeasonFilter("")}
+                color="secondary"
+              />
             )}
             {formatFilter && (
-              <Chip label={FORMAT_OPTIONS.find(o => o.value === formatFilter)?.label} size="small" onClick={() => setFormatFilter("")} onDelete={() => setFormatFilter("")} color="secondary" />
+              <Chip
+                label={FORMAT_OPTIONS.find((o) => o.value === formatFilter)?.label}
+                size="small"
+                onClick={() => setFormatFilter("")}
+                onDelete={() => setFormatFilter("")}
+                color="secondary"
+              />
             )}
             {listStatusFilter && (
-              <Chip label={LIST_STATUS_OPTIONS.find(o => o.value === listStatusFilter)?.label} size="small" onClick={() => setListStatusFilter("")} onDelete={() => setListStatusFilter("")} color="secondary" />
+              <Chip
+                label={LIST_STATUS_OPTIONS.find((o) => o.value === listStatusFilter)?.label}
+                size="small"
+                onClick={() => setListStatusFilter("")}
+                onDelete={() => setListStatusFilter("")}
+                color="secondary"
+              />
             )}
             <button
               onClick={clearAllFilters}
@@ -156,14 +211,11 @@ export function BrowseContent({ data, filters, setFilters }) {
         )}
       </div>
       <div aria-live="polite">
-        {filteredShows.length > 0
-          ? <AnimeListFlex shows={filteredShows} genreTitle={selectedGenre !== "All" ? selectedGenre : undefined} />
-          : (
-            <div className="flex justify-center py-16 text-zinc-400 text-lg">
-              No shows match these filters.
-            </div>
-          )
-        }
+        {filteredShows.length > 0 ? (
+          <AnimeListFlex shows={filteredShows} genreTitle={selectedGenre !== "All" ? selectedGenre : undefined} />
+        ) : (
+          <div className="flex justify-center py-16 text-zinc-400 text-lg">No shows match these filters.</div>
+        )}
       </div>
     </>
   );

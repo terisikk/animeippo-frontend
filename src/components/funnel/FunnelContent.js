@@ -1,25 +1,25 @@
 import { useState, useMemo, useEffect } from "react";
 import { anilistUrl, PAGE_TITLE } from "../../styles";
 import { HeroDetails } from "../shared/HeroDetails";
-import ShuffleIcon from '@mui/icons-material/Shuffle';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import ExploreIcon from '@mui/icons-material/Explore';
-import PsychologyIcon from '@mui/icons-material/Psychology';
-import SpaIcon from '@mui/icons-material/Spa';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import WhatshotIcon from '@mui/icons-material/Whatshot';
-import SportsMartialArtsIcon from '@mui/icons-material/SportsMartialArts';
-import WbTwilightIcon from '@mui/icons-material/WbTwilight';
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
-import BoltIcon from '@mui/icons-material/Bolt';
-import MovieIcon from '@mui/icons-material/Movie';
-import TimerIcon from '@mui/icons-material/Timer';
-import TvIcon from '@mui/icons-material/Tv';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import CasinoIcon from '@mui/icons-material/Casino';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import ShuffleIcon from "@mui/icons-material/Shuffle";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import ExploreIcon from "@mui/icons-material/Explore";
+import PsychologyIcon from "@mui/icons-material/Psychology";
+import SpaIcon from "@mui/icons-material/Spa";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
+import WbTwilightIcon from "@mui/icons-material/WbTwilight";
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import BoltIcon from "@mui/icons-material/Bolt";
+import MovieIcon from "@mui/icons-material/Movie";
+import TimerIcon from "@mui/icons-material/Timer";
+import TvIcon from "@mui/icons-material/Tv";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import CasinoIcon from "@mui/icons-material/Casino";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 const MOODS = [
   { key: "adventurous", label: "Adventurous", icon: <ExploreIcon sx={{ fontSize: 28 }} />, color: "#f59e0b" },
@@ -41,7 +41,13 @@ const INTENSITIES = [
 const LENGTHS = [
   { key: "movie", label: "Movie", formats: ["MOVIE"], icon: <MovieIcon sx={{ fontSize: 28 }} />, color: "#c084fc" },
   { key: "series", label: "Series", formats: ["TV", "ONA"], icon: <TvIcon sx={{ fontSize: 28 }} />, color: "#60a5fa" },
-  { key: "short", label: "Short", formats: ["TV_SHORT", "OVA", "SPECIAL"], icon: <TimerIcon sx={{ fontSize: 28 }} />, color: "#2dd4bf" },
+  {
+    key: "short",
+    label: "Short",
+    formats: ["TV_SHORT", "OVA", "SPECIAL"],
+    icon: <TimerIcon sx={{ fontSize: 28 }} />,
+    color: "#2dd4bf",
+  },
 ];
 
 const NOVELTIES = [
@@ -63,8 +69,8 @@ function GridTile({ label, icon, selected, disabled, onClick, color }) {
         selected
           ? "text-white scale-105"
           : disabled
-          ? "bg-zinc-800 text-zinc-600 cursor-not-allowed"
-          : "bg-zinc-800 text-blue-200 hover:bg-zinc-700"
+            ? "bg-zinc-800 text-zinc-600 cursor-not-allowed"
+            : "bg-zinc-800 text-blue-200 hover:bg-zinc-700"
       }`}
       style={selected && color ? { backgroundColor: color } : undefined}
     >
@@ -85,13 +91,14 @@ function RevealCard({ show }) {
         alt=""
         aria-hidden="true"
       />
-      <a href={url} target="_blank" rel="noopener noreferrer" className="relative flex flex-col sm:flex-row items-center sm:items-start gap-6 no-underline">
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative flex flex-col sm:flex-row items-center sm:items-start gap-6 no-underline"
+      >
         <div className="shrink-0 aspect-[2/3] h-[300px] lg:h-[400px]">
-          <img
-            className="h-full w-full rounded object-cover"
-            src={show["cover_image"]}
-            alt={show["title"]}
-          />
+          <img className="h-full w-full rounded object-cover" src={show["cover_image"]} alt={show["title"]} />
         </div>
         <HeroDetails node={show} titleSize="text-2xl" />
       </a>
@@ -107,27 +114,26 @@ export function FunnelContent({ data }) {
   const [selectedNovelty, setSelectedNovelty] = useState("match");
   const [shuffleIndex, setShuffleIndex] = useState(0);
 
-  const allShows = useMemo(() =>
-    (data?.shows ?? []).filter((show) =>
-      show["status"]?.toUpperCase() !== "NOT_YET_RELEASED" &&
-      !EXCLUDED_USER_STATUSES.includes(show["user_status"])
-    ), [data?.shows]);
+  const allShows = useMemo(
+    () =>
+      (data?.shows ?? []).filter(
+        (show) =>
+          show["status"]?.toUpperCase() !== "NOT_YET_RELEASED" && !EXCLUDED_USER_STATUSES.includes(show["user_status"]),
+      ),
+    [data?.shows],
+  );
 
   // Step 1 → mood pool
   const moodPool = useMemo(() => {
     if (selectedMoods.length === 0) return [];
-    return allShows.filter((show) =>
-      show["moods"]?.some((m) => selectedMoods.includes(m))
-    );
+    return allShows.filter((show) => show["moods"]?.some((m) => selectedMoods.includes(m)));
   }, [allShows, selectedMoods]);
 
   // Mood candidate counts (for disabling pills with 0 matches)
   const moodCounts = useMemo(() => {
     const counts = {};
     for (const mood of MOODS) {
-      counts[mood.key] = allShows.filter((show) =>
-        show["moods"]?.includes(mood.key)
-      ).length;
+      counts[mood.key] = allShows.filter((show) => show["moods"]?.includes(mood.key)).length;
     }
     return counts;
   }, [allShows]);
@@ -201,10 +207,23 @@ export function FunnelContent({ data }) {
 
   const goToStep = (target) => {
     if (target >= step) return;
-    if (target <= 1) { startOver(); return; }
-    if (target <= 2) { setSelectedIntensity(null); setSelectedLength(null); setSelectedNovelty("match"); setShuffleIndex(0); }
-    else if (target <= 3) { setSelectedLength(null); setSelectedNovelty("match"); setShuffleIndex(0); }
-    else if (target <= 4) { setSelectedNovelty("match"); setShuffleIndex(0); }
+    if (target <= 1) {
+      startOver();
+      return;
+    }
+    if (target <= 2) {
+      setSelectedIntensity(null);
+      setSelectedLength(null);
+      setSelectedNovelty("match");
+      setShuffleIndex(0);
+    } else if (target <= 3) {
+      setSelectedLength(null);
+      setSelectedNovelty("match");
+      setShuffleIndex(0);
+    } else if (target <= 4) {
+      setSelectedNovelty("match");
+      setShuffleIndex(0);
+    }
     setStep(target);
   };
 
@@ -220,11 +239,15 @@ export function FunnelContent({ data }) {
   if (!data) return null;
 
   const poolSize =
-    step === 1 ? moodPool.length
-    : step === 2 ? moodPool.length
-    : step === 3 ? intensityPool.length
-    : step === 4 ? lengthPool.length
-    : rankedPool.length;
+    step === 1
+      ? moodPool.length
+      : step === 2
+        ? moodPool.length
+        : step === 3
+          ? intensityPool.length
+          : step === 4
+            ? lengthPool.length
+            : rankedPool.length;
 
   const revealShow = rankedPool.length > 0 ? rankedPool[shuffleIndex % rankedPool.length] : null;
 
@@ -254,23 +277,23 @@ export function FunnelContent({ data }) {
                 className="flex flex-col items-center gap-1.5 bg-transparent border-none px-1 cursor-default"
                 style={visited ? { cursor: "pointer" } : undefined}
               >
-                <div className={`h-3 w-3 rounded-full transition-all duration-200 ${
-                  active
-                    ? "bg-blue-500 ring-2 ring-blue-500/30"
-                    : visited
-                    ? "bg-blue-400 hover:bg-blue-300"
-                    : "bg-zinc-700"
-                }`} />
-                <span className={`font-sans text-xs font-medium tracking-wide ${
-                  active ? "text-blue-200" : visited ? "text-zinc-400" : "text-zinc-600"
-                }`}>
+                <div
+                  className={`h-3 w-3 rounded-full transition-all duration-200 ${
+                    active
+                      ? "bg-blue-500 ring-2 ring-blue-500/30"
+                      : visited
+                        ? "bg-blue-400 hover:bg-blue-300"
+                        : "bg-zinc-700"
+                  }`}
+                />
+                <span
+                  className={`font-sans text-xs font-medium tracking-wide ${
+                    active ? "text-blue-200" : visited ? "text-zinc-400" : "text-zinc-600"
+                  }`}
+                >
                   {label}
                 </span>
-                {choice && (
-                  <span className="font-sans text-xs text-blue-400 capitalize">
-                    {choice}
-                  </span>
-                )}
+                {choice && <span className="font-sans text-xs text-blue-400 capitalize">{choice}</span>}
               </button>
               {i < STEP_LABELS.length - 1 && (
                 <div className={`mt-[5px] h-px w-6 sm:w-10 ${visited ? "bg-blue-400/50" : "bg-zinc-700"}`} />

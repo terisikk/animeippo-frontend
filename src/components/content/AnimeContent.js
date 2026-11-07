@@ -3,7 +3,6 @@ import { TopPicksHero } from "./TopPicksHero";
 import { AnimeListCarousel } from "./AnimeListCarousel";
 import { AnimeListFlex } from "./AnimeListFlex";
 
-
 const TOP_PICKS_CATEGORY = "Your Top 3";
 const HERO_CATEGORIES = new Set([TOP_PICKS_CATEGORY, "Hidden Gems for You", "Movie Night"]);
 const DEBUG_MODE = process.env.REACT_APP_DEBUG === "true";
@@ -15,14 +14,15 @@ function resolveShows(data, category) {
 }
 
 export function AnimeContent({ data }) {
-
   const { topPicks, otherCategories } = useMemo(() => {
     if (!data?.categories) return { topPicks: [], otherCategories: [] };
 
     const topPicksCategory = data.categories.find((c) => c.name === TOP_PICKS_CATEGORY);
     return {
       topPicks: topPicksCategory ? resolveShows(data, topPicksCategory) : [],
-      otherCategories: data.categories.filter((c) => c.name !== TOP_PICKS_CATEGORY && (DEBUG_MODE || c.name !== "Debug")),
+      otherCategories: data.categories.filter(
+        (c) => c.name !== TOP_PICKS_CATEGORY && (DEBUG_MODE || c.name !== "Debug"),
+      ),
     };
   }, [data]);
 
@@ -33,9 +33,7 @@ export function AnimeContent({ data }) {
   if (data?.categories) {
     return (
       <div className="mt-4">
-        {topPicks.length > 0 && (
-          <TopPicksHero shows={topPicks} title="Picked for You" />
-        )}
+        {topPicks.length > 0 && <TopPicksHero shows={topPicks} title="Picked for You" />}
         {otherCategories.map((category) => {
           const render = resolveShows(data, category);
           if (render.length === 0) return null;
@@ -46,7 +44,7 @@ export function AnimeContent({ data }) {
           return <AnimeListCarousel key={category.name} shows={render} category={category} />;
         })}
       </div>
-    )
+    );
   } else {
     return <AnimeListFlex shows={data?.shows || []} />;
   }

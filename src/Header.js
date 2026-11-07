@@ -1,7 +1,7 @@
 import { useState } from "react";
-import CircularProgress from '@mui/material/CircularProgress';
-import SearchIcon from '@mui/icons-material/Search';
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
+import CircularProgress from "@mui/material/CircularProgress";
+import SearchIcon from "@mui/icons-material/Search";
+import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 
 export function HeaderTabBar({ activeYear, contentReady, setActiveYear, loading }) {
   const currentYear = new Date().getFullYear();
@@ -44,16 +44,20 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
         onClick={() => setEditing(true)}
       >
         <span>{user}</span>
-        <SwapHorizIcon sx={{ fontSize: 18, color: '#a1a1aa' }} />
+        <SwapHorizIcon sx={{ fontSize: 18, color: "#a1a1aa" }} />
       </button>
     );
   }
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <form className="flex items-center" onSubmit={handleSubmit} onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget) && user) setEditing(false);
-      }}>
+      <form
+        className="flex items-center"
+        onSubmit={handleSubmit}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget) && user) setEditing(false);
+        }}
+      >
         <input
           className="rounded-l border border-blue-700 p-2.5 disabled:!bg-zinc-400 disabled:text-zinc-600"
           name="maluser"
@@ -68,7 +72,7 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
             type="submit"
             className="rounded-r border border-blue-700 bg-blue-600 p-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
           >
-            {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : <SearchIcon />}
+            {loading ? <CircularProgress size={24} sx={{ color: "white" }} /> : <SearchIcon />}
           </button>
         </label>
         <input type="submit" hidden />
@@ -80,9 +84,7 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
             type="button"
             onClick={() => setProvider(p.key)}
             className={`rounded-md px-4 py-1 font-sans font-medium tracking-wide transition-colors ${
-              provider === p.key
-                ? "bg-blue-600 text-white"
-                : "text-blue-200 hover:bg-zinc-700"
+              provider === p.key ? "bg-blue-600 text-white" : "text-blue-200 hover:bg-zinc-700"
             }`}
           >
             {p.label}

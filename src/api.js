@@ -10,7 +10,16 @@ function getSeason(date) {
   return "fall";
 }
 
-export function fetchAnimeList(user, year, setLoading, setShows, setContentReady, setError, mode = "recommend", provider = "anilist") {
+export function fetchAnimeList(
+  user,
+  year,
+  setLoading,
+  setShows,
+  setContentReady,
+  setError,
+  mode = "recommend",
+  provider = "anilist",
+) {
   if (user !== "") {
     setLoading(true);
     setShows(null);
@@ -53,11 +62,14 @@ export async function fetchWithCache(url) {
   }
 
   const response = await axios.get(url);
-  localStorage.setItem(url, JSON.stringify({
-    timestamp: Date.now(),
-    season: getSeason(new Date()),
-    data: response.data,
-  }));
+  localStorage.setItem(
+    url,
+    JSON.stringify({
+      timestamp: Date.now(),
+      season: getSeason(new Date()),
+      data: response.data,
+    }),
+  );
 
   return response.data;
 }
