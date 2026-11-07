@@ -1,6 +1,8 @@
+import { Box, ThemeProvider, CssBaseline } from '@mui/material';
 import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import { SearchForm } from "./Header";
 import TopBar from "./TopBar";
+import theme from './styles';
 
 import "./App.css";
 import { AnimeContent } from "./components/content/AnimeContent";
@@ -124,7 +126,9 @@ function App() {
   ), [loading, mode, user, shows, error, browseFilters, setBrowseFilters, analysisData]);
 
   return (
-    <main className="App-Content min-h-full bg-zinc-900">
+    <ThemeProvider theme={theme}>
+    <CssBaseline /> {/* Resets browser styles and applies default background */}
+    <Box component="main" bgcolor={'background.main'}>
       <div
         className={`${hasContent ? "pt-0" : "h-screen pt-[15%]"} transition-all duration-1000 ease-out`}
       >
@@ -161,7 +165,8 @@ function App() {
 
         {content}
       </div>
-    </main>
+    </Box>
+    </ThemeProvider>
   );
 }
 

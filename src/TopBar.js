@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useClickOutside } from "./hooks/useClickOutside";
 import { colors, listItemHoverSx } from "./styles";
+import { AppBar } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import AppsIcon from '@mui/icons-material/Apps';
@@ -58,8 +59,8 @@ export default function TopBar({
   const showTabs = true;
 
   return (
-    <div ref={headerRef} className="sticky top-0 z-40">
-    <header className="bg-zinc-950/95 backdrop-blur">
+    <AppBar position="sticky" ref={headerRef} sx={{ bgcolor: 'background.dark' }}>
+    <header className="">
       {/* Main row */}
       <div ref={topRowRef} className="relative flex items-stretch justify-between px-2 py-4 lg:min-h-16">
         {/* Left: nav dropdown (mobile) + title + mode tabs (desktop) */}
@@ -183,6 +184,6 @@ export default function TopBar({
         </div>
       </div>
     )}
-    </div>
+    </AppBar>
   );
 }
