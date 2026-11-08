@@ -1,4 +1,4 @@
-import { EmblaCarousel } from "../carousel/EmblaCarousel";
+import { CategoryCarousel } from "./CategoryCarousel";
 import { PAGE_TITLE, SECTION_TITLE } from "../../styles";
 
 export function PlaceHolderContent() {
@@ -21,7 +21,7 @@ function PlaceholderList() {
   return (
     <div className="pb-8">
       <h2 className={`ml-5 pb-5 ${SECTION_TITLE}`}>...</h2>
-      <EmblaCarousel>{placeholders}</EmblaCarousel>
+      <CategoryCarousel shows={placeholders} />
     </div>
   );
 }

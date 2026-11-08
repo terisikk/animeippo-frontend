@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { AnimeGrid } from "../shared/AnimeGrid";
+import { AnimeGrid } from "../../components/shared/AnimeGrid";
 import { PAGE_TITLE, toggleGroupSx } from "../../styles";
 
 export function AnalysisExpandedView({ category, shows, recommendations, onClose }) {

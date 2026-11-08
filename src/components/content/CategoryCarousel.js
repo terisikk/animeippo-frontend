@@ -2,8 +2,11 @@ import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { SECTION_TITLE } from "../../styles";
 
-export function EmblaCarousel({ children }) {
+import { AnimeItem } from "./AnimeItem";
+
+export function CategoryCarousel({ shows, category }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     slidesToScroll: "auto",
@@ -47,42 +50,43 @@ export function EmblaCarousel({ children }) {
   );
 
   return (
-    <div
-      className="embla relative overflow-x-clip px-6"
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
-      role="region"
-      aria-label="Carousel"
-    >
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container flex">
-          {Array.isArray(children)
-            ? children.map((child, i) => (
-                <div className="embla__slide" key={child.key ?? i}>
-                  {child}
-                </div>
-              ))
-            : children}
+    <div className={`pb-5 ${shows?.length ? "visible" : "hidden"}`}>
+      <h2 className={`mb-5 ml-5 ${SECTION_TITLE}`}>{category?.name}</h2>
+      <div
+        className="embla relative overflow-x-clip px-6"
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
+        role="region"
+        aria-label="Carousel"
+      >
+        <div className="embla__viewport" ref={emblaRef}>
+          <div className="embla__container flex">
+            {shows?.map((node) => (
+              <div className="embla__slide" key={node["id"]}>
+                <AnimeItem key={node["id"]} node={node} />
+              </div>
+            ))}
+          </div>
         </div>
+        {canScrollPrev && (
+          <button
+            className="embla__button embla__button--prev"
+            onClick={() => emblaApi?.scrollPrev()}
+            aria-label="Previous slides"
+          >
+            <ChevronLeftIcon />
+          </button>
+        )}
+        {canScrollNext && (
+          <button
+            className="embla__button embla__button--next"
+            onClick={() => emblaApi?.scrollNext()}
+            aria-label="Next slides"
+          >
+            <ChevronRightIcon />
+          </button>
+        )}
       </div>
-      {canScrollPrev && (
-        <button
-          className="embla__button embla__button--prev"
-          onClick={() => emblaApi?.scrollPrev()}
-          aria-label="Previous slides"
-        >
-          <ChevronLeftIcon />
-        </button>
-      )}
-      {canScrollNext && (
-        <button
-          className="embla__button embla__button--next"
-          onClick={() => emblaApi?.scrollNext()}
-          aria-label="Next slides"
-        >
-          <ChevronRightIcon />
-        </button>
-      )}
     </div>
   );
 }

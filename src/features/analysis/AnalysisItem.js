@@ -2,7 +2,7 @@ import { memo } from "react";
 import Tooltip from "@mui/material/Tooltip";
 import { anilistUrl } from "../../styles";
 import { useLazyImage } from "../../hooks/useLazyImage";
-import { StatusBadge } from "../shared/StatusBadge";
+import { StatusBadge } from "../../components/shared/StatusBadge";
 
 export const AnalysisItem = memo(function AnalysisItem({ node }) {
   const url = anilistUrl(node["id"]);

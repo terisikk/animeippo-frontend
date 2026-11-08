@@ -6,10 +6,10 @@ import theme from "./styles";
 
 import "./App.css";
 import { AnimeContent } from "./components/content/AnimeContent";
-import { AnalysisContent } from "./components/analysis/AnalysisContent";
-import { PlaceHolderContent, AnalysisPlaceholderContent } from "./components/placeholder/PlaceholderContent";
-import { BrowseContent } from "./components/browse/BrowseContent";
-import { FunnelContent } from "./components/funnel/FunnelContent";
+import { AnalysisContent } from "./features/analysis/AnalysisContent";
+import { PlaceHolderContent, AnalysisPlaceholderContent } from "./components/content/PlaceholderContent";
+import { BrowseContent } from "./features/browse/BrowseContent";
+import { FunnelContent } from "./features/funnel/FunnelContent";
 import { fetchAnimeList } from "./api";
 
 function App() {

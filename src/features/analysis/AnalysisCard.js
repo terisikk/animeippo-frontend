@@ -2,7 +2,7 @@ import { useState } from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
-import { AnalysisCarousel } from "../carousel/AnalysisCarousel";
+import { AnalysisCarousel } from "./AnalysisCarousel";
 import { AnalysisItem } from "./AnalysisItem";
 import { toggleGroupSx } from "../../styles";
 

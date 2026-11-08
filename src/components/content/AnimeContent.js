@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { HeroCarousel } from "./HeroCarousel";
-import { AnimeListCarousel } from "./AnimeListCarousel";
-import { AnimeListFlex } from "./AnimeListFlex";
+import { CategoryCarousel } from "./CategoryCarousel"
+import { AnimeListFlex } from "../../features/browse/AnimeListFlex";
 
 const TOP_PICKS_CATEGORY = "Your Top 3";
 const HERO_CATEGORIES = new Set([TOP_PICKS_CATEGORY, "Hidden Gems for You", "Movie Night"]);
@@ -41,7 +41,7 @@ export function AnimeContent({ data }) {
           if (HERO_CATEGORIES.has(category.name)) {
             return <HeroCarousel key={category.name} shows={render} title={category.name} />;
           }
-          return <AnimeListCarousel key={category.name} shows={render} category={category} />;
+          return <CategoryCarousel key={category.name} shows={render} category={category} />;
         })}
       </div>
     );

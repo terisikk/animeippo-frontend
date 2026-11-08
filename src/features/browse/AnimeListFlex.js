@@ -1,4 +1,4 @@
-import { AnimeGrid } from "../shared/AnimeGrid";
+import { AnimeGrid } from "../../components/shared/AnimeGrid";
 import { SECTION_TITLE } from "../../styles";
 
 export function AnimeListFlex({ shows, genreTitle }) {

@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { anilistUrl, PAGE_TITLE } from "../../styles";
-import { HeroDetails } from "../shared/HeroDetails";
+import { HeroDetails } from "../../components/shared/HeroDetails";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -65,13 +65,12 @@ function GridTile({ label, icon, selected, disabled, onClick, color }) {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`flex flex-col items-center gap-2 rounded-lg px-4 py-5 font-sans text-sm font-medium tracking-wide transition-all duration-200 border-none cursor-pointer ${
-        selected
-          ? "text-white scale-105"
-          : disabled
-            ? "bg-zinc-800 text-zinc-600 cursor-not-allowed"
-            : "bg-zinc-800 text-blue-200 hover:bg-zinc-700"
-      }`}
+      className={`flex flex-col items-center gap-2 rounded-lg px-4 py-5 font-sans text-sm font-medium tracking-wide transition-all duration-200 border-none cursor-pointer ${selected
+        ? "text-white scale-105"
+        : disabled
+          ? "bg-zinc-800 text-zinc-600 cursor-not-allowed"
+          : "bg-zinc-800 text-blue-200 hover:bg-zinc-700"
+        }`}
       style={selected && color ? { backgroundColor: color } : undefined}
     >
       <span style={!selected && !disabled && color ? { color } : undefined}>{icon}</span>
@@ -278,18 +277,16 @@ export function FunnelContent({ data }) {
                 style={visited ? { cursor: "pointer" } : undefined}
               >
                 <div
-                  className={`h-3 w-3 rounded-full transition-all duration-200 ${
-                    active
-                      ? "bg-blue-500 ring-2 ring-blue-500/30"
-                      : visited
-                        ? "bg-blue-400 hover:bg-blue-300"
-                        : "bg-zinc-700"
-                  }`}
+                  className={`h-3 w-3 rounded-full transition-all duration-200 ${active
+                    ? "bg-blue-500 ring-2 ring-blue-500/30"
+                    : visited
+                      ? "bg-blue-400 hover:bg-blue-300"
+                      : "bg-zinc-700"
+                    }`}
                 />
                 <span
-                  className={`font-sans text-xs font-medium tracking-wide ${
-                    active ? "text-blue-200" : visited ? "text-zinc-400" : "text-zinc-600"
-                  }`}
+                  className={`font-sans text-xs font-medium tracking-wide ${active ? "text-blue-200" : visited ? "text-zinc-400" : "text-zinc-600"
+                    }`}
                 >
                   {label}
                 </span>

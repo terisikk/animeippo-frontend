@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 import { GenreCombobox } from "./GenreCombobox";
 import { FilterDropdown } from "./FilterDropdown";
-import { AnimeListFlex } from "../content/AnimeListFlex";
+import { AnimeListFlex } from "./AnimeListFlex";
 import { PAGE_TITLE, ACTIVE_FILTER_PILL } from "../../styles";
 import Chip from "@mui/material/Chip";
 
