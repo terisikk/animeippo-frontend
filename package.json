@@ -2,6 +2,7 @@
   "name": "animeippo-frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -21,13 +22,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "format": "prettier --write ."
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "browserslist": {
     "production": [
@@ -47,6 +44,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@vitejs/plugin-react": "^6.2.1",
     "autoprefixer": "^10.6.2",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-simple-import-sort": "^14.0.0",
     "eslint-plugin-unused-imports": "^4.4.1",
     "postcss": "^8.5.32",

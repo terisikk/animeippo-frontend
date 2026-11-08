@@ -1,7 +1,8 @@
-import { useMemo, useState, useEffect } from "react";
+import { useEffect,useMemo, useState } from "react";
+
+import { PAGE_TITLE } from "../../styles";
 import { AnalysisCard } from "./AnalysisCard";
 import { AnalysisExpandedView } from "./AnalysisExpandedView";
-import { PAGE_TITLE } from "../../styles";
 
 const DEBUG_MODE = import.meta.env.VITE_DEBUG === "true";
 

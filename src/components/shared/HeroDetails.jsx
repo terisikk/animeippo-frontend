@@ -1,6 +1,6 @@
-import { FormatLabel } from "./FormatLabel";
-import { AnimeDescription } from "../content/AnimeDescription";
 import { Stack } from "@mui/material";
+
+import { AnimeDescription } from "../content/AnimeDescription";
 
 
 export function HeroDetails({ node, titleSize = "text-xl" }) {

@@ -1,25 +1,26 @@
-import { useState, useMemo, useEffect } from "react";
-import { anilistUrl, PAGE_TITLE } from "../../styles";
-import { HeroDetails } from "../../components/shared/HeroDetails";
-import ShuffleIcon from "@mui/icons-material/Shuffle";
-import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import ExploreIcon from "@mui/icons-material/Explore";
-import PsychologyIcon from "@mui/icons-material/Psychology";
-import SpaIcon from "@mui/icons-material/Spa";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
-import WbTwilightIcon from "@mui/icons-material/WbTwilight";
-import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
-import BoltIcon from "@mui/icons-material/Bolt";
-import MovieIcon from "@mui/icons-material/Movie";
-import TimerIcon from "@mui/icons-material/Timer";
-import TvIcon from "@mui/icons-material/Tv";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import BoltIcon from "@mui/icons-material/Bolt";
 import CasinoIcon from "@mui/icons-material/Casino";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import ExploreIcon from "@mui/icons-material/Explore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import MovieIcon from "@mui/icons-material/Movie";
+import PsychologyIcon from "@mui/icons-material/Psychology";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import ShuffleIcon from "@mui/icons-material/Shuffle";
+import SpaIcon from "@mui/icons-material/Spa";
+import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
+import TimerIcon from "@mui/icons-material/Timer";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import TvIcon from "@mui/icons-material/Tv";
+import WbTwilightIcon from "@mui/icons-material/WbTwilight";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import { useEffect,useMemo, useState } from "react";
+
+import { HeroDetails } from "../../components/shared/HeroDetails";
+import { anilistUrl, PAGE_TITLE } from "../../styles";
 
 const MOODS = [
   { key: "adventurous", label: "Adventurous", icon: <ExploreIcon sx={{ fontSize: 28 }} />, color: "#f59e0b" },

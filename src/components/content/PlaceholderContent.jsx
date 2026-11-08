@@ -1,5 +1,5 @@
-import { CategoryCarousel } from "./CategoryCarousel";
 import { PAGE_TITLE, SECTION_TITLE } from "../../styles";
+import { CategoryCarousel } from "./CategoryCarousel";
 
 export function PlaceHolderContent() {
   return (

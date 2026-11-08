@@ -1,10 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
-import useEmblaCarousel from "embla-carousel-react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { SECTION_TITLE } from "../../styles";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback,useEffect, useState } from "react";
 
-import { AnimeItem } from "./AnimeItem";
+import { SECTION_TITLE } from "../../styles";
+import { AnimeItem } from "./AnimeCard";
 
 export function CategoryCarousel({ shows, category }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({

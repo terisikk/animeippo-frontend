@@ -1,10 +1,10 @@
-import { useMemo } from "react";
-import ClearIcon from "@mui/icons-material/Clear";
-import { GenreCombobox } from "./GenreCombobox";
-import { FilterDropdown } from "./FilterDropdown";
-import { AnimeListFlex } from "./AnimeListFlex";
-import { PAGE_TITLE, ACTIVE_FILTER_PILL } from "../../styles";
 import Chip from "@mui/material/Chip";
+import { useMemo } from "react";
+
+import {PAGE_TITLE } from "../../styles";
+import { AnimeListFlex } from "./AnimeListFlex";
+import { FilterDropdown } from "./FilterDropdown";
+import { GenreCombobox } from "./GenreCombobox";
 
 const STATUS_OPTIONS = [
   { value: "", label: "All" },

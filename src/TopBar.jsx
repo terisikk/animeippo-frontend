@@ -1,22 +1,23 @@
-import { useRef } from "react";
-import { useClickOutside } from "./hooks/useClickOutside";
-import { colors, listItemHoverSx } from "./styles";
-import { AppBar } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import AppsIcon from "@mui/icons-material/Apps";
+import BarChartIcon from "@mui/icons-material/BarChart";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExploreIcon from "@mui/icons-material/Explore";
+import HomeIcon from "@mui/icons-material/Home";
+import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
+import TouchAppIcon from "@mui/icons-material/TouchApp";
+import { AppBar } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
-import HomeIcon from "@mui/icons-material/Home";
-import ExploreIcon from "@mui/icons-material/Explore";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import TouchAppIcon from "@mui/icons-material/TouchApp";
+import { useRef } from "react";
+
 import { HeaderTabBar } from "./Header";
+import { useClickOutside } from "./hooks/useClickOutside";
+import { colors, listItemHoverSx } from "./styles";
 
 const MODES = [
   { key: "recommend", label: "Home", icon: <HomeIcon sx={{ fontSize: 20 }} /> },
@@ -55,7 +56,6 @@ export default function TopBar({
   closeMenu,
   onSwitchUser,
   provider,
-  setProvider,
 }) {
   const headerRef = useRef(null);
   const topRowRef = useRef(null);

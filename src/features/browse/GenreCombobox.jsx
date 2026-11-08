@@ -1,12 +1,13 @@
-import { useState, useRef, useCallback } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import { useCallback,useRef, useState } from "react";
+
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { FILTER_BUTTON, colors, listItemHoverSx } from "../../styles";
+import { colors, FILTER_BUTTON, listItemHoverSx } from "../../styles";
 
 export function GenreCombobox({ selectedGenre, onSelect, genres, tags, matchCounts, searchQuery, setSearchQuery }) {
   const [isOpen, setIsOpen] = useState(false);

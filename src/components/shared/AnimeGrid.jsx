@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 
-import { AnimeItem } from "../content/AnimeItem";
+import { AnimeItem } from "../content/AnimeCard";
 
 export function AnimeGrid({ shows }) {
   return (

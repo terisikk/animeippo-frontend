@@ -1,16 +1,17 @@
-import { Box, ThemeProvider, CssBaseline } from "@mui/material";
-import { useEffect, useState, useCallback, useMemo, useRef } from "react";
-import { SearchForm } from "./Header";
-import TopBar from "./TopBar";
-import theme from "./styles";
-
 import "./App.css";
+
+import { Box, CssBaseline,ThemeProvider } from "@mui/material";
+import { useCallback, useEffect, useMemo, useRef,useState } from "react";
+
+import { fetchAnimeList } from "./api.js";
 import { AnimeContent } from "./components/content/AnimeContent";
+import { AnalysisPlaceholderContent,PlaceHolderContent } from "./components/content/PlaceholderContent";
 import { AnalysisContent } from "./features/analysis/AnalysisContent";
-import { PlaceHolderContent, AnalysisPlaceholderContent } from "./components/content/PlaceholderContent";
 import { BrowseContent } from "./features/browse/BrowseContent";
 import { FunnelContent } from "./features/funnel/FunnelContent";
-import { fetchAnimeList } from "./api.js";
+import { SearchForm } from "./Header";
+import theme from "./styles";
+import TopBar from "./TopBar";
 
 function App() {
   const [shows, setShows] = useState(null);

@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { Box, Card, CardMedia, MobileStepper } from "@mui/material";
 import useEmblaCarousel from "embla-carousel-react";
+import { useCallback,useEffect, useState } from "react";
+
 import { anilistUrl } from "../../styles";
 import { HeroDetails } from "../shared/HeroDetails";
-import { Card, CardMedia, Box, MobileStepper } from "@mui/material";
 
 
 export function HeroCarousel({ shows, title, limit = 99 }) {

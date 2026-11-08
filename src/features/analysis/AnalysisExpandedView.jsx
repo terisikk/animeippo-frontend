@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useEffect,useState } from "react";
+
 import { AnimeGrid } from "../../components/shared/AnimeGrid";
 import { PAGE_TITLE, toggleGroupSx } from "../../styles";
 

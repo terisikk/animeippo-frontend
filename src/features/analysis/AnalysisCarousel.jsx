@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
-import useEmblaCarousel from "embla-carousel-react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback,useEffect, useState } from "react";
 
 export function AnalysisCarousel({ children }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({

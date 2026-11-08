@@ -1,19 +1,15 @@
-import { memo } from "react";
-import { anilistUrl } from "../../styles";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { StatusBadge } from "../shared/StatusBadge";
-import { FormatLabel } from "../shared/FormatLabel";
+import { Box, CardMedia, Stack,Typography } from "@mui/material";
 import Card from "@mui/material/Card";
-import { CardMedia, Typography, Box, Stack } from "@mui/material";
+import { memo } from "react";
+
+import { anilistUrl } from "../../styles";
+import { FormatLabel } from "../shared/FormatLabel";
+import { StatusBadge } from "../shared/StatusBadge";
 import { AnimeDescription } from "./AnimeDescription";
 
 export { FORMAT_LABELS } from "../shared/FormatLabel";
 
-function toStars(value) {
-  if (typeof value !== "number") return String(value);
-  const full = Math.round(value * 5);
-  return "\u2605".repeat(full); //+ '\u2606'.repeat(5 - full);
-}
 
 export const AnimeItem = memo(function AnimeItem({ node }) {
   const url = anilistUrl(node["id"]);

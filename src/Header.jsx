@@ -1,7 +1,7 @@
-import { useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
 import SearchIcon from "@mui/icons-material/Search";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useState } from "react";
 
 export function HeaderTabBar({ activeYear, contentReady, setActiveYear, loading }) {
   const currentYear = new Date().getFullYear();

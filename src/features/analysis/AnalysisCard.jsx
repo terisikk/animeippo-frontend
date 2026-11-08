@@ -1,10 +1,11 @@
-import { useState } from "react";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+import { useState } from "react";
+
+import { toggleGroupSx } from "../../styles";
 import { AnalysisCarousel } from "./AnalysisCarousel";
 import { AnalysisItem } from "./AnalysisItem";
-import { toggleGroupSx } from "../../styles";
 
 export function AnalysisCard({ category, shows, recommendations = [], index, onExpand }) {
   const [view, setView] = useState("watched");
