@@ -3,7 +3,7 @@ import { AnalysisCard } from "./AnalysisCard";
 import { AnalysisExpandedView } from "./AnalysisExpandedView";
 import { PAGE_TITLE } from "../../styles";
 
-const DEBUG_MODE = process.env.REACT_APP_DEBUG === "true";
+const DEBUG_MODE = import.meta.env.VITE_DEBUG === "true";
 
 export function AnalysisContent({ data }) {
   const [expandedCategory, setExpandedCategory] = useState(null);

@@ -17,7 +17,7 @@ function toStars(value) {
 
 export const AnimeItem = memo(function AnimeItem({ node }) {
   const url = anilistUrl(node["id"]);
-  const debugMode = process.env.REACT_APP_DEBUG === "true";
+  const debugMode = import.meta.env.VITE_DEBUG === "true";
 
   const img = node["cover_image"]
 

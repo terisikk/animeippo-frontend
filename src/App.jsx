@@ -10,7 +10,7 @@ import { AnalysisContent } from "./features/analysis/AnalysisContent";
 import { PlaceHolderContent, AnalysisPlaceholderContent } from "./components/content/PlaceholderContent";
 import { BrowseContent } from "./features/browse/BrowseContent";
 import { FunnelContent } from "./features/funnel/FunnelContent";
-import { fetchAnimeList } from "./api";
+import { fetchAnimeList } from "./api.js";
 
 function App() {
   const [shows, setShows] = useState(null);
@@ -86,8 +86,8 @@ function App() {
   const apiMode = mode === "browse" || mode === "funnel" ? "recommend" : mode;
 
   useEffect(() => {
-    if (process.env.REACT_APP_MOCK_BACKEND === "true") {
-      import("./TestData").then(({ default: testJson }) => {
+    if (import.meta.env.VITE_MOCK_BACKEND === "true") {
+      import("./TestData.js").then(({ default: testJson }) => {
         setShows(testJson());
         setContentReady(true);
       });

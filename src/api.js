@@ -24,7 +24,7 @@ export function fetchAnimeList(
     setLoading(true);
     setShows(null);
 
-    const domain = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    const domain = import.meta.env.VITE_API_URL || "http://localhost:5000";
     const params = new URLSearchParams({ user, year });
     if (provider && provider !== "anilist") params.set("provider", provider);
     const url = `${domain}/${mode}?${params}`;
@@ -46,7 +46,7 @@ export function fetchAnimeList(
 }
 
 export async function fetchWithCache(url) {
-  const debugMode = process.env.REACT_APP_DEBUG === "true";
+  const debugMode = import.meta.env.VITE_DEBUG === "true";
   let cached = false;
 
   if (!debugMode) {

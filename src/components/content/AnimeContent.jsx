@@ -5,7 +5,7 @@ import { AnimeListFlex } from "../../features/browse/AnimeListFlex";
 
 const TOP_PICKS_CATEGORY = "Your Top 3";
 const HERO_CATEGORIES = new Set([TOP_PICKS_CATEGORY, "Hidden Gems for You", "Movie Night"]);
-const DEBUG_MODE = process.env.REACT_APP_DEBUG === "true";
+const DEBUG_MODE = import.meta.env.VITE_DEBUG === "true";
 
 function resolveShows(data, category) {
   return data.shows
