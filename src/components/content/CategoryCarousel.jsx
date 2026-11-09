@@ -1,10 +1,11 @@
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback,useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import TypoGraphy from "@mui/material/Typography"
 
-import { SECTION_TITLE } from "../../styles";
-import { AnimeItem } from "./AnimeCard";
+import { AnimeCard } from "./AnimeCard";
 
 export function CategoryCarousel({ shows, category }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -49,11 +50,12 @@ export function CategoryCarousel({ shows, category }) {
     [emblaApi],
   );
 
+  const visible = shows?.length ? "visible" : "hidden"
   return (
-    <div className={`pb-5 ${shows?.length ? "visible" : "hidden"}`}>
-      <h2 className={`mb-5 ml-5 ${SECTION_TITLE}`}>{category?.name}</h2>
+    <Box sx={{ visible: { visible }, marginBottom: "1em" }}>
+      <TypoGraphy variant="h5" color="white" sx={{ marginBottom: "0.5em", marginLeft: "1em" }}>{category?.name}</TypoGraphy>
       <div
-        className="embla relative overflow-x-clip px-6"
+        className="embla relative overflow-x-clip"
         tabIndex={0}
         onKeyDown={handleKeyDown}
         role="region"
@@ -63,7 +65,7 @@ export function CategoryCarousel({ shows, category }) {
           <div className="embla__container flex">
             {shows?.map((node) => (
               <div className="embla__slide" key={node["id"]}>
-                <AnimeItem key={node["id"]} node={node} />
+                <AnimeCard key={node["id"]} node={node} />
               </div>
             ))}
           </div>
@@ -87,6 +89,6 @@ export function CategoryCarousel({ shows, category }) {
           </button>
         )}
       </div>
-    </div>
+    </Box >
   );
 }

@@ -1,11 +1,11 @@
 import "./App.css";
 
-import { Box, CssBaseline,ThemeProvider } from "@mui/material";
-import { useCallback, useEffect, useMemo, useRef,useState } from "react";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { fetchAnimeList } from "./api.js";
 import { AnimeContent } from "./components/content/AnimeContent";
-import { AnalysisPlaceholderContent,PlaceHolderContent } from "./components/content/PlaceholderContent";
+import { AnalysisPlaceholderContent, PlaceHolderContent } from "./components/content/PlaceholderContent";
 import { AnalysisContent } from "./features/analysis/AnalysisContent";
 import { BrowseContent } from "./features/browse/BrowseContent";
 import { FunnelContent } from "./features/funnel/FunnelContent";

@@ -1,7 +1,7 @@
 import Chip from "@mui/material/Chip";
 import { useMemo } from "react";
 
-import {PAGE_TITLE } from "../../styles";
+import { PAGE_TITLE } from "../../styles";
 import { AnimeListFlex } from "./AnimeListFlex";
 import { FilterDropdown } from "./FilterDropdown";
 import { GenreCombobox } from "./GenreCombobox";

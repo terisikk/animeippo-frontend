@@ -1,4 +1,4 @@
-import { useEffect,useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { PAGE_TITLE } from "../../styles";
 import { AnalysisCard } from "./AnalysisCard";

@@ -1,9 +1,14 @@
-import { Stack } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 import { AnimeDescription } from "../content/AnimeDescription";
 
+export function HeroDetails({ node, align = "left" }) {
+  const gradientDirection = (align == "left") ? "right" : "top";
+  const gradient = "linear-gradient(to " + gradientDirection + ", rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 40%, rgba(10, 10, 10, 0) 80%)";
+  const gWidth = (align == "left") ? "66%" : "100%"
+  const gHeight = (align == "left") ? "100%" : "66%"
 
-export function HeroDetails({ node, titleSize = "text-xl" }) {
   return (
     <Stack
       className="reveal-me"
@@ -11,36 +16,28 @@ export function HeroDetails({ node, titleSize = "text-xl" }) {
       sx={{
         position: "absolute",
         bottom: 0,
-        width: "30%",
-        height: "100%",
+        width: gWidth,
+        height: gHeight,
         transition: "opacity 0.3s ease",
         pointerEvents: "none",
-        background:
-          "linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 40%, rgba(10, 10, 10, 0) 100%)",
+        background: gradient,
         justifyContent: "flex-end",
-        alignItems: "center",
+        alignItems: "left",
+        textShadow: "0 1px 4px rgba(0,0,0,0.8)",
+        padding: "1em 1em 1em 2em",
+        zIndex: 3
       }}
     >
-      <div
-        className="relative min-w-0 flex-1 pt-1 flex flex-col self-stretch"
-        style={{ textShadow: "0 1px 4px rgba(0,0,0,0.8)", position: "absolute", bottom: 20, left: 20 }}
-      >
-        <h3 className={`line-clamp-2 font-sans ${titleSize} font-semibold tracking-wide text-white`}>{node["title"]}</h3>
-        <AnimeDescription node={node} align="left" sx={
-          {
-            color: "white",
-            bottom: 0,
-            paddingTop: '10px'
-          }
-        } />
-        <div className="mt-auto flex items-center justify-between pt-4">
-          {node["discovery_score"] != null && (
-            <span className="font-sans text-3xl font-bold text-blue-400">
-              {(node["discovery_score"] * 100).toFixed(0)}%
-            </span>
-          )}
-        </div>
-      </div>
+      <Typography variant="h3" align={align} color="primary.light">{node["title"]}</Typography>
+      <AnimeDescription
+        node={node}
+        align={align}
+        sx={{
+          color: "white",
+          paddingTop: "0.5em",
+          paddingLeft: "0.5em"
+        }}
+      />
     </Stack>
   );
 }

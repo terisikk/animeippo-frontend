@@ -73,4 +73,3 @@ When `VITE_DEBUG=true`:
 - Overlays on anime cards show all scoring fields
 - Useful for understanding recommendation algorithm
 - Backend should also be in debug mode to send score data
-

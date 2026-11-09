@@ -1,6 +1,9 @@
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { Box, CardMedia, Stack,Typography } from "@mui/material";
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import { memo } from "react";
 
 import { anilistUrl } from "../../styles";
@@ -8,42 +11,29 @@ import { FormatLabel } from "../shared/FormatLabel";
 import { StatusBadge } from "../shared/StatusBadge";
 import { AnimeDescription } from "./AnimeDescription";
 
-export { FORMAT_LABELS } from "../shared/FormatLabel";
-
-
-export const AnimeItem = memo(function AnimeItem({ node }) {
+export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
   const url = anilistUrl(node["id"]);
-  const debugMode = import.meta.env.VITE_DEBUG === "true";
-
   const img = node["cover_image"]
-
-  let scoreFields = debugMode ? Object.keys(node).filter((key) => key.includes("score") || key.includes("Score")) : [];
-
-  if (debugMode && scoreFields.length > 0) {
-    scoreFields = scoreFields.sort((a, b) => {
-      if (a === "discovery_score") return -1;
-      if (b === "discovery_score") return 1;
-      return a.localeCompare(b);
-    });
-  }
 
   return (
     <Box
       sx={{
         position: "relative",
-        "&:hover .animeImage": {
-          scale: "105%",
-        },
-        "&:hover .reveal-me": {
-          opacity: 1,
-        },
-        "&:hover .hide-me": {
-          opacity: 0,
-        },
-        "& .animeImage": {
-          transition: "scale 0.3s ease-in",
-        },
         cursor: "pointer",
+        ...(showDetails && {
+          "&:hover .animeImage": {
+            scale: "105%",
+          },
+          "&:hover .reveal-me": {
+            opacity: 1,
+          },
+          "&:hover .hide-me": {
+            opacity: 0,
+          },
+          "& .animeImage": {
+            transition: "scale 0.3s ease-in",
+          },
+        }),
       }}
       key={node["id"]}
     >
@@ -63,7 +53,12 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
               component="img"
               image={img}
               title={node["title"]}
-              sx={{ objectFit: "cover", width: "100%", height: "auto", aspectRatio: "2/3" }}
+              sx={{
+                objectFit: "cover",
+                width: "100%",
+                height: "auto",
+                aspectRatio: "2/3"
+              }}
             />
             <Box className="hide-me" sx={{ position: "absolute", bottom: 0, m: 1, transition: "opacity 0.3s ease" }}>
               <StatusBadge status={node["status"]} season={node["season"]} />
@@ -99,33 +94,38 @@ export const AnimeItem = memo(function AnimeItem({ node }) {
                   />
                 )}
               </Stack>
-              <AnimeDescription node={node} sx={{
-                color: "white",
-                bottom: 0,
-                padding: "0px 15px 15px 15px",
-              }} />
+              <AnimeDescription
+                node={node}
+                sx={{
+                  color: "white",
+                  bottom: 0,
+                  padding: "0px 15px 15px 15px",
+                }}
+              />
             </Stack>
           </Box>
         </Card>
-        <Box>
-          <Typography
-            variant="body1"
-            align="center"
-            alignContent="center"
-            color="primary.main"
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              WebkitLineClamp: "2",
-              WebkitBoxOrient: "vertical",
-              paddingTop: "20px",
-              paddingBottom: "5px",
-            }}
-          >
-            {node["title"]}
-          </Typography>
-        </Box>
+        {showDetails && (
+          <Box>
+            <Typography
+              variant="body1"
+              align="center"
+              alignContent="center"
+              color="primary.main"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "2",
+                WebkitBoxOrient: "vertical",
+                paddingTop: "20px",
+                paddingBottom: "5px",
+              }}
+            >
+              {node["title"]}
+            </Typography>
+          </Box>
+        )}
       </a>
     </Box>
   );
