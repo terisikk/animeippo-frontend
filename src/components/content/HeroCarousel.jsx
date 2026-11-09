@@ -1,14 +1,22 @@
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper"
 import useEmblaCarousel from "embla-carousel-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { HeroCard } from "./HeroCard";
+import { CarouselButton } from "../shared/CarouselButton";
 
 export function HeroCarousel({ shows, title, limit = 99 }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", skipSnaps: false });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", skipSnaps: false, containScroll: false, slidesToScroll: 1 });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
+
+  // Navigation handlers
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
+
+  console.log(emblaApi)
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -42,10 +50,13 @@ export function HeroCarousel({ shows, title, limit = 99 }) {
   });
 
   return (
-    <Box>
+    <Box sx={{
+      position: 'relative',
+      '&:hover .side-nav-button': { opacity: { xs: 0, sm: 1 }, }
+    }}>
       {/* Bit of a hack to hide title based on it's text */}
       {title && title != "Picked for You" && (
-        <h2 className="mb-5 ml-5 font-sans text-2xl font-medium tracking-wide text-white">{title}</h2>
+        <h2 className="mb-5 ml-5 text-2xl font-medium tracking-wide text-white">{title}</h2>
       )}
       <Box
         ref={emblaRef}
@@ -54,14 +65,18 @@ export function HeroCarousel({ shows, title, limit = 99 }) {
         }}
       >
         {/* Container */}
-        <Box sx={{ display: "flex", touchAction: "pan-y pinch-zoom" }}>
+        <Box sx={{ display: "flex", alignItems: "center", touchAction: "pan-y pinch-zoom" }}>
           {cards.map((card, i) => (
-            <div className="flex-[0_0_100%]" key={card.key}>
+            <Box key={i} sx={{
+              flex: '0 0 100%',
+            }}>
               {card}
-            </div>
+            </Box>
           ))}
         </Box>
       </Box>
+      <CarouselButton direction="left" onClick={scrollPrev} />
+      <CarouselButton direction="right" onClick={scrollNext} />
       <MobileStepper
         variant="dots"
         steps={scrollSnaps.length}

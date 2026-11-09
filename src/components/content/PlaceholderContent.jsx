@@ -1,9 +1,11 @@
 import { PAGE_TITLE, SECTION_TITLE } from "../../styles";
-import { CategoryCarousel } from "./CategoryCarousel";
+
+import Skeleton from "@mui/material/Skeleton"
+import Stack from "@mui/material/Stack"
 
 export function PlaceHolderContent() {
   return (
-    <div className="animate-pulse">
+    <div>
       <PlaceholderList />
       <PlaceholderList />
       <PlaceholderList />
@@ -19,23 +21,16 @@ function PlaceholderList() {
   }
 
   return (
-    <div className="pb-8">
+    <div className="pb-8 pl-8">
       <h2 className={`ml-5 pb-5 ${SECTION_TITLE}`}>...</h2>
-      <CategoryCarousel shows={placeholders} />
+      <Stack direction="row" gap={2}><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /></Stack>
     </div>
   );
 }
 
 function PlaceholderItem() {
   return (
-    <div className="group flex flex-col rounded">
-      <img className="card-image rounded" src="./placeholder.png" alt="" />
-      <div className="card-text h-28">
-        <h4 className="line-clamp-2 px-2 text-center font-sans text-base font-medium tracking-wide text-blue-200">
-          ...
-        </h4>
-      </div>
-    </div>
+    <Skeleton variant="rounded" width={230} height={326} sx={{ bgcolor: 'grey.800' }} />
   );
 }
 

@@ -110,7 +110,7 @@ function App() {
       <div>
         {loading ? (
           <>
-            <p className="mb-4 w-full text-center font-sans text-lg text-blue-200 animate-pulse">
+            <p className="mb-4 w-full text-center text-lg text-blue-200 animate-pulse">
               Loading {mode === "analyse" ? "analysis" : "recommendations"} for{" "}
               <span className="font-semibold text-white">{user}</span>...
             </p>
@@ -125,7 +125,7 @@ function App() {
             <AnimeContent data={shows?.data} />
           )
         ) : error != null ? (
-          <p className="w-full text-center font-sans text-lg text-zinc-400">{error}</p>
+          <p className="w-full text-center text-lg text-zinc-400">{error}</p>
         ) : null}
         {analysisData && (
           <div className={loading ? "hidden" : undefined}>

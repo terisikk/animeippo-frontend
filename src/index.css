@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+    background-color: #131313;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;

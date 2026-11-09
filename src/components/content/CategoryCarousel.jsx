@@ -1,9 +1,8 @@
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TypoGraphy from "@mui/material/Typography"
+import { CarouselButton } from "../shared/CarouselButton";
 
 import { AnimeCard } from "./AnimeCard";
 
@@ -54,13 +53,10 @@ export function CategoryCarousel({ shows, category }) {
   return (
     <Box sx={{ visible: { visible }, marginBottom: "1em" }}>
       <TypoGraphy variant="h5" color="white" sx={{ marginBottom: "0.5em", marginLeft: "1em" }}>{category?.name}</TypoGraphy>
-      <div
-        className="embla relative overflow-x-clip"
-        tabIndex={0}
-        onKeyDown={handleKeyDown}
-        role="region"
-        aria-label="Carousel"
-      >
+      <Box sx={{
+        position: 'relative',
+        '&:hover .side-nav-button': { opacity: { xs: 0, sm: 1 }, }
+      }}>
         <div className="embla__viewport" ref={emblaRef}>
           <div className="embla__container flex">
             {shows?.map((node) => (
@@ -71,24 +67,12 @@ export function CategoryCarousel({ shows, category }) {
           </div>
         </div>
         {canScrollPrev && (
-          <button
-            className="embla__button embla__button--prev"
-            onClick={() => emblaApi?.scrollPrev()}
-            aria-label="Previous slides"
-          >
-            <ChevronLeftIcon />
-          </button>
+          <CarouselButton direction="left" onClick={() => emblaApi?.scrollPrev()} />
         )}
         {canScrollNext && (
-          <button
-            className="embla__button embla__button--next"
-            onClick={() => emblaApi?.scrollNext()}
-            aria-label="Next slides"
-          >
-            <ChevronRightIcon />
-          </button>
+          <CarouselButton direction="right" onClick={() => emblaApi?.scrollNext()} />
         )}
-      </div>
+      </Box>
     </Box >
   );
 }

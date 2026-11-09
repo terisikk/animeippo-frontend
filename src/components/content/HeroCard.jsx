@@ -16,7 +16,9 @@ export const HeroCard = memo(function HeroCard({ node }) {
 
   const imageType = isMobile ? "cover_image" : "banner_image"
 
+  // TODO: Why does this still give me medium from the API, or does it?
   const img = node[imageType]?.replace("/medium/", "/large/")
+
   const aspectRatio = isMobile ? "2/3" : undefined
   const height = isMobile ? "60vh" : undefined
   const detailAlign = isMobile ? "center" : "left"

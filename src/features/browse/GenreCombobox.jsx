@@ -53,7 +53,7 @@ export function GenreCombobox({ selectedGenre, onSelect, genres, tags, matchCoun
             }}
             onFocus={() => setIsOpen(true)}
             aria-label="Search genres and tags"
-            className="w-full border-none bg-transparent p-0 font-sans text-sm font-medium tracking-wide text-blue-200 placeholder-blue-200/50 outline-none"
+            className="w-full border-none bg-transparent p-0 text-sm font-medium tracking-wide text-blue-200 placeholder-blue-200/50 outline-none"
           />
           <ExpandMoreIcon
             sx={{ fontSize: 18, transition: "transform 0.2s", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}

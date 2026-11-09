@@ -36,7 +36,7 @@ export function AnalysisCard({ category, shows, recommendations = [], index, onE
 
       <div className="relative">
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="font-sans text-lg font-semibold tracking-wide text-white">{category.name}</h3>
+          <h3 className="text-lg font-semibold tracking-wide text-white">{category.name}</h3>
           <button
             onClick={() => onExpand(category.name)}
             className="flex items-center justify-center rounded border-none bg-transparent p-1 text-zinc-400 cursor-pointer transition-colors hover:text-white"

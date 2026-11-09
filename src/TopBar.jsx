@@ -23,16 +23,15 @@ const MODES = [
   { key: "recommend", label: "Home", icon: <HomeIcon sx={{ fontSize: 20 }} /> },
   { key: "browse", label: "Browse", icon: <ExploreIcon sx={{ fontSize: 20 }} /> },
   { key: "analyse", label: "Analysis", icon: <BarChartIcon sx={{ fontSize: 20 }} /> },
-  { key: "funnel", label: "Pick", icon: <TouchAppIcon sx={{ fontSize: 20 }} /> },
+  //{ key: "funnel", label: "Pick", icon: <TouchAppIcon sx={{ fontSize: 20 }} /> },
 ];
 
 function HeaderIconButton({ open, onClick, icon, children }) {
   return (
     <button
       onClick={onClick}
-      className={`flex cursor-pointer items-center gap-1 border-none bg-transparent px-5 text-base font-medium text-blue-200 transition-colors duration-200 hover:bg-zinc-800 ${
-        open ? "bg-zinc-800" : ""
-      }`}
+      className={`flex cursor-pointer items-center gap-1 border-none bg-transparent px-5 text-base font-medium text-blue-200 transition-colors duration-200 hover:bg-zinc-800 ${open ? "bg-zinc-800" : ""
+        }`}
     >
       {icon}
       {children}
@@ -91,9 +90,8 @@ export default function TopBar({
                 <button
                   key={m.key}
                   onClick={() => setMode(m.key)}
-                  className={`cursor-pointer border-none bg-transparent px-4 font-sans text-sm font-medium tracking-wide transition-colors duration-200 hover:bg-zinc-800 ${
-                    mode === m.key ? "text-white" : "text-blue-200"
-                  }`}
+                  className={`cursor-pointer border-none bg-transparent px-4 font-sans text-sm font-medium tracking-wide transition-colors duration-200 hover:bg-zinc-800 ${mode === m.key ? "text-white" : "text-blue-200"
+                    }`}
                 >
                   {m.label}
                 </button>

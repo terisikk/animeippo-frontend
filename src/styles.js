@@ -1,9 +1,9 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 export const FILTER_BUTTON =
-  "flex cursor-pointer items-center justify-between gap-1 rounded border-none bg-zinc-800 px-4 py-2 font-sans text-sm font-medium tracking-wide text-blue-200 transition-colors duration-200 hover:bg-zinc-700";
-export const PAGE_TITLE = "font-sans text-3xl font-bold tracking-tight text-white";
-export const SECTION_TITLE = "font-sans text-2xl font-medium tracking-wide text-white";
+  "flex cursor-pointer items-center justify-between gap-1 rounded border-none bg-zinc-800 px-4 py-2 text-sm font-medium tracking-wide text-blue-200 transition-colors duration-200 hover:bg-zinc-700";
+export const PAGE_TITLE = "text-3xl font-bold tracking-tight text-white";
+export const SECTION_TITLE = "text-2xl font-medium tracking-wide text-white";
 
 export const colors = {
   blue200: "#bfdbfe",
@@ -47,6 +47,7 @@ let theme = createTheme({
 
   typography: {
     fontFamily: [
+      "Josefin Sans",
       "ui-sans-serif",
       "system-ui",
       "sans-serif",

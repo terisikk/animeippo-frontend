@@ -66,13 +66,12 @@ function GridTile({ label, icon, selected, disabled, onClick, color }) {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`flex flex-col items-center gap-2 rounded-lg px-4 py-5 font-sans text-sm font-medium tracking-wide transition-all duration-200 border-none cursor-pointer ${
-        selected
-          ? "text-white scale-105"
-          : disabled
-            ? "bg-zinc-800 text-zinc-600 cursor-not-allowed"
-            : "bg-zinc-800 text-blue-200 hover:bg-zinc-700"
-      }`}
+      className={`flex flex-col items-center gap-2 rounded-lg px-4 py-5 text-sm font-medium tracking-wide transition-all duration-200 border-none cursor-pointer ${selected
+        ? "text-white scale-105"
+        : disabled
+          ? "bg-zinc-800 text-zinc-600 cursor-not-allowed"
+          : "bg-zinc-800 text-blue-200 hover:bg-zinc-700"
+        }`}
       style={selected && color ? { backgroundColor: color } : undefined}
     >
       <span style={!selected && !disabled && color ? { color } : undefined}>{icon}</span>
@@ -279,22 +278,20 @@ export function FunnelContent({ data }) {
                 style={visited ? { cursor: "pointer" } : undefined}
               >
                 <div
-                  className={`h-3 w-3 rounded-full transition-all duration-200 ${
-                    active
-                      ? "bg-blue-500 ring-2 ring-blue-500/30"
-                      : visited
-                        ? "bg-blue-400 hover:bg-blue-300"
-                        : "bg-zinc-700"
-                  }`}
+                  className={`h-3 w-3 rounded-full transition-all duration-200 ${active
+                    ? "bg-blue-500 ring-2 ring-blue-500/30"
+                    : visited
+                      ? "bg-blue-400 hover:bg-blue-300"
+                      : "bg-zinc-700"
+                    }`}
                 />
                 <span
-                  className={`font-sans text-xs font-medium tracking-wide ${
-                    active ? "text-blue-200" : visited ? "text-zinc-400" : "text-zinc-600"
-                  }`}
+                  className={`text-xs font-medium tracking-wide ${active ? "text-blue-200" : visited ? "text-zinc-400" : "text-zinc-600"
+                    }`}
                 >
                   {label}
                 </span>
-                {choice && <span className="font-sans text-xs text-blue-400 capitalize">{choice}</span>}
+                {choice && <span className="text-xs text-blue-400 capitalize">{choice}</span>}
               </button>
               {i < STEP_LABELS.length - 1 && (
                 <div className={`mt-[5px] h-px w-6 sm:w-10 ${visited ? "bg-blue-400/50" : "bg-zinc-700"}`} />
@@ -308,7 +305,7 @@ export function FunnelContent({ data }) {
         {/* Step 1: Mood */}
         {step === 1 && (
           <div className="flex flex-col items-center gap-6">
-            <h2 className="font-sans text-xl font-medium text-blue-200">What mood are you in?</h2>
+            <h2 className="text-xl font-medium text-blue-200">What mood are you in?</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
               {MOODS.map((mood) => (
                 <GridTile
@@ -328,7 +325,7 @@ export function FunnelContent({ data }) {
         {/* Step 2: Intensity */}
         {step === 2 && (
           <div className="flex flex-col items-center gap-6">
-            <h2 className="font-sans text-xl font-medium text-blue-200">How intense?</h2>
+            <h2 className="text-xl font-medium text-blue-200">How intense?</h2>
             <div className="grid grid-cols-3 gap-3 w-full">
               {INTENSITIES.map((i) => (
                 <GridTile
@@ -354,7 +351,7 @@ export function FunnelContent({ data }) {
         {/* Step 3: Length */}
         {step === 3 && (
           <div className="flex flex-col items-center gap-6">
-            <h2 className="font-sans text-xl font-medium text-blue-200">What length?</h2>
+            <h2 className="text-xl font-medium text-blue-200">What length?</h2>
             <div className="grid grid-cols-3 gap-3 w-full">
               {LENGTHS.map((l) => (
                 <GridTile
@@ -379,7 +376,7 @@ export function FunnelContent({ data }) {
         {/* Step 4: Novelty */}
         {step === 4 && (
           <div className="flex flex-col items-center gap-6">
-            <h2 className="font-sans text-xl font-medium text-blue-200">How should we pick?</h2>
+            <h2 className="text-xl font-medium text-blue-200">How should we pick?</h2>
             <div className="grid grid-cols-3 gap-3 w-full">
               {NOVELTIES.map((n) => (
                 <GridTile
@@ -409,14 +406,14 @@ export function FunnelContent({ data }) {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setShuffleIndex((i) => i + 1)}
-                    className="flex items-center gap-2 rounded-full bg-zinc-800 px-5 py-2.5 font-sans text-sm font-medium text-blue-200 border-none cursor-pointer hover:bg-zinc-700 transition-colors"
+                    className="flex items-center gap-2 rounded-full bg-zinc-800 px-5 py-2.5 text-sm font-medium text-blue-200 border-none cursor-pointer hover:bg-zinc-700 transition-colors"
                   >
                     <ShuffleIcon sx={{ fontSize: 18 }} />
                     Shuffle
                   </button>
                   <button
                     onClick={startOver}
-                    className="flex items-center gap-2 rounded-full bg-zinc-800 px-5 py-2.5 font-sans text-sm font-medium text-blue-200 border-none cursor-pointer hover:bg-zinc-700 transition-colors"
+                    className="flex items-center gap-2 rounded-full bg-zinc-800 px-5 py-2.5 text-sm font-medium text-blue-200 border-none cursor-pointer hover:bg-zinc-700 transition-colors"
                   >
                     <RestartAltIcon sx={{ fontSize: 18 }} />
                     Start over
@@ -425,10 +422,10 @@ export function FunnelContent({ data }) {
               </>
             ) : (
               <>
-                <p className="font-sans text-lg text-zinc-400">No matches found</p>
+                <p className="text-lg text-zinc-400">No matches found</p>
                 <button
                   onClick={startOver}
-                  className="flex items-center gap-2 rounded-full bg-zinc-800 px-5 py-2.5 font-sans text-sm font-medium text-blue-200 border-none cursor-pointer hover:bg-zinc-700 transition-colors"
+                  className="flex items-center gap-2 rounded-full bg-zinc-800 px-5 py-2.5 text-sm font-medium text-blue-200 border-none cursor-pointer hover:bg-zinc-700 transition-colors"
                 >
                   <RestartAltIcon sx={{ fontSize: 18 }} />
                   Start over
@@ -441,7 +438,7 @@ export function FunnelContent({ data }) {
         {/* Footer: candidate count */}
         {step >= 2 && step < 5 && (
           <div className="mt-8 flex justify-center">
-            <p className="font-sans text-sm text-zinc-400">{poolSize} shows remaining</p>
+            <p className="text-sm text-zinc-400">{poolSize} shows remaining</p>
           </div>
         )}
       </div>

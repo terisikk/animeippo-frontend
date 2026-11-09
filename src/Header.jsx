@@ -59,7 +59,7 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
         }}
       >
         <input
-          className="rounded-l border border-blue-700 p-2.5 disabled:!bg-zinc-400 disabled:text-zinc-600"
+          className="rounded-l bg-white border border-blue-700 p-2.5 disabled:!bg-zinc-400 disabled:text-zinc-600"
           name="maluser"
           type="text"
           placeholder={placeholder}
@@ -83,9 +83,8 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
             key={p.key}
             type="button"
             onClick={() => setProvider(p.key)}
-            className={`rounded-md px-4 py-1 font-sans font-medium tracking-wide transition-colors ${
-              provider === p.key ? "bg-blue-600 text-white" : "text-blue-200 hover:bg-zinc-700"
-            }`}
+            className={`rounded-md px-4 py-1 font-sans font-medium tracking-wide transition-colors ${provider === p.key ? "bg-blue-600 text-white" : "text-blue-200 hover:bg-zinc-700"
+              }`}
           >
             {p.label}
           </button>
@@ -98,9 +97,8 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
 function Tab({ active, onClick, text, disabled }) {
   return (
     <button
-      className={`cursor-pointer border-0 bg-transparent px-5 font-sans text-lg font-semibold tracking-wide transition-colors duration-200 hover:bg-zinc-800 ${
-        active ? "text-white !border-b-2 border-blue-400" : "text-zinc-400"
-      }`}
+      className={`cursor-pointer border-0 bg-transparent px-5 font-sans text-lg font-semibold tracking-wide transition-colors duration-200 hover:bg-zinc-800 ${active ? "text-white !border-b-2 border-blue-400" : "text-zinc-400"
+        }`}
       onClick={onClick}
       disabled={disabled}
     >
