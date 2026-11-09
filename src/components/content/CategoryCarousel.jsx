@@ -55,7 +55,8 @@ export function CategoryCarousel({ shows, category }) {
       <TypoGraphy variant="h5" color="white" sx={{ marginBottom: "0.5em", marginLeft: "1em" }}>{category?.name}</TypoGraphy>
       <Box sx={{
         position: 'relative',
-        '&:hover .side-nav-button': { opacity: { xs: 0, sm: 1 }, }
+        '&:hover .side-nav-button': { opacity: { xs: 0, sm: 1 }, },
+        overflowX: "clip"
       }}>
         <div className="embla__viewport" ref={emblaRef}>
           <div className="embla__container flex">
