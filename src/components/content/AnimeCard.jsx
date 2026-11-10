@@ -119,7 +119,7 @@ export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
                 WebkitLineClamp: "2",
                 WebkitBoxOrient: "vertical",
                 paddingTop: "20px",
-                paddingBottom: "5px",
+                marginBottom: "5px",
               }}
             >
               {node["title"]}
