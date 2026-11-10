@@ -6,7 +6,7 @@ import { AnimeDescription } from "../content/AnimeDescription";
 export function HeroDetails({ node, align = "left" }) {
   const gradientDirection = (align == "left") ? "right" : "top";
   const gradient = "linear-gradient(to " + gradientDirection + ", rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 40%, rgba(10, 10, 10, 0) 80%)";
-  const gWidth = (align == "left") ? "66%" : "100%"
+  const gWidth = (align == "left") ? { "xl": "33%", "lg": "66%" } : "100%"
   const gHeight = (align == "left") ? "100%" : "66%"
 
   return (
