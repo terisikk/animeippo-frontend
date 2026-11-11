@@ -1,11 +1,12 @@
-import Box from "@mui/material/Box";
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useMemo } from "react";
 
 import { AnimeListFlex } from "../../features/browse/AnimeListFlex";
 import { CategoryCarousel } from "./CategoryCarousel";
 import { HeroCarousel } from "./HeroCarousel";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
+import Box from "@mui/material/Box";
 
 const TOP_PICKS_CATEGORY = "Your Top 3";
 const HERO_CATEGORIES = new Set([
@@ -18,7 +19,7 @@ const HERO_CATEGORIES = new Set([
   "Emotional Rollercoasters",
   "Grim & Gritty Tales",
   "Goofy Comedies",
-  "Mind-Bending Mysteries",
+  "Clever and Cunning",
   "Embark on Grand Journeys",
   "Sweat it Out",
 ]);
