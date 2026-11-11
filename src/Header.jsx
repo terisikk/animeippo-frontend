@@ -3,6 +3,12 @@ import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useState } from "react";
 
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField"
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import ToggleButton from "@mui/material/ToggleButton";
+import IconButton from "@mui/material/IconButton";
+
 export function HeaderTabBar({ activeYear, contentReady, setActiveYear, loading }) {
   const currentYear = new Date().getFullYear();
 
@@ -29,19 +35,22 @@ const PROVIDERS = [
 ];
 
 export function SearchForm({ onSubmit, loading, contentReady, user, provider, setProvider }) {
-  const [editing, setEditing] = useState(!user);
   const placeholder = provider === "mixed" ? "MAL username" : "AniList username";
 
   const handleSubmit = (e) => {
     onSubmit(e);
-    setEditing(false);
   };
 
-  if (!editing && user && contentReady) {
+  const handleChange = (event, newProvider) => {
+    if (newProvider !== null) {
+      setProvider(newProvider);
+    }
+  };
+
+  if (user && contentReady) {
     return (
       <button
         className="flex items-center gap-2 rounded-lg px-4 py-2 font-sans text-lg font-medium text-blue-200 transition-colors duration-200 hover:bg-zinc-800"
-        onClick={() => setEditing(true)}
       >
         <span>{user}</span>
         <SwapHorizIcon sx={{ fontSize: 18, color: "#a1a1aa" }} />
@@ -50,47 +59,49 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
   }
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <form
-        className="flex items-center"
+    <Box gap={1} sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <Box
+        component="form"
+        sx={{ display: "flex", alignItems: "center" }}
         onSubmit={handleSubmit}
-        onBlur={(e) => {
-          if (!e.currentTarget.contains(e.relatedTarget) && user) setEditing(false);
-        }}
       >
-        <input
-          className="rounded-l bg-white border border-blue-700 p-2.5 disabled:!bg-zinc-400 disabled:text-zinc-600"
-          name="maluser"
-          type="text"
-          placeholder={placeholder}
-          defaultValue={user}
+        <TextField
+          size="small"
+          name="search"
+          type="search"
           disabled={loading}
           autoFocus={!!user}
+          autoComplete="off"
+          placeholder={placeholder}
+          sx={{ bgcolor: "white" }}
         />
-        <label className="margin-0 text-white" id="recommendLabel" htmlFor="maluser">
-          <button
-            type="submit"
-            className="rounded-r border border-blue-700 bg-blue-600 p-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
-          >
-            {loading ? <CircularProgress size={24} sx={{ color: "white" }} /> : <SearchIcon />}
-          </button>
-        </label>
-        <input type="submit" hidden />
-      </form>
-      <div className="flex rounded-lg bg-zinc-800 p-0.5 text-sm">
+        <IconButton type="submit" sx={{ backgroundColor: "primary.main", borderRadius: "2%", "&:hover": { backgroundColor: "primary.light" } }}>
+          {loading ? <CircularProgress size={24} sx={{ color: "white" }} /> : <SearchIcon sx={{ color: "white", }} />}
+        </IconButton>
+      </Box>
+      <ToggleButtonGroup
+        value={provider}
+        exclusive
+        onChange={handleChange}
+        sx={{ backgroundColor: "background.light" }}
+      >
         {PROVIDERS.map((p) => (
-          <button
-            key={p.key}
-            type="button"
-            onClick={() => setProvider(p.key)}
-            className={`rounded-md px-4 py-1 font-sans font-medium tracking-wide transition-colors ${provider === p.key ? "bg-blue-600 text-white" : "text-blue-200 hover:bg-zinc-700"
-              }`}
+          <ToggleButton
+            size="small"
+            value={p.key}
+            sx={{
+              width: "7em",
+              "&.Mui-selected": { backgroundColor: "primary.main", color: "white" },
+              "&.Mui-selected:hover": { backgroundColor: "primary.main" },
+              "&:hover": { backgroundColor: "primary.dark", color: "white" },
+              color: "background.main"
+            }}
           >
             {p.label}
-          </button>
+          </ToggleButton>
         ))}
-      </div>
-    </div>
+      </ToggleButtonGroup>
+    </Box >
   );
 }
 

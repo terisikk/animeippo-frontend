@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider, Typography } from "@mui/material";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { fetchAnimeList } from "./api.js";
@@ -44,7 +44,7 @@ function App() {
   const handleSearch = (e) => {
     e.preventDefault();
 
-    const new_user = e.target.maluser.value;
+    const new_user = e.target.search.value;
 
     if (new_user !== user) {
       // Clear old user's cached data
@@ -145,10 +145,10 @@ function App() {
           {/* Landing state: centered title + search */}
           {!hasContent && (
             <>
-              <h1 className="w-full pb-5 pl-5 pr-5 text-center text-6xl font-extrabold leading-none tracking-tight text-white">
+              <Typography variant="h2" sx={{ width: "100%", pb: 3, pl: 3, pr: 3, textAlign: "center", fontWeight: "800", lineHeight: "1", letterSpacing: "-0.025em", color: "white" }}>
                 Animeippo
-              </h1>
-              <div className="flex justify-center">
+              </Typography>
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <SearchForm
                   onSubmit={handleSearch}
                   loading={loading}
@@ -157,7 +157,7 @@ function App() {
                   provider={provider}
                   setProvider={handleSetProvider}
                 />
-              </div>
+              </Box>
             </>
           )}
 
@@ -183,7 +183,7 @@ function App() {
           {content}
         </div>
       </Box>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
 
