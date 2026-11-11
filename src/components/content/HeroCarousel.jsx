@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import MobileStepper from "@mui/material/MobileStepper"
+import MobileStepper from "@mui/material/MobileStepper";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
@@ -7,7 +7,13 @@ import { CarouselButton } from "../shared/CarouselButton";
 import { HeroCard } from "./HeroCard";
 
 export function HeroCarousel({ shows, title, limit = 99 }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", skipSnaps: false, containScroll: false, slidesToScroll: 1 });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    skipSnaps: false,
+    containScroll: false,
+    slidesToScroll: 1,
+  });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
 
@@ -41,16 +47,16 @@ export function HeroCarousel({ shows, title, limit = 99 }) {
   }, [emblaApi]);
 
   const cards = shows.slice(0, limit).map((node) => {
-    return (
-      <HeroCard node={node} />
-    );
+    return <HeroCard node={node} />;
   });
 
   return (
-    <Box sx={{
-      position: 'relative',
-      '&:hover .side-nav-button': { opacity: { xs: 0, sm: 1 }, }
-    }}>
+    <Box
+      sx={{
+        position: "relative",
+        "&:hover .side-nav-button": { opacity: { xs: 0, sm: 1 } },
+      }}
+    >
       {/* Bit of a hack to hide title based on it's text */}
       {title && title != "Picked for You" && (
         <h2 className="mb-5 ml-5 text-2xl font-medium tracking-wide text-white">{title}</h2>
@@ -64,9 +70,12 @@ export function HeroCarousel({ shows, title, limit = 99 }) {
         {/* Container */}
         <Box sx={{ display: "flex", alignItems: "center", touchAction: "pan-y pinch-zoom" }}>
           {cards.map((card, i) => (
-            <Box key={i} sx={{
-              flex: '0 0 100%',
-            }}>
+            <Box
+              key={i}
+              sx={{
+                flex: "0 0 100%",
+              }}
+            >
               {card}
             </Box>
           ))}

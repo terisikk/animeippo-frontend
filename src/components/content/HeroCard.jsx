@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { memo } from "react";
 
 import { anilistUrl } from "../../styles";
@@ -11,17 +11,17 @@ import { HeroDetails } from "../shared/HeroDetails";
 export const HeroCard = memo(function HeroCard({ node }) {
   const url = anilistUrl(node["id"]);
   const theme = useTheme();
-  const isMobile = !useMediaQuery(theme.breakpoints.up("md"))
+  const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
 
-  const imageType = isMobile ? "cover_image" : "banner_image"
+  const imageType = isMobile ? "cover_image" : "banner_image";
 
-  const img = node[imageType]
+  const img = node[imageType];
 
-  const aspectRatio = isMobile ? "2/3" : undefined
-  const height = isMobile ? "60vh" : undefined
-  const detailAlign = isMobile ? "center" : "left"
+  const aspectRatio = isMobile ? "2/3" : undefined;
+  const height = isMobile ? "60vh" : undefined;
+  const detailAlign = isMobile ? "center" : "left";
 
-  const title = node["title"]
+  const title = node["title"];
 
   return (
     <Box
@@ -50,7 +50,7 @@ export const HeroCard = memo(function HeroCard({ node }) {
                 objectPosition: "center",
                 width: "100%",
                 aspectRatio: aspectRatio,
-                height: height
+                height: height,
               }}
             />
             <HeroDetails node={node} align={detailAlign} />

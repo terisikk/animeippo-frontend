@@ -145,7 +145,20 @@ function App() {
           {/* Landing state: centered title + search */}
           {!hasContent && (
             <>
-              <Typography variant="h2" sx={{ width: "100%", pb: 3, pl: 3, pr: 3, textAlign: "center", fontWeight: "800", lineHeight: "1", letterSpacing: "-0.025em", color: "white" }}>
+              <Typography
+                variant="h2"
+                sx={{
+                  width: "100%",
+                  pb: 3,
+                  pl: 3,
+                  pr: 3,
+                  textAlign: "center",
+                  fontWeight: "800",
+                  lineHeight: "1",
+                  letterSpacing: "-0.025em",
+                  color: "white",
+                }}
+              >
                 Animeippo
               </Typography>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -183,7 +196,7 @@ function App() {
           {content}
         </div>
       </Box>
-    </ThemeProvider >
+    </ThemeProvider>
   );
 }
 

@@ -1,5 +1,5 @@
-import Skeleton from "@mui/material/Skeleton"
-import Stack from "@mui/material/Stack"
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
 
 import { PAGE_TITLE, SECTION_TITLE } from "../../styles";
 
@@ -23,15 +23,23 @@ function PlaceholderList() {
   return (
     <div className="pb-8 pl-8">
       <h2 className={`ml-5 pb-5 ${SECTION_TITLE}`}>...</h2>
-      <Stack direction="row" gap={2}><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /><PlaceholderItem /></Stack>
+      <Stack direction="row" gap={2}>
+        <PlaceholderItem />
+        <PlaceholderItem />
+        <PlaceholderItem />
+        <PlaceholderItem />
+        <PlaceholderItem />
+        <PlaceholderItem />
+        <PlaceholderItem />
+        <PlaceholderItem />
+        <PlaceholderItem />
+      </Stack>
     </div>
   );
 }
 
 function PlaceholderItem() {
-  return (
-    <Skeleton variant="rounded" width={230} height={326} sx={{ bgcolor: 'grey.800' }} />
-  );
+  return <Skeleton variant="rounded" width={230} height={326} sx={{ bgcolor: "grey.800" }} />;
 }
 
 export function AnalysisPlaceholderContent() {

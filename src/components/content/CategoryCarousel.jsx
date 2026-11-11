@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import TypoGraphy from "@mui/material/Typography"
+import TypoGraphy from "@mui/material/Typography";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
@@ -35,15 +35,19 @@ export function CategoryCarousel({ shows, category }) {
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
 
-  const visible = shows?.length ? "visible" : "hidden"
+  const visible = shows?.length ? "visible" : "hidden";
   return (
     <Box sx={{ visible: { visible }, marginBottom: "1em" }}>
-      <TypoGraphy variant="h5" color="white" sx={{ marginBottom: "0.5em", marginLeft: "1em" }}>{category?.name}</TypoGraphy>
-      <Box sx={{
-        position: 'relative',
-        '&:hover .side-nav-button': { opacity: { xs: 0, sm: 1 }, },
-        overflowX: "clip"
-      }}>
+      <TypoGraphy variant="h5" color="white" sx={{ marginBottom: "0.5em", marginLeft: "1em" }}>
+        {category?.name}
+      </TypoGraphy>
+      <Box
+        sx={{
+          position: "relative",
+          "&:hover .side-nav-button": { opacity: { xs: 0, sm: 1 } },
+          overflowX: "clip",
+        }}
+      >
         <div className="embla__viewport" ref={emblaRef}>
           <div className="embla__container flex">
             {shows?.map((node) => (
@@ -53,13 +57,9 @@ export function CategoryCarousel({ shows, category }) {
             ))}
           </div>
         </div>
-        {canScrollPrev && (
-          <CarouselButton direction="left" onClick={() => emblaApi?.scrollPrev()} />
-        )}
-        {canScrollNext && (
-          <CarouselButton direction="right" onClick={() => emblaApi?.scrollNext()} />
-        )}
+        {canScrollPrev && <CarouselButton direction="left" onClick={() => emblaApi?.scrollPrev()} />}
+        {canScrollNext && <CarouselButton direction="right" onClick={() => emblaApi?.scrollNext()} />}
       </Box>
-    </Box >
+    </Box>
   );
 }

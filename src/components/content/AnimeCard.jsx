@@ -13,7 +13,7 @@ import { AnimeDescription } from "./AnimeDescription";
 
 export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
   const url = anilistUrl(node["id"]);
-  const img = node["cover_image"]
+  const img = node["cover_image"];
 
   return (
     <Box
@@ -57,7 +57,7 @@ export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
                 objectFit: "cover",
                 width: "100%",
                 height: "auto",
-                aspectRatio: "2/3"
+                aspectRatio: "2/3",
               }}
             />
             <Box className="hide-me" sx={{ position: "absolute", bottom: 0, m: 1, transition: "opacity 0.3s ease" }}>

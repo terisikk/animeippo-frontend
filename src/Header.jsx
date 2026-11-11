@@ -1,13 +1,11 @@
 import SearchIcon from "@mui/icons-material/Search";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
-import CircularProgress from "@mui/material/CircularProgress";
-import { useState } from "react";
-
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField"
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ToggleButton from "@mui/material/ToggleButton";
+import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
+import TextField from "@mui/material/TextField";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 export function HeaderTabBar({ activeYear, contentReady, setActiveYear, loading }) {
   const currentYear = new Date().getFullYear();
@@ -49,9 +47,7 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
 
   if (user && contentReady) {
     return (
-      <button
-        className="flex items-center gap-2 rounded-lg px-4 py-2 font-sans text-lg font-medium text-blue-200 transition-colors duration-200 hover:bg-zinc-800"
-      >
+      <button className="flex items-center gap-2 rounded-lg px-4 py-2 font-sans text-lg font-medium text-blue-200 transition-colors duration-200 hover:bg-zinc-800">
         <span>{user}</span>
         <SwapHorizIcon sx={{ fontSize: 18, color: "#a1a1aa" }} />
       </button>
@@ -60,11 +56,7 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
 
   return (
     <Box gap={1} sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <Box
-        component="form"
-        sx={{ display: "flex", alignItems: "center" }}
-        onSubmit={handleSubmit}
-      >
+      <Box component="form" sx={{ display: "flex", alignItems: "center" }} onSubmit={handleSubmit}>
         <TextField
           size="small"
           name="search"
@@ -75,8 +67,11 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
           placeholder={placeholder}
           sx={{ bgcolor: "white" }}
         />
-        <IconButton type="submit" sx={{ backgroundColor: "primary.main", borderRadius: "2%", "&:hover": { backgroundColor: "primary.light" } }}>
-          {loading ? <CircularProgress size={24} sx={{ color: "white" }} /> : <SearchIcon sx={{ color: "white", }} />}
+        <IconButton
+          type="submit"
+          sx={{ backgroundColor: "primary.main", borderRadius: "2%", "&:hover": { backgroundColor: "primary.light" } }}
+        >
+          {loading ? <CircularProgress size={24} sx={{ color: "white" }} /> : <SearchIcon sx={{ color: "white" }} />}
         </IconButton>
       </Box>
       <ToggleButtonGroup
@@ -94,22 +89,23 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
               "&.Mui-selected": { backgroundColor: "primary.main", color: "white" },
               "&.Mui-selected:hover": { backgroundColor: "primary.main" },
               "&:hover": { backgroundColor: "primary.dark", color: "white" },
-              color: "background.main"
+              color: "background.main",
             }}
           >
             {p.label}
           </ToggleButton>
         ))}
       </ToggleButtonGroup>
-    </Box >
+    </Box>
   );
 }
 
 function Tab({ active, onClick, text, disabled }) {
   return (
     <button
-      className={`cursor-pointer border-0 bg-transparent px-5 font-sans text-lg font-semibold tracking-wide transition-colors duration-200 hover:bg-zinc-800 ${active ? "text-white !border-b-2 border-blue-400" : "text-zinc-400"
-        }`}
+      className={`cursor-pointer border-0 bg-transparent px-5 font-sans text-lg font-semibold tracking-wide transition-colors duration-200 hover:bg-zinc-800 ${
+        active ? "text-white !border-b-2 border-blue-400" : "text-zinc-400"
+      }`}
       onClick={onClick}
       disabled={disabled}
     >
