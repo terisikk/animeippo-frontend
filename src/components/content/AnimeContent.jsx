@@ -9,7 +9,21 @@ import { useTheme } from '@mui/material/styles';
 import Box from "@mui/material/Box";
 
 const TOP_PICKS_CATEGORY = "Your Top 3";
-const HERO_CATEGORIES = new Set([TOP_PICKS_CATEGORY, "Hidden Gems for You", "Movie Night", "From Your Favourite Studios"]);
+const HERO_CATEGORIES = new Set([
+  TOP_PICKS_CATEGORY,
+  "Hidden Gems for You",
+  "Movie Night",
+  "From Your Favourite Studios",
+  "Relax & Unwind",
+  "Get Hyped",
+  "Emotional Rollercoasters",
+  "Grim & Gritty Tales",
+  "Goofy Comedies",
+  "Mind-Bending Mysteries",
+  "Embark on Grand Journeys",
+  "Sweat it Out",
+]);
+
 const DEBUG_MODE = import.meta.env.VITE_DEBUG === "true";
 
 function resolveShows(data, category) {
