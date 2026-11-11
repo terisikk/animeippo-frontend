@@ -1,9 +1,9 @@
-import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TypoGraphy from "@mui/material/Typography"
-import { CarouselButton } from "../shared/CarouselButton";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback, useEffect, useState } from "react";
 
+import { CarouselButton } from "../shared/CarouselButton";
 import { AnimeCard } from "./AnimeCard";
 
 export function CategoryCarousel({ shows, category }) {
@@ -34,20 +34,6 @@ export function CategoryCarousel({ shows, category }) {
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
-
-  const handleKeyDown = useCallback(
-    (e) => {
-      if (!emblaApi) return;
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        emblaApi.scrollPrev();
-      } else if (e.key === "ArrowRight") {
-        e.preventDefault();
-        emblaApi.scrollNext();
-      }
-    },
-    [emblaApi],
-  );
 
   const visible = shows?.length ? "visible" : "hidden"
   return (

@@ -3,8 +3,8 @@ import MobileStepper from "@mui/material/MobileStepper"
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
-import { HeroCard } from "./HeroCard";
 import { CarouselButton } from "../shared/CarouselButton";
+import { HeroCard } from "./HeroCard";
 
 export function HeroCarousel({ shows, title, limit = 99 }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", skipSnaps: false, containScroll: false, slidesToScroll: 1 });
@@ -14,9 +14,6 @@ export function HeroCarousel({ shows, title, limit = 99 }) {
   // Navigation handlers
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-  const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
-
-  console.log(emblaApi)
 
   useEffect(() => {
     if (!emblaApi) return;

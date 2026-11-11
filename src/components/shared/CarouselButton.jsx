@@ -47,4 +47,4 @@ export function CarouselButton({ direction = "right", onClick = {} }) {
             {icon}
         </ButtonBase>
     )
-};
+}

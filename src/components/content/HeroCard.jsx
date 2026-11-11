@@ -1,13 +1,12 @@
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { memo } from "react";
 
 import { anilistUrl } from "../../styles";
 import { HeroDetails } from "../shared/HeroDetails";
-import { useTheme } from '@mui/material/styles';
-
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const HeroCard = memo(function HeroCard({ node }) {
   const url = anilistUrl(node["id"]);

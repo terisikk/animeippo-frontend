@@ -1,7 +1,7 @@
-import { PAGE_TITLE, SECTION_TITLE } from "../../styles";
-
 import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
+
+import { PAGE_TITLE, SECTION_TITLE } from "../../styles";
 
 export function PlaceHolderContent() {
   return (

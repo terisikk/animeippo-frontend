@@ -5,7 +5,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExploreIcon from "@mui/icons-material/Explore";
 import HomeIcon from "@mui/icons-material/Home";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
-import TouchAppIcon from "@mui/icons-material/TouchApp";
 import { AppBar } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
