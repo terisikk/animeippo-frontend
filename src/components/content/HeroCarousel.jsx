@@ -58,7 +58,7 @@ export function HeroCarousel({ shows, title, limit = 99 }) {
       }}
     >
       {/* Bit of a hack to hide title based on it's text */}
-      {title && title != "Picked for You" && (
+      {title && (
         <h2 className="mb-5 ml-5 text-2xl font-medium tracking-wide text-white">{title}</h2>
       )}
       <Box

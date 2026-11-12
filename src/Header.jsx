@@ -103,9 +103,8 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
 function Tab({ active, onClick, text, disabled }) {
   return (
     <button
-      className={`cursor-pointer border-0 bg-transparent px-5 font-sans text-lg font-semibold tracking-wide transition-colors duration-200 hover:bg-zinc-800 ${
-        active ? "text-white !border-b-2 border-blue-400" : "text-zinc-400"
-      }`}
+      className={`cursor-pointer border-0 bg-transparent px-5 font-sans text-lg font-semibold tracking-wide transition-colors duration-200 hover:bg-zinc-800 ${active ? "text-white !border-b-2 border-blue-400" : "text-zinc-400"
+        }`}
       onClick={onClick}
       disabled={disabled}
     >

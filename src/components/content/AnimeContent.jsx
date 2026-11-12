@@ -7,7 +7,6 @@ import { AnimeListFlex } from "../../features/browse/AnimeListFlex";
 import { CategoryCarousel } from "./CategoryCarousel";
 import { HeroCarousel } from "./HeroCarousel";
 
-const TOP_PICKS_CATEGORY = "Your Top 3";
 const DEBUG_MODE = import.meta.env.VITE_DEBUG === "true";
 
 function resolveShows(data, category) {
@@ -17,16 +16,12 @@ function resolveShows(data, category) {
 }
 
 export function AnimeContent({ data }) {
-  const { topPicks, otherCategories } = useMemo(() => {
-    if (!data?.categories) return { topPicks: [], otherCategories: [] };
+  const categories = useMemo(() => {
+    if (!data?.categories) return [];
 
-    const topPicksCategory = data.categories.find((c) => c.name === TOP_PICKS_CATEGORY);
-    return {
-      topPicks: topPicksCategory ? resolveShows(data, topPicksCategory) : [],
-      otherCategories: data.categories.filter(
-        (c) => c.name !== TOP_PICKS_CATEGORY && (DEBUG_MODE || c.name !== "Debug"),
-      ),
-    };
+    return data.categories.filter(
+      (c) => c.name && (DEBUG_MODE || c.name !== "Debug"),
+    )
   }, [data]);
 
   if (data === undefined || data.length === 0) {
@@ -40,19 +35,16 @@ export function AnimeContent({ data }) {
   if (data?.categories) {
     return (
       <Box>
-        {topPicks.length > 0 && (
-          <Box sx={{ marginLeft: xmargin, marginRight: xmargin, marginTop: xmargin }}>
-            <HeroCarousel shows={topPicks} title="Picked for You" />
-          </Box>
-        )}
-        {otherCategories.map((category) => {
+        {categories.map((category, index) => {
           const render = resolveShows(data, category);
           if (render.length === 0) return null;
 
           if (category?.exclusive) {
+            const title = (index == 0) ? "" : category.name
+
             return (
               <Box sx={{ marginLeft: xmargin, marginRight: xmargin }}>
-                <HeroCarousel key={category.name} shows={render} title={category.name} />
+                <HeroCarousel key={category.name} shows={render} title={title} />
               </Box>
             );
           }

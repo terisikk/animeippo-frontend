@@ -3,7 +3,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { useCallback, useRef, useState } from "react";
+
+import { useCallback, useRef, useState, useId } from "react";
 
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { colors, FILTER_BUTTON, listItemHoverSx } from "../../styles";
@@ -49,3 +50,26 @@ export function FilterDropdown({ title, label, value, options, onChange, width =
     </div>
   );
 }
+
+
+/*import InputLabel from "@mui/material/InputLabel"
+import Select from "@mui/material/Select"
+import MenuItem from "@mui/material/MenuItem"*/
+
+// const id = useId();
+
+/* TODO: Could use this but figure out styling first:
+      <InputLabel id={`${id}-label`}>{title}</InputLabel>
+      <Select
+        displayEmpty
+        labelId={`${id}-label`}
+        id={id}
+        value={value}
+        label={title}
+        onChange={(e) => onChange(e.target.value)}
+      >
+        {options.map(o => (
+          <MenuItem value={o.value}>{o.label}</MenuItem>
+        ))}
+      </Select>
+*/
