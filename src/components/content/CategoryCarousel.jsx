@@ -38,7 +38,7 @@ export function CategoryCarousel({ shows, category }) {
   const visible = shows?.length ? "visible" : "hidden";
   return (
     <Box sx={{ visible: { visible }, marginBottom: "1em" }}>
-      <TypoGraphy variant="h5" color="white" sx={{ marginBottom: "0.5em", marginLeft: "1em" }}>
+      <TypoGraphy variant="h5" color="text.primary" sx={{ marginBottom: "0.5em", marginLeft: "1em" }}>
         {category?.name}
       </TypoGraphy>
       <Box
@@ -48,15 +48,15 @@ export function CategoryCarousel({ shows, category }) {
           overflowX: "clip",
         }}
       >
-        <div className="embla__viewport" ref={emblaRef}>
-          <div className="embla__container flex">
+        <Box className="embla__viewport" ref={emblaRef}>
+          <Box className="embla__container" sx={{ display: "flex" }}>
             {shows?.map((node) => (
               <div className="embla__slide" key={node["id"]}>
                 <AnimeCard key={node["id"]} node={node} />
               </div>
             ))}
-          </div>
-        </div>
+          </Box>
+        </Box>
         {canScrollPrev && <CarouselButton direction="left" onClick={() => emblaApi?.scrollPrev()} />}
         {canScrollNext && <CarouselButton direction="right" onClick={() => emblaApi?.scrollNext()} />}
       </Box>

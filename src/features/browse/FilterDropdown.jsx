@@ -3,8 +3,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-
-import { useCallback, useRef, useState, useId } from "react";
+import { useCallback,useRef, useState } from "react";
 
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { colors, FILTER_BUTTON, listItemHoverSx } from "../../styles";

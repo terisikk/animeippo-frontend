@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Box, CssBaseline, ThemeProvider, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { fetchAnimeList } from "./api.js";
@@ -10,7 +10,6 @@ import { AnalysisContent } from "./features/analysis/AnalysisContent";
 import { BrowseContent } from "./features/browse/BrowseContent";
 import { FunnelContent } from "./features/funnel/FunnelContent";
 import { SearchForm } from "./Header";
-import theme from "./styles";
 import TopBar from "./TopBar";
 
 function App() {
@@ -138,65 +137,62 @@ function App() {
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Resets browser styles and applies default background */}
-      <Box component="main" bgcolor={"background.main"}>
-        <div className={`${hasContent ? "pt-0" : "h-screen pt-[15%]"} transition-all duration-1000 ease-out`}>
-          {/* Landing state: centered title + search */}
-          {!hasContent && (
-            <>
-              <Typography
-                variant="h2"
-                sx={{
-                  width: "100%",
-                  pb: 3,
-                  pl: 3,
-                  pr: 3,
-                  textAlign: "center",
-                  fontWeight: "800",
-                  lineHeight: "1",
-                  letterSpacing: "-0.025em",
-                  color: "white",
-                }}
-              >
-                Animeippo
-              </Typography>
-              <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <SearchForm
-                  onSubmit={handleSearch}
-                  loading={loading}
-                  contentReady={contentReady}
-                  user={user}
-                  provider={provider}
-                  setProvider={handleSetProvider}
-                />
-              </Box>
-            </>
-          )}
+    <Box component="main">
+      <div className={`${hasContent ? "pt-0" : "h-screen pt-[15%]"} transition-all duration-1000 ease-out`}>
+        {/* Landing state: centered title + search */}
+        {!hasContent && (
+          <>
+            <Typography
+              variant="h2"
+              sx={{
+                width: "100%",
+                pb: 3,
+                pl: 3,
+                pr: 3,
+                textAlign: "center",
+                fontWeight: "800",
+                lineHeight: "1",
+                letterSpacing: "-0.025em",
+                color: "white",
+              }}
+            >
+              Animeippo
+            </Typography>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <SearchForm
+                onSubmit={handleSearch}
+                loading={loading}
+                contentReady={contentReady}
+                user={user}
+                provider={provider}
+                setProvider={handleSetProvider}
+              />
+            </Box>
+          </>
+        )}
 
-          {/* Content state: TopBar replaces title + header */}
-          {hasContent && (
-            <TopBar
-              activeYear={activeYear}
-              setActiveYear={setActiveYear}
-              loading={loading}
-              contentReady={contentReady}
-              user={user}
-              mode={mode}
-              setMode={setMode}
-              toggleMenu={toggleMenu}
-              openMenu={openMenu}
-              closeMenu={closeMenu}
-              onSwitchUser={handleSwitchUser}
-              provider={provider}
-              setProvider={handleSetProvider}
-            />
-          )}
+        {/* Content state: TopBar replaces title + header */}
+        {hasContent && (
+          <TopBar
+            activeYear={activeYear}
+            setActiveYear={setActiveYear}
+            loading={loading}
+            contentReady={contentReady}
+            user={user}
+            mode={mode}
+            setMode={setMode}
+            toggleMenu={toggleMenu}
+            openMenu={openMenu}
+            closeMenu={closeMenu}
+            onSwitchUser={handleSwitchUser}
+            provider={provider}
+            setProvider={handleSetProvider}
+          />
+        )}
 
-          {content}
-        </div>
-      </Box>
-    </ThemeProvider>
+        {content}
+      </div>
+    </Box>
   );
 }
 

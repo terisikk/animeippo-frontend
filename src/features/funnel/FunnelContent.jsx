@@ -20,7 +20,7 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { useEffect, useMemo, useState } from "react";
 
 import { HeroDetails } from "../../components/shared/HeroDetails";
-import { anilistUrl, PAGE_TITLE } from "../../styles";
+import { anilistUrl } from "../../styles";
 
 const MOODS = [
   { key: "adventurous", label: "Adventurous", icon: <ExploreIcon sx={{ fontSize: 28 }} />, color: "#f59e0b" },
@@ -66,13 +66,12 @@ function GridTile({ label, icon, selected, disabled, onClick, color }) {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`flex flex-col items-center gap-2 rounded-lg px-4 py-5 text-sm font-medium tracking-wide transition-all duration-200 border-none cursor-pointer ${
-        selected
-          ? "text-white scale-105"
-          : disabled
-            ? "bg-zinc-800 text-zinc-600 cursor-not-allowed"
-            : "bg-zinc-800 text-blue-200 hover:bg-zinc-700"
-      }`}
+      className={`flex flex-col items-center gap-2 rounded-lg px-4 py-5 text-sm font-medium tracking-wide transition-all duration-200 border-none cursor-pointer ${selected
+        ? "text-white scale-105"
+        : disabled
+          ? "bg-zinc-800 text-zinc-600 cursor-not-allowed"
+          : "bg-zinc-800 text-blue-200 hover:bg-zinc-700"
+        }`}
       style={selected && color ? { backgroundColor: color } : undefined}
     >
       <span style={!selected && !disabled && color ? { color } : undefined}>{icon}</span>
@@ -254,7 +253,7 @@ export function FunnelContent({ data }) {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
-      <h1 className={`${PAGE_TITLE} mb-6 text-center`}>Pick Your Next Watch</h1>
+      <Typography variant="h2">Pick Your Next Watch</Typography>
 
       {/* Step indicator */}
       <div className="mb-8 flex items-start justify-center">
@@ -279,18 +278,16 @@ export function FunnelContent({ data }) {
                 style={visited ? { cursor: "pointer" } : undefined}
               >
                 <div
-                  className={`h-3 w-3 rounded-full transition-all duration-200 ${
-                    active
-                      ? "bg-blue-500 ring-2 ring-blue-500/30"
-                      : visited
-                        ? "bg-blue-400 hover:bg-blue-300"
-                        : "bg-zinc-700"
-                  }`}
+                  className={`h-3 w-3 rounded-full transition-all duration-200 ${active
+                    ? "bg-blue-500 ring-2 ring-blue-500/30"
+                    : visited
+                      ? "bg-blue-400 hover:bg-blue-300"
+                      : "bg-zinc-700"
+                    }`}
                 />
                 <span
-                  className={`text-xs font-medium tracking-wide ${
-                    active ? "text-blue-200" : visited ? "text-zinc-400" : "text-zinc-600"
-                  }`}
+                  className={`text-xs font-medium tracking-wide ${active ? "text-blue-200" : visited ? "text-zinc-400" : "text-zinc-600"
+                    }`}
                 >
                   {label}
                 </span>

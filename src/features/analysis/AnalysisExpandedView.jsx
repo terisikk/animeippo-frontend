@@ -1,10 +1,14 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid"
+import IconButton from "@mui/material/IconButton";
+import Tab from "@mui/material/Tab"
+import Tabs from "@mui/material/Tabs"
+import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 
 import { AnimeGrid } from "../../components/shared/AnimeGrid";
-import { PAGE_TITLE, toggleGroupSx } from "../../styles";
+
 
 export function AnalysisExpandedView({ category, shows, recommendations, onClose }) {
   const [view, setView] = useState("watched");
@@ -21,50 +25,36 @@ export function AnalysisExpandedView({ category, shows, recommendations, onClose
   };
 
   return (
-    <div className="px-6 py-6 animate-hero-fade-in">
-      <div className="mb-6 flex items-center gap-3">
-        <button
-          onClick={onClose}
-          className="flex items-center justify-center rounded border-none bg-transparent p-1 text-zinc-400 cursor-pointer transition-colors hover:text-white"
-          aria-label="Back to cards"
-        >
-          <ArrowBackIcon />
-        </button>
+    <Box sx={{ margin: 4 }}>
+      <Box sx={{ display: "flex", gap: 1, marginLeft: 1 }}>
+        <IconButton size="small" onClick={onClose} aria-label="Back to cards" sx={{ color: "text.secondary" }}><ArrowBackIcon /></IconButton>
         <div>
-          <h1 className={PAGE_TITLE}>{category.name}</h1>
+          <Typography variant="h3">{category.name}</Typography>
           {stats && (
-            <div className="mt-1 flex gap-4 text-sm">
-              <div className="flex items-baseline gap-1">
-                <span className="font-bold text-blue-200">
-                  {stats.mean_score != null ? stats.mean_score.toFixed(1) : "?"}
-                </span>
-                <span className="text-xs text-zinc-400">avg</span>
-              </div>
-              <div className="flex items-baseline gap-1">
-                <span className="font-bold text-blue-200">{stats.completion_rate?.toFixed(0)}%</span>
-                <span className="text-xs text-zinc-400">completed</span>
-              </div>
-            </div>
+            <Grid container spacing={1} size={12} sx={{ alignItems: "center" }}>
+              <Typography color="secondary.dark" variant="h5">
+                {stats.mean_score != null ? stats.mean_score.toFixed(1) : "?"}
+              </Typography>
+              <Typography color="text.secondary" variant="body1">
+                avg
+              </Typography>
+              <Typography color="secondary.dark" variant="h5">
+                {stats.completion_rate?.toFixed(0)}%
+              </Typography>
+              <Typography color="text.secondary" variant="body1">
+                completed
+              </Typography>
+            </Grid>
           )}
         </div>
-      </div>
+      </Box>
 
-      <ToggleButtonGroup
-        value={view}
-        exclusive
-        onChange={handleView}
-        size="small"
-        sx={{ ...toggleGroupSx, maxWidth: 400 }}
-      >
-        <ToggleButton value="watched">Your titles ({shows.length})</ToggleButton>
-        <ToggleButton value="recommendations" disabled={!hasRecs}>
-          Recommendations ({recommendations.length})
-        </ToggleButton>
-      </ToggleButtonGroup>
+      <Tabs value={view} onChange={handleView} sx={{ backgroundColor: "background.default", marginBottom: 2, marginLeft: { xs: 0, sm: 4 } }}>
+        <Tab value="watched" label={`Your titles (${shows.length})`} />
+        <Tab value="recommendations" disabled={!hasRecs} label={`Recommendations (${recommendations.length})`} />
+      </Tabs>
 
-      <div className="pt-2">
-        <AnimeGrid shows={activeShows} />
-      </div>
-    </div>
+      <AnimeGrid shows={activeShows} />
+    </Box >
   );
 }

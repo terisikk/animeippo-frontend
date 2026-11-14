@@ -31,7 +31,7 @@ export function HeroDetails({ node, align = "left" }) {
         zIndex: 3,
       }}
     >
-      <Typography variant="h3" align={align} color="primary.light">
+      <Typography variant="h3" align={align} color="secondary.light">
         {node["title"]}
       </Typography>
       <AnimeDescription

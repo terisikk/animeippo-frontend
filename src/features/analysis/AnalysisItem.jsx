@@ -1,8 +1,8 @@
+import Box from "@mui/material/Box"
 import Tooltip from "@mui/material/Tooltip";
 import { memo } from "react";
+
 import { StatusBadge } from "../../components/shared/StatusBadge";
-
-
 import { anilistUrl } from "../../styles";
 
 export const AnalysisItem = memo(function AnalysisItem({ node }) {
@@ -11,14 +11,42 @@ export const AnalysisItem = memo(function AnalysisItem({ node }) {
 
   return (
     <Tooltip title={node["title"]} arrow placement="bottom">
-      <a href={url} target="_blank" rel="noopener noreferrer" className="relative block rounded aspect-[2/3]">
-        <img className="h-full w-full rounded object-cover" src={img} alt={node["title"]} />
-        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-1 pb-1">
-          <div>
-            <StatusBadge status={node["status"]} season={node["season"]} size="small" />
-          </div>
-        </div>
-      </a>
+      <Box
+        component="a"
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        sx={{
+          position: 'relative',
+          display: 'block',
+          aspectRatio: '2/3',
+          overflow: 'hidden',
+          textDecoration: 'none',
+        }}
+      >
+        <Box
+          component="img"
+          src={img}
+          alt={node["title"]}
+          sx={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            px: 1,
+            pb: 1,
+          }}
+        >
+          <StatusBadge status={node["status"]} season={node["season"]} size="small" />
+        </Box>
+      </Box>
     </Tooltip>
   );
 });

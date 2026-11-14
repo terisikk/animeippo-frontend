@@ -23,6 +23,7 @@ export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
         ...(showDetails && {
           "&:hover .animeImage": {
             scale: "105%",
+            boxShadow: "0px 0px 2px 3px #66c7dc50",
           },
           "&:hover .reveal-me": {
             opacity: 1,
@@ -31,7 +32,7 @@ export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
             opacity: 0,
           },
           "& .animeImage": {
-            transition: "scale 0.3s ease-in",
+            transition: " 0.3s ease",
           },
         }),
       }}
@@ -87,7 +88,7 @@ export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
                   <BookmarkIcon
                     sx={{
                       fontSize: "1.25rem",
-                      color: "primary.main", // or 'blue.400' if defined in your theme
+                      color: "secondary.main", // or 'blue.400' if defined in your theme
                       opacity: 0.8,
                       filter: "drop-shadow(0px 1px 3px rgba(0,0,0,0.8))",
                     }}
@@ -111,7 +112,7 @@ export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
               variant="body1"
               align="center"
               alignContent="center"
-              color="primary.main"
+              color="secondary.main"
               sx={{
                 overflow: "hidden",
                 textOverflow: "ellipsis",

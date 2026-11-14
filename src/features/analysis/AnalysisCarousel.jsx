@@ -1,7 +1,9 @@
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import Box from "@mui/material/Box";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
+
+import { CarouselButton } from "../../components/shared/CarouselButton";
+
 
 export function AnalysisCarousel({ children }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -27,36 +29,45 @@ export function AnalysisCarousel({ children }) {
   }, [emblaApi, onSelect]);
 
   return (
-    <div className="group/carousel relative">
-      <div className="overflow-x-clip" ref={emblaRef}>
-        <div className="flex gap-1">
+    <Box
+      sx={{
+        position: "relative",
+        "&:hover .side-nav-button": { opacity: { xs: 0, sm: 1 } },
+        overflowX: "clip",
+      }}
+    >
+      <Box className="embla__viewport" ref={emblaRef}>
+        <Box className="embla__container" sx={{ display: "flex" }}>
           {Array.isArray(children)
             ? children.map((child, i) => (
-                <div className="flex-[0_0_23%] xl:flex-[0_0_18%] min-w-0" key={child.key ?? i}>
-                  {child}
-                </div>
-              ))
+              <Box
+                key={child.key ?? i}
+                sx={{
+                  // Override the Embla CSS variables directly per breakpoint:
+                  '--slide-size': {
+                    xs: '30%',
+                    xl: '23%',
+                  },
+                  '--slide-spacing': '0.3rem',
+                  '--slide-max-width': 'none',
+
+                  // Core Embla slide layout rules:
+                  flex: '0 0 var(--slide-size)',
+                  maxWidth: 'var(--slide-max-width)',
+                  paddingLeft: 'var(--slide-spacing)',
+                  minWidth: 0,
+                  zIndex: 0,
+                  transitionDuration: '300ms',
+                }}
+              >
+                {child}
+              </Box>
+            ))
             : children}
-        </div>
-      </div>
-      {canScrollPrev && (
-        <button
-          className="absolute left-0 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border-none bg-blue-500/90 text-white shadow cursor-pointer opacity-0 transition-opacity duration-200 group-hover/carousel:opacity-100 hover:bg-blue-600"
-          onClick={() => emblaApi?.scrollPrev()}
-          aria-label="Previous slides"
-        >
-          <ChevronLeftIcon fontSize="small" />
-        </button>
-      )}
-      {canScrollNext && (
-        <button
-          className="absolute right-0 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border-none bg-blue-500/90 text-white shadow cursor-pointer opacity-0 transition-opacity duration-200 group-hover/carousel:opacity-100 hover:bg-blue-600"
-          onClick={() => emblaApi?.scrollNext()}
-          aria-label="Next slides"
-        >
-          <ChevronRightIcon fontSize="small" />
-        </button>
-      )}
-    </div>
+        </Box>
+      </Box>
+      {canScrollPrev && <CarouselButton direction="left" size="small" onClick={() => emblaApi?.scrollPrev()} />}
+      {canScrollNext && <CarouselButton direction="right" size="small" onClick={() => emblaApi?.scrollNext()} />}
+    </Box >
   );
 }

@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
+import TypoGraphy from "@mui/material/Typography";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
@@ -57,9 +58,10 @@ export function HeroCarousel({ shows, title, limit = 99 }) {
         "&:hover .side-nav-button": { opacity: { xs: 0, sm: 1 } },
       }}
     >
-      {/* Bit of a hack to hide title based on it's text */}
       {title && (
-        <h2 className="mb-5 ml-5 text-2xl font-medium tracking-wide text-white">{title}</h2>
+        <TypoGraphy variant="h4" color="text.primary" sx={{ marginBottom: "0.5em", marginLeft: "1em" }}>
+          {title}
+        </TypoGraphy>
       )}
       <Box
         ref={emblaRef}
@@ -98,9 +100,9 @@ export function HeroCarousel({ shows, title, limit = 99 }) {
             gap: 1,
           },
           "& .MuiMobileStepper-dot": {
-            backgroundColor: "primary.dark",
+            backgroundColor: "secondary.dark",
             "&.MuiMobileStepper-dotActive": {
-              backgroundColor: "primary.light",
+              backgroundColor: "secondary.light",
             },
           },
         }}

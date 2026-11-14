@@ -1,10 +1,11 @@
 import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
 import { useMemo } from "react";
 
-import { PAGE_TITLE } from "../../styles";
 import { AnimeListFlex } from "./AnimeListFlex";
 import { FilterDropdown } from "./FilterDropdown";
 import { GenreCombobox } from "./GenreCombobox";
+
 
 const STATUS_OPTIONS = [
   { value: "", label: "All" },
@@ -111,50 +112,48 @@ export function BrowseContent({ data, filters, setFilters }) {
   if (!data) return null;
 
   return (
-    <>
-      <div className="my-4 py-3">
-        <h1 className={`mb-3 pl-6 ${PAGE_TITLE}`}>Your Recommendations</h1>
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <GenreCombobox
-            selectedGenre={selectedGenre}
-            onSelect={setSelectedGenre}
-            genres={availableGenres}
-            tags={availableTags}
-            matchCounts={matchCounts}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
-          <FilterDropdown
-            title="Airing Status"
-            label="Status"
-            value={statusFilter}
-            options={STATUS_OPTIONS}
-            onChange={setStatusFilter}
-          />
-          <FilterDropdown
-            title="Season"
-            label="Season"
-            value={seasonFilter}
-            options={SEASON_OPTIONS}
-            onChange={setSeasonFilter}
-          />
-          <FilterDropdown
-            title="Format"
-            label="Format"
-            value={formatFilter}
-            options={FORMAT_OPTIONS}
-            onChange={setFormatFilter}
-          />
-          <FilterDropdown
-            title="My List"
-            label="List"
-            value={listStatusFilter}
-            options={LIST_STATUS_OPTIONS}
-            onChange={setListStatusFilter}
-          />
-        </div>
+    <div className="my-4 py-3 mx-10">
+      <Typography variant="h4" sx={{ marginBottom: 4 }}>Your Recommendations</Typography>
+      <div className="flex flex-wrap items-left justify-left gap-2 my-4">
+        <GenreCombobox
+          selectedGenre={selectedGenre}
+          onSelect={setSelectedGenre}
+          genres={availableGenres}
+          tags={availableTags}
+          matchCounts={matchCounts}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+        <FilterDropdown
+          title="Airing Status"
+          label="Status"
+          value={statusFilter}
+          options={STATUS_OPTIONS}
+          onChange={setStatusFilter}
+        />
+        <FilterDropdown
+          title="Season"
+          label="Season"
+          value={seasonFilter}
+          options={SEASON_OPTIONS}
+          onChange={setSeasonFilter}
+        />
+        <FilterDropdown
+          title="Format"
+          label="Format"
+          value={formatFilter}
+          options={FORMAT_OPTIONS}
+          onChange={setFormatFilter}
+        />
+        <FilterDropdown
+          title="My List"
+          label="List"
+          value={listStatusFilter}
+          options={LIST_STATUS_OPTIONS}
+          onChange={setListStatusFilter}
+        />
         {hasActiveFilters && (
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+          <div className="flex flex-wrap items-center justify-left gap-2 pt-2">
             <span className="text-sm text-zinc-400">Showing:</span>
             {selectedGenre !== "All" && (
               <Chip
@@ -217,6 +216,6 @@ export function BrowseContent({ data, filters, setFilters }) {
           <div className="flex justify-center py-16 text-zinc-400 text-lg">No shows match these filters.</div>
         )}
       </div>
-    </>
+    </div>
   );
 }

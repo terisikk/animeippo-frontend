@@ -7,6 +7,8 @@ import TextField from "@mui/material/TextField";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
+
+
 export function HeaderTabBar({ activeYear, contentReady, setActiveYear, loading }) {
   const currentYear = new Date().getFullYear();
 
@@ -65,11 +67,12 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
           autoFocus={!!user}
           autoComplete="off"
           placeholder={placeholder}
-          sx={{ bgcolor: "white" }}
+          color="secondary"
+          sx={{ bgcolor: "white", "& input": { color: "black" } }}
         />
         <IconButton
           type="submit"
-          sx={{ backgroundColor: "primary.main", borderRadius: "2%", "&:hover": { backgroundColor: "primary.light" } }}
+          sx={{ backgroundColor: "secondary.main", borderRadius: "2%", "&:hover": { backgroundColor: "secondary.light" } }}
         >
           {loading ? <CircularProgress size={24} sx={{ color: "white" }} /> : <SearchIcon sx={{ color: "white" }} />}
         </IconButton>
@@ -78,19 +81,10 @@ export function SearchForm({ onSubmit, loading, contentReady, user, provider, se
         value={provider}
         exclusive
         onChange={handleChange}
-        sx={{ backgroundColor: "background.light" }}
       >
         {PROVIDERS.map((p) => (
           <ToggleButton
-            size="small"
             value={p.key}
-            sx={{
-              width: "7em",
-              "&.Mui-selected": { backgroundColor: "primary.main", color: "white" },
-              "&.Mui-selected:hover": { backgroundColor: "primary.main" },
-              "&:hover": { backgroundColor: "primary.dark", color: "white" },
-              color: "background.main",
-            }}
           >
             {p.label}
           </ToggleButton>

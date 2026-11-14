@@ -1,16 +1,22 @@
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Card from '@mui/material/Card';
+import CardActions from "@mui/material/CardActions"
+import CardContent from '@mui/material/CardContent';
+import CardMedia from "@mui/material/CardMedia"
+import Divider from "@mui/material/Divider"
+import Grid from "@mui/material/Grid"
+import IconButton from "@mui/material/IconButton";
+import Tab from "@mui/material/Tab"
+import Tabs from "@mui/material/Tabs"
+import Typography from "@mui/material/Typography";
 import { useState } from "react";
 
-import { toggleGroupSx } from "../../styles";
 import { AnalysisCarousel } from "./AnalysisCarousel";
 import { AnalysisItem } from "./AnalysisItem";
 
-export function AnalysisCard({ category, shows, recommendations = [], index, onExpand }) {
+export function AnalysisCard({ category, shows, recommendations = [], onExpand }) {
   const [view, setView] = useState("watched");
   const stats = category.stats;
-  const accentImage = shows[0]?.cover_image;
   const hasRecs = recommendations.length > 0;
   const activeShows = view === "recommendations" && hasRecs ? recommendations : shows;
 
@@ -19,61 +25,52 @@ export function AnalysisCard({ category, shows, recommendations = [], index, onE
   };
 
   return (
-    <div
-      className="relative rounded-xl border border-zinc-700/50 bg-zinc-800/60 p-4 transition-all duration-300 hover:border-zinc-500/70 hover:shadow-lg hover:shadow-blue-900/20 animate-hero-fade-in w-full md:w-[calc(50%-0.75rem)] xl:w-[calc(33.333%-1rem)]"
-      style={{ animationDelay: `${index * 100}ms` }}
-    >
-      {accentImage && (
-        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-xl">
-          <img
-            className="h-full w-full object-cover opacity-[0.07] blur-3xl"
-            src={accentImage}
-            alt=""
-            aria-hidden="true"
-          />
-        </div>
-      )}
+    <Card raised="true" sx={{
+      transition: "box-shadow 0.3s ease",
+      "&:hover": {
+        boxShadow: "0px 0px 1px 2px #66c7dc50",
+        transition: "box-shadow 0.3s ease",
+      }
+    }}>
+      <CardContent sx={{ backgroundColor: "background.paper", paddingBottom: "0" }}>
+        <CardActions>
+          <Grid spacing={0.5} container direction="row" sx={{ width: "100%", alignItems: "flex-start" }}>
+            <Grid container size={12} sx={{ justifyContent: "space-between" }}>
+              <Typography variant="h5">{category.name}</Typography>
+              <IconButton size="small" onClick={() => onExpand(category.name)} aria-label="Expand category" sx={{ color: "text.secondary" }}><OpenInFullIcon /></IconButton>
+            </Grid>
 
-      <div className="relative">
-        <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-lg font-semibold tracking-wide text-white">{category.name}</h3>
-          <button
-            onClick={() => onExpand(category.name)}
-            className="flex items-center justify-center rounded border-none bg-transparent p-1 text-zinc-400 cursor-pointer transition-colors hover:text-white"
-            aria-label="Expand"
-          >
-            <OpenInFullIcon sx={{ fontSize: 18 }} />
-          </button>
-        </div>
-
-        {stats && (
-          <div className="mb-3 flex gap-4 text-sm">
-            <div className="flex items-baseline gap-1">
-              <span className="font-bold text-blue-200">
-                {stats.mean_score != null ? stats.mean_score.toFixed(1) : "?"}
-              </span>
-              <span className="text-xs text-zinc-400">avg</span>
-            </div>
-            <div className="flex items-baseline gap-1">
-              <span className="font-bold text-blue-200">{stats.completion_rate?.toFixed(0)}%</span>
-              <span className="text-xs text-zinc-400">completed</span>
-            </div>
-          </div>
-        )}
-
-        <ToggleButtonGroup value={view} exclusive onChange={handleView} size="small" sx={toggleGroupSx}>
-          <ToggleButton value="watched">Your titles ({shows.length})</ToggleButton>
-          <ToggleButton value="recommendations" disabled={!hasRecs}>
-            Recommendations ({recommendations.length})
-          </ToggleButton>
-        </ToggleButtonGroup>
-
+            {stats && (
+              <Grid container spacing={1} size={12} sx={{ alignItems: "center" }}>
+                <Typography color="secondary.dark" variant="body1" >
+                  {stats.mean_score != null ? stats.mean_score.toFixed(1) : "?"}
+                </Typography>
+                <Typography color="text.secondary" variant="body2">
+                  avg
+                </Typography>
+                <Typography color="secondary.dark" variant="body1">
+                  {stats.completion_rate?.toFixed(0)}%
+                </Typography>
+                <Typography color="text.secondary" variant="body2">
+                  completed
+                </Typography>
+              </Grid>
+            )}
+          </Grid>
+        </CardActions>
+      </CardContent>
+      <Divider />
+      <CardMedia sx={{ backgroundColor: "background.paper" }}>
+        <Tabs centered variant="fullWidth" value={view} onChange={handleView}>
+          <Tab value="watched" label={`Your titles (${shows.length})`} />
+          <Tab value="recommendations" disabled={!hasRecs} label={`Recommendations (${recommendations.length})`} />
+        </Tabs>
         <AnalysisCarousel>
           {activeShows.map((node) => (
             <AnalysisItem key={node["id"]} node={node} />
           ))}
         </AnalysisCarousel>
-      </div>
-    </div>
+      </CardMedia>
+    </Card >
   );
 }

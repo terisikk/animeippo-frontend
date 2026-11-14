@@ -1,6 +1,7 @@
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography";
 import { useEffect, useMemo, useState } from "react";
 
-import { PAGE_TITLE } from "../../styles";
 import { AnalysisCard } from "./AnalysisCard";
 import { AnalysisExpandedView } from "./AnalysisExpandedView";
 
@@ -51,9 +52,9 @@ export function AnalysisContent({ data }) {
 
   return (
     <>
-      <h1 className={`ml-6 mt-6 ${PAGE_TITLE}`}>Your Profile Insights</h1>
-      <div className="flex flex-wrap justify-center gap-6 px-6 py-6">
-        {categories.map((category, index) => {
+      <Typography variant="h4" sx={{ marginTop: 4, marginX: 2 }}>Your Profile Insights</Typography>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, padding: "1em" }}>
+        {categories.map((category) => {
           const shows = data.shows
             .filter((item) => category.items.includes(item.id))
             .sort((a, b) => category.items.indexOf(a.id) - category.items.indexOf(b.id));
@@ -61,17 +62,29 @@ export function AnalysisContent({ data }) {
           const recommendations = (category.recommendations || []).map((id) => seasonalMap.get(id)).filter(Boolean);
 
           return (
-            <AnalysisCard
+            <Box
               key={category.name}
-              category={category}
-              shows={shows}
-              recommendations={recommendations}
-              index={index}
-              onExpand={setExpandedCategory}
-            />
+              sx={{
+                flexBasis: {
+                  xs: '100%',                             // 1 column on mobile
+                  md: 'calc(50% - 12px)',                 // 2 columns on medium screens
+                  xl: 'calc(33.333% - 16px)',             // 3 columns on extra-large screens
+                },
+                flexGrow: 0,  // Prevents cards from growing past their calc width
+                flexShrink: 0,// Prevents cards from squishing
+              }}
+            >
+              <AnalysisCard
+                key={category.name}
+                category={category}
+                shows={shows}
+                recommendations={recommendations}
+                onExpand={setExpandedCategory}
+              />
+            </Box>
           );
         })}
-      </div>
+      </Box >
     </>
   );
 }

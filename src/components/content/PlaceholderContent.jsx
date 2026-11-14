@@ -1,7 +1,8 @@
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
-import { PAGE_TITLE, SECTION_TITLE } from "../../styles";
+import { SECTION_TITLE } from "../../styles";
 
 export function PlaceHolderContent() {
   return (
@@ -45,7 +46,7 @@ function PlaceholderItem() {
 export function AnalysisPlaceholderContent() {
   return (
     <div className="animate-pulse">
-      <h1 className={`ml-6 mt-6 ${PAGE_TITLE}`}>Your Profile Insights</h1>
+      <Typography variant="h4" sx={{ marginTop: 0, marginX: 2 }}>Your Profile Insights</Typography>
       <div className="flex flex-wrap justify-center gap-6 px-6 py-6">
         {[...Array(6)].map((_, i) => (
           <div
