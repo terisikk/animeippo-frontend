@@ -3,7 +3,7 @@ import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip";
 
 const sizes = {
-  large: { iconSize: "1.5rem", height: "2rem" },
+  large: { iconSize: "1.25rem", height: "1.75rem" },
   normal: { iconSize: 14, height: "26px" },
   small: { iconSize: 12, height: "22px" },
 };

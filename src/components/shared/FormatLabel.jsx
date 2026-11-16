@@ -6,12 +6,12 @@ import TheatersIcon from '@mui/icons-material/Theaters';
 import TimerIcon from '@mui/icons-material/Timer';
 
 export const FORMAT_LABELS = {
-  MOVIE: <TheatersIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
-  ONA: <SmartDisplayIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
-  OVA: <AlbumIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
-  TV_SHORT: <TimerIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
-  SPECIAL: <MovieFilterIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
-  TV: <LiveTvIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
+  MOVIE: <TheatersIcon sx={{ fontSize: "1.75rem", color: "text.primary" }} />,
+  ONA: <SmartDisplayIcon sx={{ fontSize: "1.75rem", color: "text.primary" }} />,
+  OVA: <AlbumIcon sx={{ fontSize: "1.75rem", color: "text.primary" }} />,
+  TV_SHORT: <TimerIcon sx={{ fontSize: "1.75rem", color: "text.primary" }} />,
+  SPECIAL: <MovieFilterIcon sx={{ fontSize: "1.75rem", color: "text.primary" }} />,
+  TV: <LiveTvIcon sx={{ fontSize: "1.75rem", color: "text.primary" }} />,
 };
 
 export function FormatLabel({ format }) {

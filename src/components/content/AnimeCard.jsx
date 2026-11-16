@@ -88,7 +88,7 @@ export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
                 {node["user_status"] != null && (
                   <BookmarkIcon
                     sx={{
-                      fontSize: "1.5rem",
+                      fontSize: "1.25rem",
                       color: "secondary.main", // or 'blue.400' if defined in your theme
                       filter: "drop-shadow(0px 1px 3px rgba(0,0,0,0.8))",
                     }}
