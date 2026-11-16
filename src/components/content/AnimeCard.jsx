@@ -83,14 +83,13 @@ export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
               }}
             >
               <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-                <StatusBadge status={node["status"]} season={node["season"]} />
+                <StatusBadge status={node["status"]} season={node["season"]} size="large" />
                 <FormatLabel format={node["format"]} />
                 {node["user_status"] != null && (
                   <BookmarkIcon
                     sx={{
-                      fontSize: "1.25rem",
+                      fontSize: "1.5rem",
                       color: "secondary.main", // or 'blue.400' if defined in your theme
-                      opacity: 0.8,
                       filter: "drop-shadow(0px 1px 3px rgba(0,0,0,0.8))",
                     }}
                   />

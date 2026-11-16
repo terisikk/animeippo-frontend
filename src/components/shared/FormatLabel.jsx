@@ -1,18 +1,23 @@
-import { Chip } from "@mui/material";
+import AlbumIcon from '@mui/icons-material/Album';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
+import MovieFilterIcon from '@mui/icons-material/MovieFilter';
+import SmartDisplayIcon from '@mui/icons-material/SmartDisplay';
+import TheatersIcon from '@mui/icons-material/Theaters';
+import TimerIcon from '@mui/icons-material/Timer';
 
 export const FORMAT_LABELS = {
-  MOVIE: "Movie",
-  ONA: "ONA",
-  OVA: "OVA",
-  TV_SHORT: "Short",
-  SPECIAL: "Special",
-  TV: "Series",
+  MOVIE: <TheatersIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
+  ONA: <SmartDisplayIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
+  OVA: <AlbumIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
+  TV_SHORT: <TimerIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
+  SPECIAL: <MovieFilterIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
+  TV: <LiveTvIcon sx={{ fontSize: "2rem", color: "text.primary" }} />,
 };
 
 export function FormatLabel({ format }) {
   if (!FORMAT_LABELS[format]) return null;
 
   return (
-    <Chip variant="outlined" label={FORMAT_LABELS[format]} sx={{ borderRadius: 1, height: "26px", color: "white" }} />
+    FORMAT_LABELS[format]
   );
 }
