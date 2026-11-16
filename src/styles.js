@@ -114,7 +114,7 @@ theme = createTheme(theme, {
           "&:hover:not(.Mui-selected)": {
             backgroundColor: background.default,
             color: textColor.primary
-          }
+          },
         }
       }
     }

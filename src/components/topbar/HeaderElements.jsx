@@ -35,10 +35,10 @@ export function HeaderTabBar({ activeYear, setActiveYear, disabled }) {
 
     return (
         <Tabs centered value={activeYear} onChange={(event, newValue) => setActiveYear(newValue)} sx={{ alignItems: "center" }}>
-            <Tab value={activeYear - 1} label={activeYear - 1} disabled={disabled} />
-            <Tab value={activeYear} label={activeYear} disabled={disabled} />
+            <Tab value={activeYear - 1} label={activeYear - 1} disabled={disabled} sx={{ minWidth: "50px" }} />
+            <Tab value={activeYear} label={activeYear} disabled={disabled} sx={{ minWidth: "50px" }} />
             {renderLastTab && (
-                <Tab value={activeYear + 1} label={activeYear + 1} disabled={disabled} />
+                <Tab value={activeYear + 1} label={activeYear + 1} disabled={disabled} sx={{ minWidth: "50px" }} />
             )}
         </Tabs>
     );
