@@ -28,6 +28,7 @@ export const AnalysisItem = memo(function AnalysisItem({ node }) {
           component="img"
           src={img}
           alt={node["title"]}
+          loading="lazy"
           sx={{
             width: '100%',
             height: '100%',

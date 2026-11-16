@@ -45,6 +45,7 @@ export const HeroCard = memo(function HeroCard({ node }) {
               component="img"
               image={img}
               title={title}
+              loading="lazy"
               alt=""
               sx={{
                 objectFit: "cover",

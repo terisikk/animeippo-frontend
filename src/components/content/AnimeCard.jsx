@@ -54,6 +54,7 @@ export const AnimeCard = memo(function AnimeCard({ node, showDetails = true }) {
               component="img"
               image={img}
               title={node["title"]}
+              loading="lazy"
               sx={{
                 objectFit: "cover",
                 width: "100%",
