@@ -6,11 +6,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchAnimeList } from "./api.js";
 import { AnimeContent } from "./components/content/AnimeContent";
 import { AnalysisPlaceholderContent, PlaceHolderContent } from "./components/content/PlaceholderContent";
+import TopBar from "./components/topbar/TopBar.jsx";
 import { AnalysisContent } from "./features/analysis/AnalysisContent";
 import { BrowseContent } from "./features/browse/BrowseContent";
 import { FunnelContent } from "./features/funnel/FunnelContent";
-import { SearchForm } from "./Header";
-import TopBar from "./TopBar";
+import { LoginForm } from "./Login.jsx";
 
 function App() {
   const [shows, setShows] = useState(null);
@@ -19,7 +19,6 @@ function App() {
   const [user, setUser] = useState(() => localStorage.getItem("animeippo_last_user") || "");
   const [contentReady, setContentReady] = useState(null);
   const [error, setError] = useState(null);
-  const [openMenu, setOpenMenu] = useState(null);
   const [mode, setMode] = useState("recommend");
   const [provider, setProvider] = useState(() => localStorage.getItem("animeippo_provider") || "anilist");
   const [browseFilters, setBrowseFilters] = useState({
@@ -31,14 +30,14 @@ function App() {
     listStatusFilter: "",
   });
 
-  const toggleMenu = useCallback(
-    (menu) => () => {
-      setOpenMenu((prev) => (prev === menu ? null : menu));
-    },
-    [],
-  );
+  const handleModeChange = (newMode) => {
+    console.log("New mode: ", newMode)
 
-  const closeMenu = useCallback(() => setOpenMenu(null), []);
+    if (mode != newMode) {
+      setMode(newMode)
+    }
+  }
+
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -109,10 +108,6 @@ function App() {
       <div>
         {loading ? (
           <>
-            <p className="mb-4 w-full text-center text-lg text-blue-200 animate-pulse">
-              Loading {mode === "analyse" ? "analysis" : "recommendations"} for{" "}
-              <span className="font-semibold text-white">{user}</span>...
-            </p>
             {mode === "analyse" ? <AnalysisPlaceholderContent /> : <PlaceHolderContent />}
           </>
         ) : shows != null ? (
@@ -159,7 +154,7 @@ function App() {
               Animeippo
             </Typography>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <SearchForm
+              <LoginForm
                 onSubmit={handleSearch}
                 loading={loading}
                 contentReady={contentReady}
@@ -180,10 +175,7 @@ function App() {
             contentReady={contentReady}
             user={user}
             mode={mode}
-            setMode={setMode}
-            toggleMenu={toggleMenu}
-            openMenu={openMenu}
-            closeMenu={closeMenu}
+            onModeChange={handleModeChange}
             onSwitchUser={handleSwitchUser}
             provider={provider}
             setProvider={handleSetProvider}

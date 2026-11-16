@@ -12,8 +12,6 @@ export const colors = {
   zinc600: "#3f3f46",
 };
 
-export const listItemHoverSx = { "&:hover": { bgcolor: colors.zinc600 } };
-
 let theme = createTheme({
   // Theme customization goes here as usual, including tonalOffset and/or
   // contrastThreshold as the augmentColor() function relies on these
@@ -67,7 +65,6 @@ theme = createTheme(theme, {
       paper: background.paper
     },
     text: textColor,
-    mode: "dark"
   },
 });
 
@@ -111,8 +108,12 @@ theme = createTheme(theme, {
       styleOverrides: {
         root: {
           color: textColor.secondary,
-          '&.Mui-selected': {
+          "&.Mui-selected": {
             color: secondary.light
+          },
+          "&:hover:not(.Mui-selected)": {
+            backgroundColor: background.default,
+            color: textColor.primary
           }
         }
       }

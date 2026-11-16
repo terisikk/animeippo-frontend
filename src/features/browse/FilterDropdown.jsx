@@ -3,10 +3,10 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { useCallback,useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { colors, FILTER_BUTTON, listItemHoverSx } from "../../styles";
+import { colors, FILTER_BUTTON } from "../../styles";
 
 export function FilterDropdown({ title, label, value, options, onChange, width = "w-[140px]" }) {
   const [open, setOpen] = useState(false);
@@ -37,7 +37,6 @@ export function FilterDropdown({ title, label, value, options, onChange, width =
                     onChange(o.value);
                     setOpen(false);
                   }}
-                  sx={listItemHoverSx}
                 >
                   <ListItemText primary={o.label} sx={{ color: value === o.value ? "#ffffff" : colors.blue200 }} />
                 </ListItemButton>

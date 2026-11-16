@@ -21,27 +21,38 @@
 
 @media (min-width: 721px) {
   .embla__slide {
-    --slide-size: calc(100% / 4.5);
+    --slide-size: calc(100% / 3.25);
+  }
+}
+
+@media (min-width: 900px) {
+  .embla__slide {
+    --slide-size: calc(100% / 4.25);
   }
 }
 
 @media (min-width: 1025px) {
   .embla__slide {
-    --slide-size: calc(100% / 6.5);
+    --slide-size: calc(100% / 5.25);
+  }
+}
+
+@media (min-width: 1440px) {
+  .embla__slide {
+    --slide-size: calc(100% / 7.0);
   }
 }
 
 @media (min-width: 1921px) {
   .embla__slide {
     --slide-size: calc(100% / 8.5);
-    --slide-max-width: 260px;
   }
 }
 
 @media (min-width: 2561px) {
   .embla__slide {
     --slide-size: calc(100% / 10.5);
-    --slide-max-width: 260px;
+    --slide-max-width: 460px;
   }
 }
 

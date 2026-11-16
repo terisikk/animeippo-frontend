@@ -17,6 +17,7 @@ export const HeroCard = memo(function HeroCard({ node }) {
 
   const img = node[imageType];
 
+  // TODO: Move these to regular css media queries
   const aspectRatio = isMobile ? "2/3" : undefined;
   const height = isMobile ? "60vh" : undefined;
   const detailAlign = isMobile ? "center" : "left";

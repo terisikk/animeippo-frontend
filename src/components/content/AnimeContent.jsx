@@ -29,8 +29,10 @@ export function AnimeContent({ data }) {
   }
 
   const theme = useTheme();
+  // TODO: Move these to regular css media queries
   const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
   const xmargin = isMobile ? "2em" : "0";
+  const ymargin = isMobile ? "2em" : "0";
 
   if (data?.categories) {
     return (
@@ -43,15 +45,13 @@ export function AnimeContent({ data }) {
             const title = (index == 0) ? "" : category.name
 
             return (
-              <Box sx={{ marginLeft: xmargin, marginRight: xmargin }}>
+              <Box key={category.name} sx={{ marginLeft: xmargin, marginRight: xmargin, marginTop: ymargin }}>
                 <HeroCarousel key={category.name} shows={render} title={title} />
               </Box>
             );
           }
           return (
-            <Box sx={{ marginLeft: "2em" }}>
-              <CategoryCarousel key={category.name} shows={render} category={category} />
-            </Box>
+            <CategoryCarousel key={category.name} shows={render} category={category} />
           );
         })}
       </Box>

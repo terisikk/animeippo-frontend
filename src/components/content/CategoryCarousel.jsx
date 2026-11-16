@@ -14,8 +14,10 @@ export function CategoryCarousel({ shows, category }) {
     breakpoints: {
       "(min-width: 2561px)": { slidesToScroll: 10 },
       "(min-width: 1921px) and (max-width: 2560px)": { slidesToScroll: 8 },
-      "(min-width: 1025px) and (max-width: 1920px)": { slidesToScroll: 6 },
-      "(min-width: 721px) and (max-width: 1024px)": { slidesToScroll: 4 },
+      "(min-width: 1440px) and (max-width: 1920px)": { slidesToScroll: 5 },
+      "(min-width: 1025px) and (max-width: 1440px)": { slidesToScroll: 4 },
+      "(min-width: 900px) and (max-width: 1025px)": { slidesToScroll: 3 },
+      "(min-width: 721px) and (max-width: 900px)": { slidesToScroll: 2 },
     },
   });
 

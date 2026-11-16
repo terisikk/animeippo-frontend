@@ -7,7 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { useCallback, useRef, useState } from "react";
 
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { colors, FILTER_BUTTON, listItemHoverSx } from "../../styles";
+import { colors, FILTER_BUTTON } from "../../styles";
 
 export function GenreCombobox({ selectedGenre, onSelect, genres, tags, matchCounts, searchQuery, setSearchQuery }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,14 +64,14 @@ export function GenreCombobox({ selectedGenre, onSelect, genres, tags, matchCoun
         <div className="absolute left-0 top-full z-30 max-h-72 w-[250px] overflow-y-auto bg-zinc-800 shadow-lg">
           <List disablePadding>
             <ListItem disablePadding>
-              <ListItemButton onClick={() => handleSelect("All")} sx={listItemHoverSx}>
+              <ListItemButton onClick={() => handleSelect("All")}>
                 <ListItemText primary="All" sx={{ color: colors.blue200 }} />
                 <span className="text-xs text-zinc-500">{matchCounts.get("All")}</span>
               </ListItemButton>
             </ListItem>
             {filteredGenres.map((g) => (
               <ListItem key={g} disablePadding>
-                <ListItemButton onClick={() => handleSelect(g)} sx={listItemHoverSx}>
+                <ListItemButton onClick={() => handleSelect(g)}>
                   <ListItemText primary={g} sx={{ color: colors.blue200 }} />
                   <span className="text-xs text-zinc-500">{matchCounts.get(g) ?? 0}</span>
                 </ListItemButton>
@@ -90,7 +90,7 @@ export function GenreCombobox({ selectedGenre, onSelect, genres, tags, matchCoun
             )}
             {filteredTags.map((t) => (
               <ListItem key={t} disablePadding>
-                <ListItemButton onClick={() => handleSelect(t)} sx={listItemHoverSx}>
+                <ListItemButton onClick={() => handleSelect(t)}>
                   <ListItemText primary={t} sx={{ color: colors.blue200 }} />
                   <span className="text-xs text-zinc-500">{matchCounts.get(t) ?? 0}</span>
                 </ListItemButton>
